@@ -1,6 +1,8 @@
-export default {
+import type { NextConfig } from 'next';
+
+const config: NextConfig = {
+  cacheComponents: true,
   experimental: {
-    ppr: true,
     inlineCss: true,
     useCache: true
   },
@@ -15,3 +17,5 @@ export default {
     ]
   }
 };
+
+export default config;
