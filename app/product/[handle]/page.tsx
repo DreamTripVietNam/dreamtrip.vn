@@ -1,6 +1,3 @@
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-
 import { GridTileImage } from "components/grid/tile";
 import Footer from "components/layout/footer";
 import { Gallery } from "components/product/gallery";
@@ -9,7 +6,9 @@ import { ProductDescription } from "components/product/product-description";
 import { HIDDEN_PRODUCT_TAG } from "lib/constants";
 import { getProduct, getProductRecommendations } from "lib/shopify";
 import type { Image } from "lib/shopify/types";
+import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
 export async function generateMetadata(props: {
@@ -49,10 +48,18 @@ export async function generateMetadata(props: {
 	};
 }
 
-export default async function ProductPage(props: {
+export default function ProductPage(props: {
 	params: Promise<{ handle: string }>;
 }) {
-	const params = await props.params;
+	return (
+		<Suspense fallback={null}>
+			<ProductPageContent paramsPromise={props.params} />
+		</Suspense>
+	);
+}
+
+async function ProductPageContent({ paramsPromise }: { paramsPromise: Promise<{ handle: string }> }) {
+	const params = await paramsPromise;
 	const product = await getProduct(params.handle);
 
 	if (!product) return notFound();
@@ -105,7 +112,9 @@ export default async function ProductPage(props: {
 						</Suspense>
 					</div>
 				</div>
-				<RelatedProducts id={product.id} />
+				<Suspense fallback={null}>
+					<RelatedProducts id={product.id} />
+				</Suspense>
 			</div>
 			<Footer />
 		</ProductProvider>
