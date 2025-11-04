@@ -7,7 +7,14 @@ import type {
 	ProductVariant,
 } from "lib/shopify/types";
 import type React from "react";
-import { createContext, use, useContext, useMemo, useOptimistic } from "react";
+import {
+	createContext,
+	Suspense,
+	use,
+	useContext,
+	useMemo,
+	useOptimistic,
+} from "react";
 
 type UpdateType = "plus" | "minus" | "delete";
 
@@ -193,9 +200,11 @@ export function CartProvider({
 	cartPromise: Promise<Cart | undefined>;
 }) {
 	return (
-		<CartContext.Provider value={{ cartPromise }}>
-			{children}
-		</CartContext.Provider>
+		<Suspense fallback={null}>
+			<CartContext.Provider value={{ cartPromise }}>
+				{children}
+			</CartContext.Provider>
+		</Suspense>
 	);
 }
 
