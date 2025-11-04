@@ -39,7 +39,7 @@ export function Gallery({
 					<div className="absolute bottom-[15%] flex w-full justify-center">
 						<div className="mx-auto flex h-11 items-center rounded-full border border-white bg-neutral-50/80 text-neutral-500 backdrop-blur-sm dark:border-black dark:bg-neutral-900/80">
 							<button
-								type="button"
+								type="submit"
 								formAction={() => {
 									const newState = updateImage(previousImageIndex.toString());
 									updateURL(newState);
@@ -51,7 +51,7 @@ export function Gallery({
 							</button>
 							<div className="mx-1 h-6 w-px bg-neutral-500"></div>
 							<button
-								type="button"
+								type="submit"
 								formAction={() => {
 									const newState = updateImage(nextImageIndex.toString());
 									updateURL(newState);
@@ -74,7 +74,7 @@ export function Gallery({
 						return (
 							<li key={image.src} className="h-20 w-20">
 								<button
-									type="button"
+									type="submit"
 									formAction={() => {
 										const newState = updateImage(index.toString());
 										updateURL(newState);
