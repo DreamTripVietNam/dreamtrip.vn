@@ -14,7 +14,13 @@ const config: NextConfig = {
 				hostname: "cdn.shopify.com",
 				pathname: "/s/files/**",
 			},
+			{
+				protocol: "https",
+				hostname: "images.unsplash.com",
+				pathname: "/**",
+			},
 		],
+		qualities: [75, 85, 95],
 	},
 };
 
