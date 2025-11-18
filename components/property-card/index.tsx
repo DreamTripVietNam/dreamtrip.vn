@@ -56,7 +56,7 @@ export function PropertyCard({
 			{/* Image Gallery */}
 			<div className="relative h-64 w-full overflow-hidden">
 				<Image
-					src={property.images[currentImageIndex]}
+					src={property.images[currentImageIndex]!}
 					alt={`${property.name} - ${property.location}`}
 					fill
 					className="object-cover transition-transform duration-300 group-hover:scale-105"

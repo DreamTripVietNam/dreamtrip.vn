@@ -27,6 +27,9 @@
         "noStaticElementInteractions": "off",
         "useGenericFontNames": "off",
         "useKeyWithClickEvents": "off"
+      },
+      "style": {
+        "noNonNullAssertion": "off"
       }
     }
   },
