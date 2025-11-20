@@ -1,10 +1,11 @@
 import { Carousel } from "components/carousel";
-import { ThreeItemGrid } from "components/grid/three-items";
 import Footer from "components/layout/footer";
 import type { Metadata } from "next";
 import { TopDestinations } from "sections/destinations";
+import { FAQs } from "sections/faqs";
 import { FeaturedProperties } from "sections/featured-properties";
 import { HeroSection } from "sections/hero";
+import { NewsTips } from "sections/news-tips";
 
 export const metadata: Metadata = {
 	description:
@@ -20,8 +21,11 @@ export default function HomePage() {
 			<HeroSection />
 			<TopDestinations />
 			<FeaturedProperties />
-			<ThreeItemGrid />
+			{/* <ThreeItemGrid /> */}
 			<Carousel />
+			<NewsTips />
+			{/* <AdditionalServices /> */}
+			<FAQs />
 			<Footer />
 		</>
 	);
