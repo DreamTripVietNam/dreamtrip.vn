@@ -58,7 +58,11 @@ export default function ProductPage(props: {
 	);
 }
 
-async function ProductPageContent({ paramsPromise }: { paramsPromise: Promise<{ handle: string }> }) {
+async function ProductPageContent({
+	paramsPromise,
+}: {
+	paramsPromise: Promise<{ handle: string }>;
+}) {
 	const params = await paramsPromise;
 	const product = await getProduct(params.handle);
 
