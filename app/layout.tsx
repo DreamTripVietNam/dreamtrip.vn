@@ -1,4 +1,5 @@
 import { CartProvider } from "components/cart/cart-context";
+import Footer from "components/footer";
 import { Navbar } from "components/layout/navbar";
 import { WelcomeToast } from "components/welcome-toast";
 import { SITE_METADATA } from "data/metadata";
@@ -42,6 +43,7 @@ export default async function RootLayout({
 						<Toaster closeButton />
 						<WelcomeToast />
 					</main>
+					<Footer />
 				</CartProvider>
 			</body>
 		</html>

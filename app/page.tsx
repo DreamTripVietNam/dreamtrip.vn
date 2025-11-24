@@ -1,5 +1,4 @@
 import { Carousel } from "components/carousel";
-import Footer from "components/layout/footer";
 import type { Metadata } from "next";
 import { TopDestinations } from "sections/destinations";
 import { FAQs } from "sections/faqs";
@@ -26,7 +25,6 @@ export default function HomePage() {
 			<NewsTips />
 			{/* <AdditionalServices /> */}
 			<FAQs />
-			<Footer />
 		</>
 	);
 }
