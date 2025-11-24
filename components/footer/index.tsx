@@ -38,7 +38,7 @@ const footerLinks = {
 
 export default function Footer() {
 	return (
-		<footer className="border-t border-neutral-200 bg-[#FFF8F0]">
+		<footer className="border-t border-neutral-200">
 			{/* Main Footer Content */}
 			<div className="mx-auto max-w-7xl px-6 py-12 md:px-4 min-[1320px]:px-0">
 				<div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
@@ -52,6 +52,11 @@ export default function Footer() {
 							<LogoSquare size="sm" />
 							<span className="text-lg font-bold uppercase">{siteName}</span>
 						</Link>
+
+						<div className="mb-6 text-gray-600">
+							Khám phá Việt Nam cùng Dream Trip - Hành trình của bạn bắt đầu tại
+							đây!
+						</div>
 
 						{/* Contact Info */}
 						<div className="mb-6">
@@ -133,7 +138,7 @@ export default function Footer() {
 								<li key={link.title}>
 									<Link
 										href={link.href}
-										className="text-sm text-neutral-600 transition-colors hover:text-neutral-900"
+										className="text-sm text-neutral-600 transition-colors hover:text-neutral-900 hover:underline"
 									>
 										{link.title}
 									</Link>
@@ -152,7 +157,7 @@ export default function Footer() {
 								<li key={link.title}>
 									<Link
 										href={link.href}
-										className="text-sm text-neutral-600 transition-colors hover:text-neutral-900"
+										className="text-sm text-neutral-600 transition-colors hover:text-neutral-900 hover:underline"
 									>
 										{link.title}
 									</Link>
@@ -171,7 +176,7 @@ export default function Footer() {
 								<li key={link.title}>
 									<Link
 										href={link.href}
-										className="text-sm text-neutral-600 transition-colors hover:text-neutral-900"
+										className="text-sm text-neutral-600 transition-colors hover:text-neutral-900 hover:underline"
 									>
 										{link.title}
 									</Link>
@@ -183,28 +188,31 @@ export default function Footer() {
 			</div>
 
 			{/* Bottom Bar */}
-			<div className="border-t border-neutral-200 bg-[#FFF8F0]">
+			<div className="border-t border-neutral-200">
 				<div className="mx-auto max-w-7xl px-6 py-4 md:px-4 min-[1320px]:px-0">
 					<div className="flex flex-col items-center justify-between gap-3 text-xs text-neutral-600 md:flex-row">
-						<p>© 2024 {siteName}. Bản quyền thuộc về Dream Trip.</p>
+						<p>
+							© 2020-2025 {siteName}. Bản quyền thuộc về{" "}
+							<span className="font-medium">Dream Trip</span>.
+						</p>
 						<div className="flex flex-wrap items-center justify-center gap-4">
 							<Link
 								href="/privacy"
-								className="transition-colors hover:text-neutral-900"
+								className="transition-colors hover:underline hover:text-neutral-900"
 							>
 								Chính sách bảo mật
 							</Link>
 							<span className="text-neutral-300">|</span>
 							<Link
 								href="/terms"
-								className="transition-colors hover:text-neutral-900"
+								className="transition-colors hover:underline hover:text-neutral-900"
 							>
 								Điều khoản sử dụng
 							</Link>
 							<span className="text-neutral-300">|</span>
 							<Link
 								href="/sitemap"
-								className="transition-colors hover:text-neutral-900"
+								className="transition-colors hover:underline hover:text-neutral-900"
 							>
 								Sơ đồ trang
 							</Link>
