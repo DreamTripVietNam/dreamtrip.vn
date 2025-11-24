@@ -11,6 +11,16 @@
 	::file-selector-button {
 		border-color: var(--color-gray-200, currentColor);
 	}
+
+	a,
+	input,
+	button {
+		@apply focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-50 dark:focus-visible:ring-neutral-600 dark:focus-visible:ring-offset-neutral-900;
+	}
+
+	a {
+		@apply underline-offset-4;
+	}
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,10 +33,4 @@
 	img[loading="lazy"] {
 		clip-path: inset(0.6px);
 	}
-}
-
-a,
-input,
-button {
-	@apply focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-50 dark:focus-visible:ring-neutral-600 dark:focus-visible:ring-offset-neutral-900;
 }
