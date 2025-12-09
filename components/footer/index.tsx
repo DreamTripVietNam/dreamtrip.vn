@@ -1,7 +1,6 @@
-import { PhoneIcon } from "@heroicons/react/24/solid";
+import { EnvelopeIcon, MapPinIcon, PhoneIcon } from "@heroicons/react/24/outline";
 import LogoSquare from "components/logo-square";
 import { SITE_METADATA } from "data/metadata";
-import Image from "next/image";
 import Link from "next/link";
 
 const { name: siteName } = SITE_METADATA;
@@ -53,13 +52,43 @@ export default function Footer() {
 							<span className="text-lg font-bold uppercase">{siteName}</span>
 						</Link>
 
-						<div className="mb-6 text-gray-600">
+						<div className="mb-6">
 							Khám phá Việt Nam cùng Dream Trip - Hành trình của bạn bắt đầu tại
 							đây!
 						</div>
 
+						<div className="mb-6 flex flex-col gap-3">
+							<div className="flex items-start gap-3">
+								<PhoneIcon className="mt-0.5 h-5 w-5 shrink-0 text-neutral-500" />
+								<span className="text-sm text-neutral-600">
+									<a href="tel:0975647798" className="hover:underline">
+										0975647798
+									</a>{" "}
+									/{" "}
+									<a href="tel:0387176583" className="hover:underline">
+										0387176583
+									</a>
+								</span>
+							</div>
+							<div className="flex items-start gap-3">
+								<MapPinIcon className="mt-0.5 h-5 w-5 shrink-0 text-neutral-500" />
+								<span className="text-sm text-neutral-600">
+									Tòa GS2, Vinhomes Smart City, Phường Tây Mỗ, Hà Nội, Việt Nam
+								</span>
+							</div>
+							<div className="flex items-center gap-3">
+								<EnvelopeIcon className="h-5 w-5 shrink-0 text-neutral-500" />
+								<a
+									href="mailto:support@travila.com"
+									className="text-sm text-neutral-600 hover:text-neutral-900"
+								>
+									dreamtrip.vietnam@gmail.com
+								</a>
+							</div>
+						</div>
+
 						{/* Contact Info */}
-						<div className="mb-6">
+						{/* <div className="mb-6">
 							<h3 className="mb-4 text-sm font-semibold text-neutral-900">
 								Liên hệ
 							</h3>
@@ -125,8 +154,10 @@ export default function Footer() {
 									</div>
 								</li>
 							</ul>
-						</div>
+						</div> */}
 					</div>
+
+          <div className="lg:col-span-2" />
 
 					{/* About Us Links */}
 					<div className="lg:col-span-2">
