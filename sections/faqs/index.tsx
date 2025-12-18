@@ -1,5 +1,5 @@
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
-import Link from "next/link";
+import Link from "components/link";
 import { FAQItem } from "./faq-item";
 import type { FAQ, FAQsProps } from "./types";
 
@@ -60,11 +60,8 @@ export function FAQs({ faqs = defaultFAQs, className = "" }: FAQsProps) {
 				</div>
 
 				{/* CTA Button */}
-				<div className="text-center">
-					<Link
-						href="/faq"
-						className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-8 py-3 text-base font-semibold text-white transition-all duration-300 hover:bg-blue-700 hover:shadow-lg"
-					>
+				<div className="text-center flex justify-center">
+					<Link href="/faq" variant="secondary">
 						Xem thêm câu hỏi
 						<ChevronRightIcon className="h-5 w-5" />
 					</Link>

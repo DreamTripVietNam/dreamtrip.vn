@@ -1,4 +1,8 @@
-import { EnvelopeIcon, MapPinIcon, PhoneIcon } from "@heroicons/react/24/outline";
+import {
+	EnvelopeIcon,
+	MapPinIcon,
+	PhoneIcon,
+} from "@heroicons/react/24/outline";
 import LogoSquare from "components/logo-square";
 import { SITE_METADATA } from "data/metadata";
 import Link from "next/link";
@@ -53,8 +57,8 @@ export default function Footer() {
 						</Link>
 
 						<div className="mb-6">
-							Khám phá Việt Nam cùng Dream Trip - Hành trình của bạn bắt đầu tại
-							đây!
+							Khám phá những địa điểm đẹp nhất Việt Nam cùng Dream Trip - Hành
+							trình của bạn bắt đầu tại đây!
 						</div>
 
 						<div className="mb-6 flex flex-col gap-3">
@@ -157,7 +161,7 @@ export default function Footer() {
 						</div> */}
 					</div>
 
-          <div className="lg:col-span-2" />
+					<div className="lg:col-span-2" />
 
 					{/* About Us Links */}
 					<div className="lg:col-span-2">

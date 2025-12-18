@@ -1,3 +1,4 @@
+import Link from "components/link";
 import { type Property, PropertyCard } from "components/property-card";
 
 // Featured Vietnamese properties
@@ -160,13 +161,10 @@ export function FeaturedProperties({
 				</div>
 
 				{/* View More Button */}
-				<div className="text-center mt-12">
-					<button
-						type="button"
-						className="inline-flex items-center px-8 py-3 border border-transparent rounded-lg text-base font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
-					>
+				<div className="text-center mt-12 flex justify-center">
+					<Link href="/search" variant="secondary">
 						Xem thêm chỗ ở
-					</button>
+					</Link>
 				</div>
 			</div>
 		</section>

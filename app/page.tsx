@@ -8,7 +8,7 @@ import { NewsTips } from "sections/news-tips";
 
 export const metadata: Metadata = {
 	description:
-		"High-performance ecommerce store built with Next.js, Vercel, and Shopify.",
+		"Đặt homestay, villa, resort quanh Hà Nội và trên toàn Việt Nam với Dream Trip.",
 	openGraph: {
 		type: "website",
 	},
@@ -20,10 +20,8 @@ export default function HomePage() {
 			<HeroSection />
 			<TopDestinations />
 			<FeaturedProperties />
-			{/* <ThreeItemGrid /> */}
 			<Carousel />
 			<NewsTips />
-			{/* <AdditionalServices /> */}
 			<FAQs />
 		</>
 	);

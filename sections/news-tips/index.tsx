@@ -1,5 +1,5 @@
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
-import Link from "next/link";
+import Link from "components/link";
 import { ArticleCard } from "./article-card";
 import type { BlogArticle, NewsTipsProps } from "./types";
 
@@ -77,7 +77,8 @@ export function NewsTips({
 					</div>
 					<Link
 						href="/blog"
-						className="hidden items-center gap-2 rounded-full bg-neutral-900 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-neutral-800 sm:flex"
+						variant="secondary"
+						className="hidden sm:inline-flex items-center gap-2"
 					>
 						View More
 						<ChevronRightIcon className="h-4 w-4" />
@@ -92,10 +93,11 @@ export function NewsTips({
 				</div>
 
 				{/* Mobile View More Button */}
-				<div className="mt-8 text-center sm:hidden">
+				<div className="mt-8 text-center sm:hidden flex justify-center">
 					<Link
 						href="/blog"
-						className="inline-flex items-center gap-2 rounded-full bg-neutral-900 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-neutral-800"
+						variant="secondary"
+						className="inline-flex items-center gap-2"
 					>
 						View More
 						<ChevronRightIcon className="h-4 w-4" />

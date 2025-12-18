@@ -1,4 +1,3 @@
-import Footer from "components/layout/footer";
 import type { Metadata } from "next";
 import { NewsTips } from "sections/news-tips";
 
@@ -26,7 +25,6 @@ export default function BlogPage() {
 				</div>
 			</div>
 			<NewsTips />
-			<Footer />
 		</>
 	);
 }

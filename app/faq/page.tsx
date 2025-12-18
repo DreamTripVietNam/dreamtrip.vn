@@ -1,4 +1,3 @@
-import Footer from "components/layout/footer";
 import type { Metadata } from "next";
 import { FAQs } from "sections/faqs";
 
@@ -25,7 +24,6 @@ export default function FAQPage() {
 				</div>
 			</div>
 			<FAQs />
-			<Footer />
 		</>
 	);
 }

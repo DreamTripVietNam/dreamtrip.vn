@@ -123,7 +123,7 @@ export function ArticleCard({ article }: { article: BlogArticle }) {
 						href={`/blog/${article.slug}`}
 						className="text-sm font-semibold text-blue-600 transition-colors hover:text-blue-700"
 					>
-						Keep Reading
+						Xem thêm
 					</Link>
 				</div>
 			</div>

@@ -4,7 +4,6 @@ import {
 	ClockIcon,
 	UserIcon,
 } from "@heroicons/react/24/outline";
-import Footer from "components/layout/footer";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -203,8 +202,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 					</div>
 				</div>
 			</article>
-
-			<Footer />
 		</>
 	);
 }

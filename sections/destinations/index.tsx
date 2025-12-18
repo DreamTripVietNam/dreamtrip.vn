@@ -1,4 +1,5 @@
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
+import Link from "components/link";
 import { DestinationCard } from "./destination-card";
 import type { Destination, TopDestinationsProps } from "./types";
 
@@ -79,7 +80,7 @@ export function TopDestinations({
 		<section className={`py-16 bg-gray-50 ${className}`}>
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				{/* Section Header */}
-				<div className="text-center mb-12">
+				<div className="text-center">
 					<h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
 						{title}
 					</h2>
@@ -90,21 +91,18 @@ export function TopDestinations({
 				</div>
 
 				{/* Destinations Grid */}
-				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 my-12">
 					{destinations.map((destination) => (
 						<DestinationCard key={destination.id} destination={destination} />
 					))}
 				</div>
 
 				{/* View More Button */}
-				<div className="text-center mt-12">
-					<button
-						type="button"
-						className="inline-flex items-center px-6 py-3 border border-gray-300 rounded-lg text-base font-medium text-gray-700 bg-white hover:bg-gray-50 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
-					>
+				<div className="flex justify-center">
+					<Link href="/search" variant="secondary">
 						Xem tất cả điểm đến
 						<ChevronRightIcon className="ml-2 h-5 w-5" aria-hidden="true" />
-					</button>
+					</Link>
 				</div>
 			</div>
 		</section>

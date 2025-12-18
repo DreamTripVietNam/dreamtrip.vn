@@ -1,5 +1,4 @@
 import { GridTileImage } from "components/grid/tile";
-import Footer from "components/layout/footer";
 import { Gallery } from "components/product/gallery";
 import { ProductProvider } from "components/product/product-context";
 import { ProductDescription } from "components/product/product-description";
@@ -120,7 +119,6 @@ async function ProductPageContent({
 					<RelatedProducts id={product.id} />
 				</Suspense>
 			</div>
-			<Footer />
 		</ProductProvider>
 	);
 }
