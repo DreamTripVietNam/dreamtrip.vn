@@ -17,20 +17,27 @@ export function HeroSection() {
 						sizes="100vw"
 					/>
 					{/* Dark overlay for better text readability */}
-					<div className="absolute inset-0 bg-black/50"></div>
+					<div className="absolute inset-0 bg-slate-900/60"></div>
 				</div>
 
 				{/* Content */}
 				<div className="relative z-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="text-center mb-8">
 						{/* Explore Vietnam Tag */}
-						<div className="inline-flex items-center rounded-full bg-yellow-400 px-6 py-2 text-sm font-semibold text-black mb-6">
-							Khám Phá Việt Nam
+						<div className="inline-flex items-center rounded-full bg-yellow-400 px-6 py-2 text-sm font-semibold text-black mb-6 gap-3">
+							<Image
+								src="https://cdn.shopify.com/s/files/1/0959/3775/7475/files/suitcase-100.png?v=1766102913"
+								width={100}
+								height={100}
+								alt="Vietnam Flag"
+								className="object-contain size-6"
+							/>
+							<span>Khám Phá Việt Nam</span>
 						</div>
 
 						{/* Main Headline */}
 						<h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-							Cổng Thông Tin Du Lịch
+							Kênh Thông Tin Du Lịch
 							<br />
 							Hàng Đầu Việt Nam
 						</h1>

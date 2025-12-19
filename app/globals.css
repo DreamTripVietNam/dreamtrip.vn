@@ -1,5 +1,28 @@
 @import "tailwindcss";
 
+@theme inline {
+	--font-sans:
+		var(--font-inter), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+		"Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	--font-montserrat:
+		var(--font-montserrat), ui-sans-serif, system-ui, sans-serif,
+		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+@layer base {
+	html {
+		font-family: var(--font-inter), sans-serif;
+	}
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: var(--font-montserrat), sans-serif;
+	}
+}
+
 @plugin "@tailwindcss/container-queries";
 @plugin "@tailwindcss/typography";
 
@@ -22,9 +45,9 @@
 		@apply underline-offset-4;
 	}
 
-  button:not(:disabled) {
-    @apply cursor-pointer;
-  }
+	button:not(:disabled) {
+		@apply cursor-pointer;
+	}
 }
 
 @media (prefers-color-scheme: dark) {
