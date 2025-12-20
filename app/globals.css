@@ -2,8 +2,8 @@
 
 @theme inline {
 	--font-sans:
-		var(--font-inter), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
-		"Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+		var(--font-be-vietnam-pro), ui-sans-serif, system-ui, sans-serif,
+		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 	--font-montserrat:
 		var(--font-montserrat), ui-sans-serif, system-ui, sans-serif,
 		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -11,7 +11,7 @@
 
 @layer base {
 	html {
-		font-family: var(--font-inter), sans-serif;
+		font-family: var(--font-be-vietnam-pro), sans-serif;
 	}
 	h1,
 	h2,
