@@ -7,22 +7,23 @@ import { SITE_METADATA } from "data/metadata";
 import { getCart } from "lib/shopify";
 import { baseUrl } from "lib/utils";
 import type { Metadata } from "next";
-import { Barlow, Montserrat } from "next/font/google";
+import { Barlow, Inter } from "next/font/google";
 import type { ReactNode } from "react";
 import { Toaster } from "sonner";
 import "./globals.css";
 
-const montserrat = Montserrat({
+const barlow = Barlow({
 	subsets: ["latin", "vietnamese"],
+	weight: ["300", "400", "500", "600", "700"],
 	display: "swap",
-	variable: "--font-montserrat",
+	variable: "--font-barlow",
 });
 
-const beVietnamPro = Barlow({
+const inter = Inter({
 	subsets: ["latin", "vietnamese"],
-	weight: ["300", "400", "500", "600", "700", "800", "900"],
+	weight: ["300", "400", "500", "600", "700"],
 	display: "swap",
-	variable: "--font-be-vietnam-pro",
+	variable: "--font-inter",
 });
 
 const { name: siteName } = SITE_METADATA;
@@ -48,10 +49,7 @@ export default async function RootLayout({
 	const cart = getCart();
 
 	return (
-		<html
-			lang="en"
-			className={clsx(montserrat.variable, beVietnamPro.variable)}
-		>
+		<html lang="en" className={clsx(barlow.variable, inter.variable)}>
 			<body className="font-sans bg-neutral-50 text-black selection:bg-teal-300 dark:bg-neutral-900 dark:text-white dark:selection:bg-pink-500 dark:selection:text-white">
 				<CartProvider cartPromise={cart}>
 					<Navbar />
