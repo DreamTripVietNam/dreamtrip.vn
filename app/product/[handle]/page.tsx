@@ -1,49 +1,49 @@
+import { HeartIcon, MapPinIcon, ShareIcon } from "@heroicons/react/24/outline";
 import { GridTileImage } from "components/grid/tile";
-import { Gallery } from "components/product/gallery";
+import { BookingWidget } from "components/product/booking-widget";
 import { ProductProvider } from "components/product/product-context";
-import { ProductDescription } from "components/product/product-description";
-import { HIDDEN_PRODUCT_TAG } from "lib/constants";
+import { ProductGallery } from "components/product/product-gallery";
+import { ProductInfo } from "components/product/product-info";
+import { MOCK_PRODUCT_DATA } from "lib/mock-product-data";
 import { getProduct, getProductRecommendations } from "lib/shopify";
-import type { Image } from "lib/shopify/types";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
 export async function generateMetadata(props: {
 	params: Promise<{ handle: string }>;
 }): Promise<Metadata> {
 	const params = await props.params;
+	// We still fetch the product to get some basic metadata if available,
+	// but we primarily rely on the mock data for this specific task as requested.
 	const product = await getProduct(params.handle);
 
-	if (!product) return notFound();
-
-	const { url, width, height, altText: alt } = product.featuredImage || {};
-	const indexable = !product.tags.includes(HIDDEN_PRODUCT_TAG);
+	// Fallback to mock data for SEO if product not found or just to match the visual
+	const title = MOCK_PRODUCT_DATA.title;
+	const description = MOCK_PRODUCT_DATA.description;
+	const image = MOCK_PRODUCT_DATA.images[0]?.url || "";
 
 	return {
-		title: product.seo.title || product.title,
-		description: product.seo.description || product.description,
+		title: title,
+		description: description,
 		robots: {
-			index: indexable,
-			follow: indexable,
+			index: true,
+			follow: true,
 			googleBot: {
-				index: indexable,
-				follow: indexable,
+				index: true,
+				follow: true,
 			},
 		},
-		openGraph: url
-			? {
-					images: [
-						{
-							url,
-							width,
-							height,
-							alt,
-						},
-					],
-				}
-			: null,
+		openGraph: {
+			images: [
+				{
+					url: image,
+					width: 1200,
+					height: 630,
+					alt: title,
+				},
+			],
+		},
 	};
 }
 
@@ -63,24 +63,28 @@ async function ProductPageContent({
 	paramsPromise: Promise<{ handle: string }>;
 }) {
 	const params = await paramsPromise;
+	// We still try to fetch product to respect the architecture,
+	// but we will render the Mock Data regardless for this demo request.
 	const product = await getProduct(params.handle);
 
-	if (!product) return notFound();
+	// In a real scenario, we would use the product data here.
+	// const isMockMode = true;
+
+	// If we weren't in mock mode, we'd check !product
+	// if (!product && !isMockMode) return notFound();
 
 	const productJsonLd = {
 		"@context": "https://schema.org",
 		"@type": "Product",
-		name: product.title,
-		description: product.description,
-		image: product.featuredImage.url,
+		name: MOCK_PRODUCT_DATA.title,
+		description: MOCK_PRODUCT_DATA.description,
+		image: MOCK_PRODUCT_DATA.images[0]?.url || "",
 		offers: {
 			"@type": "AggregateOffer",
-			availability: product.availableForSale
-				? "https://schema.org/InStock"
-				: "https://schema.org/OutOfStock",
-			priceCurrency: product.priceRange.minVariantPrice.currencyCode,
-			highPrice: product.priceRange.maxVariantPrice.amount,
-			lowPrice: product.priceRange.minVariantPrice.amount,
+			availability: "https://schema.org/InStock",
+			priceCurrency: MOCK_PRODUCT_DATA.price.currencyCode,
+			highPrice: MOCK_PRODUCT_DATA.price.amount,
+			lowPrice: MOCK_PRODUCT_DATA.price.amount,
 		},
 	};
 
@@ -92,31 +96,53 @@ async function ProductPageContent({
 					__html: JSON.stringify(productJsonLd),
 				}}
 			/>
-			<div className="mx-auto max-w-(--breakpoint-2xl) px-4">
-				<div className="flex flex-col rounded-lg border border-neutral-200 bg-white p-8 md:p-12 lg:flex-row lg:gap-8 dark:border-neutral-800 dark:bg-black">
-					<div className="h-full w-full basis-full lg:basis-4/6">
-						<Suspense
-							fallback={
-								<div className="relative aspect-square h-full max-h-[550px] w-full overflow-hidden" />
-							}
-						>
-							<Gallery
-								images={product.images.slice(0, 5).map((image: Image) => ({
-									src: image.url,
-									altText: image.altText,
-								}))}
-							/>
-						</Suspense>
+			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 animate-in fade-in duration-500">
+				{/* Header Section */}
+				<div className="mb-6 flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+					<div>
+						<h1 className="text-2xl md:text-3xl font-bold font-barlow text-neutral-900 dark:text-white mb-2">
+							{MOCK_PRODUCT_DATA.title}
+						</h1>
+						<div className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400">
+							<MapPinIcon className="w-4 h-4" />
+							<span className="underline cursor-pointer hover:text-neutral-900 dark:hover:text-white transition-colors">
+								{MOCK_PRODUCT_DATA.location}
+							</span>
+						</div>
 					</div>
-
-					<div className="basis-full lg:basis-2/6">
-						<Suspense fallback={null}>
-							<ProductDescription product={product} />
-						</Suspense>
+					<div className="flex items-center gap-3">
+						<button className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors text-sm font-medium">
+							<ShareIcon className="w-4 h-4" />
+							Chia sẻ
+						</button>
+						<button className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors text-sm font-medium">
+							<HeartIcon className="w-4 h-4" />
+							Lưu
+						</button>
 					</div>
 				</div>
+
+				{/* Gallery */}
+				<div className="mb-10">
+					<ProductGallery images={MOCK_PRODUCT_DATA.images} />
+				</div>
+
+				{/* Main Content Grid */}
+				<div className="grid grid-cols-1 lg:grid-cols-3 gap-12 relative">
+					{/* Left Column: Details */}
+					<div className="lg:col-span-2">
+						<ProductInfo />
+					</div>
+
+					{/* Right Column: Sticky Booking Widget */}
+					<div className="lg:col-span-1">
+						<BookingWidget />
+					</div>
+				</div>
+
+				{/* Related Products */}
 				<Suspense fallback={null}>
-					<RelatedProducts id={product.id} />
+					<RelatedProducts id={product?.id || "mock-id"} />
 				</Suspense>
 			</div>
 		</ProductProvider>
@@ -124,21 +150,27 @@ async function ProductPageContent({
 }
 
 async function RelatedProducts({ id }: { id: string }) {
+	// If it's the mock ID, we can't fetch real related products from Shopify using it.
+	// So we just return null to avoid the API error.
+	if (id === "mock-id") return null;
+
 	const relatedProducts = await getProductRecommendations(id);
 
 	if (!relatedProducts.length) return null;
 
 	return (
-		<div className="py-8">
-			<h2 className="mb-4 text-2xl font-bold">Related Products</h2>
-			<ul className="flex w-full gap-4 overflow-x-auto pt-1">
+		<div className="py-16 border-t border-neutral-200 dark:border-neutral-800 mt-16">
+			<h2 className="mb-6 text-2xl font-bold font-barlow">
+				Có thể bạn sẽ thích
+			</h2>
+			<ul className="flex w-full gap-4 overflow-x-auto pb-4">
 				{relatedProducts.map((product) => (
 					<li
 						key={product.handle}
 						className="aspect-square w-full flex-none min-[475px]:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5"
 					>
 						<Link
-							className="relative h-full w-full"
+							className="relative h-full w-full group block"
 							href={`/product/${product.handle}`}
 							prefetch={true}
 						>

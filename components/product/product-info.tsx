@@ -1,0 +1,193 @@
+"use client";
+
+import {
+	FireIcon,
+	HomeModernIcon,
+	MusicalNoteIcon,
+	SparklesIcon,
+	VideoCameraIcon,
+	WifiIcon,
+} from "@heroicons/react/24/outline";
+import {
+	MapPinIcon,
+	ShieldCheckIcon,
+	StarIcon,
+} from "@heroicons/react/24/solid";
+import { MOCK_PRODUCT_DATA } from "lib/mock-product-data";
+
+// Type-safe icon mapping
+const IconMap: Record<string, any> = {
+	Wifi: WifiIcon,
+	AC: HomeModernIcon,
+	Fridge: HomeModernIcon, // Use generic if specific not found
+	Pool: SparklesIcon,
+	Speaker: MusicalNoteIcon,
+	Projector: VideoCameraIcon,
+	Grill: FireIcon,
+	Cleaning: ShieldCheckIcon,
+	Coffee: SparklesIcon,
+	HairDryer: SparklesIcon,
+	HotWater: FireIcon,
+};
+
+function AmenityItem({ icon, label }: { icon: string; label: string }) {
+	const Icon = IconMap[icon] || SparklesIcon;
+	return (
+		<div className="flex items-center gap-3 p-3 bg-neutral-50 dark:bg-neutral-900 rounded-lg">
+			<Icon className="w-6 h-6 text-neutral-600 dark:text-neutral-400" />
+			<span className="text-sm font-medium text-neutral-800 dark:text-neutral-200">
+				{label}
+			</span>
+		</div>
+	);
+}
+
+export function ProductInfo() {
+	const { amenities, description, houseRules, extraServices, nearby, reviews } =
+		MOCK_PRODUCT_DATA;
+
+	return (
+		<div className="flex flex-col gap-10">
+			{/* Description */}
+			<section>
+				<h2 className="text-2xl font-semibold mb-4 text-neutral-900 dark:text-white">
+					Chi tiết chỗ ở
+				</h2>
+				<p className="text-neutral-600 dark:text-neutral-300 leading-relaxed text-base">
+					{description}
+				</p>
+			</section>
+
+			{/* Amenities */}
+			<section>
+				<h2 className="text-2xl font-semibold mb-6 flex items-center gap-2">
+					<span>Tiện ích</span>
+					<span className="text-sm font-normal text-neutral-500 bg-neutral-100 dark:bg-neutral-800 px-2 py-1 rounded-full">
+						{amenities.free.length + amenities.facilities.length}
+					</span>
+				</h2>
+
+				<div className="mb-6">
+					<h3 className="text-sm font-bold uppercase tracking-wider text-neutral-500 mb-3">
+						Miễn phí
+					</h3>
+					<div className="grid grid-cols-2 gap-3">
+						{amenities.free.map((item, idx) => (
+							<AmenityItem key={idx} {...item} />
+						))}
+					</div>
+				</div>
+
+				<div>
+					<h3 className="text-sm font-bold uppercase tracking-wider text-neutral-500 mb-3">
+						Tiện nghi phòng
+					</h3>
+					<div className="grid grid-cols-2 gap-3">
+						{amenities.facilities.map((item, idx) => (
+							<AmenityItem key={idx} {...item} />
+						))}
+					</div>
+				</div>
+			</section>
+
+			{/* Extra Services */}
+			<section className="bg-orange-50 dark:bg-orange-950/20 p-6 rounded-2xl border border-orange-100 dark:border-orange-900/30">
+				<h2 className="text-xl font-semibold mb-4 text-orange-800 dark:text-orange-200 flex items-center gap-2">
+					<SparklesIcon className="w-5 h-5" />
+					Dịch vụ phát sinh
+				</h2>
+				<ul className="space-y-3">
+					{extraServices.map((service, idx) => (
+						<li key={idx} className="flex justify-between items-center text-sm">
+							<span className="text-neutral-700 dark:text-neutral-300">
+								{service.name}
+							</span>
+							<span className="font-semibold text-neutral-900 dark:text-white">
+								{service.price}
+							</span>
+						</li>
+					))}
+				</ul>
+			</section>
+
+			{/* House Rules */}
+			<section>
+				<h2 className="text-2xl font-semibold mb-4">Nội quy chỗ ở</h2>
+				<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+					{houseRules.map((rule, idx) => (
+						<div
+							key={idx}
+							className="border border-neutral-200 dark:border-neutral-800 p-4 rounded-xl"
+						>
+							<span className="block text-xs text-neutral-500 mb-1 uppercase tracking-wide">
+								{rule.label}
+							</span>
+							<span className="font-medium text-neutral-900 dark:text-white">
+								{rule.value}
+							</span>
+						</div>
+					))}
+				</div>
+			</section>
+
+			{/* Location */}
+			<section>
+				<h2 className="text-2xl font-semibold mb-4">Nơi bạn sẽ đến</h2>
+				<div className="bg-neutral-100 dark:bg-neutral-800 h-64 rounded-xl flex items-center justify-center mb-4 relative overflow-hidden group">
+					<MapPinIcon className="w-10 h-10 text-neutral-400" />
+					<span className="absolute bottom-4 left-4 bg-white dark:bg-black px-3 py-1 rounded-full text-xs font-bold shadow-md">
+						{MOCK_PRODUCT_DATA.location}
+					</span>
+				</div>
+				<div className="flex flex-wrap gap-2">
+					{nearby.map((place, idx) => (
+						<span
+							key={idx}
+							className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-neutral-200 dark:border-neutral-700 text-xs font-medium hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors cursor-default"
+						>
+							<MapPinIcon className="w-3 h-3 text-blue-500" />
+							{place}
+						</span>
+					))}
+				</div>
+			</section>
+
+			{/* Reviews */}
+			<section>
+				<div className="flex items-center gap-2 mb-6">
+					<StarIcon className="w-6 h-6 text-yellow-400" />
+					<h2 className="text-2xl font-semibold">
+						{MOCK_PRODUCT_DATA.rating}{" "}
+						<span className="text-neutral-400 font-normal text-lg">
+							({MOCK_PRODUCT_DATA.reviewCount} đánh giá)
+						</span>
+					</h2>
+				</div>
+
+				<div className="space-y-6">
+					{reviews.map((review, idx) => (
+						<div
+							key={idx}
+							className="border-b border-neutral-100 dark:border-neutral-800 pb-6 last:border-0 last:pb-0"
+						>
+							<div className="flex items-center gap-3 mb-3">
+								<div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 flex items-center justify-center font-bold text-neutral-600 dark:text-neutral-200">
+									{review.author.charAt(0)}
+								</div>
+								<div>
+									<h4 className="font-medium text-sm">{review.author}</h4>
+									<span className="text-xs text-neutral-500">
+										{review.date}
+									</span>
+								</div>
+							</div>
+							<p className="text-neutral-600 dark:text-neutral-300 text-sm leading-relaxed">
+								{review.content}
+							</p>
+						</div>
+					))}
+				</div>
+			</section>
+		</div>
+	);
+}
