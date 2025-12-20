@@ -7,6 +7,7 @@ import {
 	HeartIcon as HeartSolidIcon,
 } from "@heroicons/react/24/solid";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import type { PropertyCardProps } from "./types";
 
@@ -17,19 +18,15 @@ const typeLabels = {
 	hotel: "Khách sạn",
 };
 
-export function PropertyCard({
-	property,
-	className = "",
-	onClick,
-}: PropertyCardProps) {
+export function PropertyCard({ property, className = "" }: PropertyCardProps) {
 	const [isFavorited, setIsFavorited] = useState(false);
 	const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-	const handleCardClick = () => {
-		if (onClick) {
-			onClick(property);
-		}
-	};
+	// const handleCardClick = () => {
+	// 	if (onClick) {
+	// 		onClick(property);
+	// 	}
+	// };
 
 	const toggleFavorite = (e: React.MouseEvent) => {
 		e.stopPropagation();
@@ -49,9 +46,9 @@ export function PropertyCard({
 	};
 
 	return (
-		<div
-			className={`group cursor-pointer rounded-xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 ${className}`}
-			onClick={handleCardClick}
+		<Link
+			href="/product/lakeview-02-demo"
+			className={`block group cursor-pointer rounded-xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 ${className}`}
 		>
 			{/* Image Gallery */}
 			<div className="relative h-64 w-full overflow-hidden">
@@ -74,7 +71,7 @@ export function PropertyCard({
 				<button
 					type="button"
 					onClick={toggleFavorite}
-					className="absolute top-3 right-3 p-1.5 rounded-full bg-white/90 hover:bg-white transition-colors"
+					className="absolute top-3 right-3 p-1.5 rounded-full bg-white/90 hover:bg-white transition-colors z-10"
 				>
 					{isFavorited ? (
 						<HeartSolidIcon className="h-5 w-5 text-red-500" />
@@ -89,7 +86,7 @@ export function PropertyCard({
 						<button
 							type="button"
 							onClick={prevImage}
-							className="absolute left-2 top-1/2 -translate-y-1/2 p-1 rounded-full bg-white/80 hover:bg-white opacity-0 group-hover:opacity-100 transition-opacity"
+							className="absolute left-2 top-1/2 -translate-y-1/2 p-1 rounded-full bg-white/80 hover:bg-white opacity-0 group-hover:opacity-100 transition-opacity z-10"
 							aria-label="Ảnh trước"
 						>
 							<ChevronLeftIcon className="h-4 w-4 text-gray-600" />
@@ -97,7 +94,7 @@ export function PropertyCard({
 						<button
 							type="button"
 							onClick={nextImage}
-							className="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded-full bg-white/80 hover:bg-white opacity-0 group-hover:opacity-100 transition-opacity"
+							className="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded-full bg-white/80 hover:bg-white opacity-0 group-hover:opacity-100 transition-opacity z-10"
 							aria-label="Ảnh tiếp theo"
 						>
 							<ChevronRightIcon className="h-4 w-4 text-gray-600" />
@@ -107,7 +104,7 @@ export function PropertyCard({
 
 				{/* Image Dots Indicator */}
 				{property.images.length > 1 && (
-					<div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex space-x-1">
+					<div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex space-x-1 z-10">
 						{property.images.map((_, index) => (
 							<div
 								key={index}
@@ -179,7 +176,7 @@ export function PropertyCard({
 					)}
 				</div>
 			</div>
-		</div>
+		</Link>
 	);
 }
 
