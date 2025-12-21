@@ -1,3 +1,5 @@
+"use client";
+
 import { HeartIcon, MapPinIcon, StarIcon } from "@heroicons/react/24/outline";
 import {
 	ChevronLeftIcon,
