@@ -222,6 +222,7 @@ When working on this project:
 8. **Minimal changes** - Only modify what's necessary
 9. **Co-locate files** - Keep related files together (e.g., all cart files in `components/cart/`)
 10. **Use existing patterns** - Study existing code before adding new patterns
+11. **No Conventional Commits** - Do NOT use conventional commit format (e.g., `feat:`, `fix:`) in commit messages. Use simple, descriptive sentences.
 
 ## Special Considerations
 
