@@ -42,7 +42,7 @@ export function PlaceCard({ place, className = "" }: PlaceCardProps) {
 
 	return (
 		<Link
-			href="/product/lakeview-02-demo"
+			href={`/product/${place.handle}`}
 			className={clsx(
 				"block group cursor-pointer rounded-xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1",
 				className,

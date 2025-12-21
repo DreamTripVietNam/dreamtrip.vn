@@ -7,6 +7,7 @@ import type { Place } from "components/place-card/types";
 const featuredPlaces: Place[] = [
 	{
 		id: "villa-phu-quoc-1",
+		handle: "villa-phu-quoc-1",
 		name: "Villa Sunset Paradise - Phú Quốc",
 		location: "Bãi Dài, Phú Quốc",
 		price: 3500000,
@@ -29,6 +30,7 @@ const featuredPlaces: Place[] = [
 	},
 	{
 		id: "homestay-sapa-1",
+		handle: "homestay-sapa-1",
 		name: "Nhà Sàn Truyền Thống H'Mông",
 		location: "Ta Van, Sa Pa",
 		price: 450000,
@@ -49,6 +51,7 @@ const featuredPlaces: Place[] = [
 	},
 	{
 		id: "resort-da-nang-1",
+		handle: "resort-da-nang-1",
 		name: "Fusion Resort Đà Nẵng",
 		location: "Bãi biển Mỹ Khê, Đà Nẵng",
 		price: 2800000,
@@ -65,6 +68,7 @@ const featuredPlaces: Place[] = [
 	},
 	{
 		id: "villa-hoi-an-1",
+		handle: "villa-hoi-an-1",
 		name: "Heritage Villa Cổ Điển",
 		location: "Phố cổ Hội An",
 		price: 1800000,
@@ -85,6 +89,7 @@ const featuredPlaces: Place[] = [
 	},
 	{
 		id: "homestay-dalat-1",
+		handle: "homestay-dalat-1",
 		name: "Cozy Coffee Homestay",
 		location: "Trung tâm Đà Lạt",
 		price: 650000,
@@ -100,6 +105,7 @@ const featuredPlaces: Place[] = [
 	},
 	{
 		id: "resort-nha-trang-1",
+		handle: "resort-nha-trang-1",
 		name: "Oceanami Luxury Resort",
 		location: "Vịnh Nha Trang",
 		price: 4200000,

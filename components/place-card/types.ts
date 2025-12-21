@@ -2,6 +2,7 @@ export type PlaceType = "villa" | "homestay" | "resort" | "hotel";
 
 export interface Place {
 	id: string;
+	handle: string;
 	name: string;
 	location: string;
 	price: number;
