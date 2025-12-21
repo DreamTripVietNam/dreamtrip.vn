@@ -1,9 +1,10 @@
 import { clsx } from "clsx";
 import Link from "components/link";
-import { type Property, PropertyCard } from "components/property-card";
+import { PlaceCard } from "components/place-card";
+import type { Place } from "components/place-card/types";
 
-// Featured Vietnamese properties
-const featuredProperties: Property[] = [
+// Featured Vietnamese places
+const featuredPlaces: Place[] = [
 	{
 		id: "villa-phu-quoc-1",
 		name: "Villa Sunset Paradise - Phú Quốc",
@@ -121,24 +122,19 @@ const featuredProperties: Property[] = [
 	},
 ];
 
-interface FeaturedPropertiesProps {
-	properties?: Property[];
+interface FeaturedPlacesProps {
+	places?: Place[];
 	title?: string;
 	subtitle?: string;
 	className?: string;
 }
 
-export function FeaturedProperties({
-	properties = featuredProperties,
+export function FeaturedPlaces({
+	places = featuredPlaces,
 	title = "Chỗ Ở Nổi Bật",
 	subtitle = "Khám phá những chỗ ở tuyệt vời được yêu thích nhất tại Việt Nam",
 	className = "",
-}: FeaturedPropertiesProps) {
-	// const handlePropertyClick = (property: Property) => {
-	// 	// Handle property click - could navigate to detail page
-	// 	console.log("Property clicked:", property);
-	// };
-
+}: FeaturedPlacesProps) {
 	return (
 		<section className={clsx("py-16 bg-white", className)}>
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -150,14 +146,10 @@ export function FeaturedProperties({
 					<p className="text-lg text-gray-600 max-w-2xl mx-auto">{subtitle}</p>
 				</div>
 
-				{/* Properties Grid */}
+				{/* Places Grid */}
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-					{properties.map((property) => (
-						<PropertyCard
-							key={property.id}
-							property={property}
-							// onClick={handlePropertyClick}
-						/>
+					{places.map((place) => (
+						<PlaceCard key={place.id} place={place} />
 					))}
 				</div>
 

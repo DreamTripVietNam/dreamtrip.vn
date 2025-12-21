@@ -1,5 +1,3 @@
-"use client";
-
 import {
 	FireIcon,
 	HomeModernIcon,
@@ -171,7 +169,7 @@ export function ProductInfo() {
 							className="border-b border-neutral-100 dark:border-neutral-800 pb-6 last:border-0 last:pb-0"
 						>
 							<div className="flex items-center gap-3 mb-3">
-								<div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 flex items-center justify-center font-bold text-neutral-600 dark:text-neutral-200">
+								<div className="w-10 h-10 rounded-full bg-linear-to-br from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 flex items-center justify-center font-bold text-neutral-600 dark:text-neutral-200">
 									{review.author.charAt(0)}
 								</div>
 								<div>

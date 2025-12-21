@@ -4,7 +4,7 @@ import { BookingWidget } from "components/product/booking-widget";
 import { ProductProvider } from "components/product/product-context";
 import { ProductGallery } from "components/product/product-gallery";
 import { ProductInfo } from "components/product/product-info";
-import { MOCK_PRODUCT_DATA } from "lib/mock-product-data";
+import { getMockProduct } from "lib/mock-product-data"; // Use getMockProduct
 import { getProduct, getProductRecommendations } from "lib/shopify";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -13,15 +13,16 @@ import { Suspense } from "react";
 export async function generateMetadata(props: {
 	params: Promise<{ handle: string }>;
 }): Promise<Metadata> {
-	const params = await props.params;
+	// const params = await props.params;
 	// We still fetch the product to get some basic metadata if available,
 	// but we primarily rely on the mock data for this specific task as requested.
-	const product = await getProduct(params.handle);
+	// const product = await getProduct(params.handle);
+	const product = await getMockProduct();
 
 	// Fallback to mock data for SEO if product not found or just to match the visual
-	const title = MOCK_PRODUCT_DATA.title;
-	const description = MOCK_PRODUCT_DATA.description;
-	const image = MOCK_PRODUCT_DATA.images[0]?.url || "";
+	const title = product.title;
+	const description = product.description;
+	const image = product.images[0]?.url || "";
 
 	return {
 		title: title,
@@ -29,10 +30,7 @@ export async function generateMetadata(props: {
 		robots: {
 			index: true,
 			follow: true,
-			googleBot: {
-				index: true,
-				follow: true,
-			},
+			googleBot: { index: true, follow: true },
 		},
 		openGraph: {
 			images: [
@@ -66,6 +64,7 @@ async function ProductPageContent({
 	// We still try to fetch product to respect the architecture,
 	// but we will render the Mock Data regardless for this demo request.
 	const product = await getProduct(params.handle);
+	const mockProduct = await getMockProduct();
 
 	// In a real scenario, we would use the product data here.
 	// const isMockMode = true;
@@ -76,15 +75,15 @@ async function ProductPageContent({
 	const productJsonLd = {
 		"@context": "https://schema.org",
 		"@type": "Product",
-		name: MOCK_PRODUCT_DATA.title,
-		description: MOCK_PRODUCT_DATA.description,
-		image: MOCK_PRODUCT_DATA.images[0]?.url || "",
+		name: mockProduct.title,
+		description: mockProduct.description,
+		image: mockProduct.images[0]?.url || "",
 		offers: {
 			"@type": "AggregateOffer",
 			availability: "https://schema.org/InStock",
-			priceCurrency: MOCK_PRODUCT_DATA.price.currencyCode,
-			highPrice: MOCK_PRODUCT_DATA.price.amount,
-			lowPrice: MOCK_PRODUCT_DATA.price.amount,
+			priceCurrency: mockProduct.price.currencyCode,
+			highPrice: mockProduct.price.amount,
+			lowPrice: mockProduct.price.amount,
 		},
 	};
 
@@ -101,21 +100,27 @@ async function ProductPageContent({
 				<div className="mb-6 flex flex-col md:flex-row md:items-start md:justify-between gap-4">
 					<div>
 						<h1 className="text-2xl md:text-3xl font-bold font-barlow text-neutral-900 dark:text-white mb-2">
-							{MOCK_PRODUCT_DATA.title}
+							{mockProduct.title}
 						</h1>
 						<div className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400">
 							<MapPinIcon className="w-4 h-4" />
 							<span className="underline cursor-pointer hover:text-neutral-900 dark:hover:text-white transition-colors">
-								{MOCK_PRODUCT_DATA.location}
+								{mockProduct.location}
 							</span>
 						</div>
 					</div>
 					<div className="flex items-center gap-3">
-						<button className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors text-sm font-medium">
+						<button
+							type="button"
+							className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors text-sm font-medium"
+						>
 							<ShareIcon className="w-4 h-4" />
 							Chia sẻ
 						</button>
-						<button className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors text-sm font-medium">
+						<button
+							type="button"
+							className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors text-sm font-medium"
+						>
 							<HeartIcon className="w-4 h-4" />
 							Lưu
 						</button>
@@ -124,7 +129,7 @@ async function ProductPageContent({
 
 				{/* Gallery */}
 				<div className="mb-10">
-					<ProductGallery images={MOCK_PRODUCT_DATA.images} />
+					<ProductGallery images={mockProduct.images} />
 				</div>
 
 				{/* Main Content Grid */}

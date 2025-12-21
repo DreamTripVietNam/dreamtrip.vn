@@ -3,7 +3,7 @@ export interface Destination {
 	name: string;
 	image: string;
 	description?: string;
-	propertyCount?: number;
+	placesCount?: number;
 }
 
 export interface TopDestinationsProps {

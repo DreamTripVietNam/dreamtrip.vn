@@ -12,7 +12,7 @@ const defaultDestinations: Destination[] = [
 		image:
 			"https://images.unsplash.com/photo-1528127269322-539801943592?w=600&q=80",
 		description: "Di sản thế giới với hàng nghìn đảo đá vôi tuyệt đẹp",
-		propertyCount: 245,
+		placesCount: 245,
 	},
 	{
 		id: "hoi-an",
@@ -20,15 +20,15 @@ const defaultDestinations: Destination[] = [
 		image:
 			"https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=600&q=80",
 		description: "Phố cổ thơ mộng với đèn lồng rực rỡ và ẩm thực độc đáo",
-		propertyCount: 189,
+		placesCount: 189,
 	},
 	{
 		id: "phu-quoc",
 		name: "Phú Quốc",
 		image:
-			"https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?w=600&q=80",
+			"https://images.unsplash.com/photo-1693294603830-f44c9511d643?w=600&q=80",
 		description: "Đảo ngọc với bãi biển tuyệt đẹp và resort cao cấp",
-		propertyCount: 312,
+		placesCount: 312,
 	},
 	{
 		id: "da-lat",
@@ -36,7 +36,7 @@ const defaultDestinations: Destination[] = [
 		image:
 			"https://images.unsplash.com/photo-1587474260584-136574528ed5?w=600&q=80",
 		description: "Thành phố ngàn hoa với khí hậu mát mẻ quanh năm",
-		propertyCount: 156,
+		placesCount: 156,
 	},
 	{
 		id: "nha-trang",
@@ -44,23 +44,23 @@ const defaultDestinations: Destination[] = [
 		image:
 			"https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=80",
 		description: "Thành phố biển năng động với nhiều hoạt động thú vị",
-		propertyCount: 278,
+		placesCount: 278,
 	},
 	{
 		id: "sapa",
 		name: "Sa Pa",
 		image:
-			"https://images.unsplash.com/photo-1570979392737-6c9ac84b84ad?w=600&q=80",
+			"https://images.unsplash.com/photo-1733821793652-e650876d9a7a?w=600&q=80",
 		description: "Cao nguyên mù sương với ruộng bậc thang hùng vĩ",
-		propertyCount: 98,
+		placesCount: 98,
 	},
 	{
 		id: "da-nang",
 		name: "Đà Nẵng",
 		image:
-			"https://images.unsplash.com/photo-1555663221-4dc9ae84c746?w=600&q=80",
+			"https://images.unsplash.com/photo-1585926449367-64689895b3fe?w=600&q=80",
 		description: "Thành phố hiện đại bên bờ biển miền Trung",
-		propertyCount: 234,
+		placesCount: 234,
 	},
 	{
 		id: "mui-ne",
@@ -68,7 +68,7 @@ const defaultDestinations: Destination[] = [
 		image:
 			"https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=600&q=80",
 		description: "Thiên đường resort với đồi cát và gió biển",
-		propertyCount: 167,
+		placesCount: 167,
 	},
 ];
 

@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import type { Destination } from "./types";
 
@@ -32,9 +30,9 @@ export function DestinationCard({ destination }: DestinationCardProps) {
 					</p>
 				)}
 
-				{destination.propertyCount && (
+				{destination.placesCount && (
 					<p className="text-sm text-gray-500">
-						{destination.propertyCount} chỗ ở
+						{destination.placesCount} chỗ ở
 					</p>
 				)}
 			</div>

@@ -10,7 +10,7 @@ import { clsx } from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import type { PropertyCardProps } from "./types";
+import type { PlaceCardProps } from "./types";
 
 const typeLabels = {
 	villa: "Villa",
@@ -19,7 +19,7 @@ const typeLabels = {
 	hotel: "Khách sạn",
 };
 
-export function PropertyCard({ property, className = "" }: PropertyCardProps) {
+export function PlaceCard({ place, className = "" }: PlaceCardProps) {
 	const [isFavorited, setIsFavorited] = useState(false);
 	const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -30,13 +30,13 @@ export function PropertyCard({ property, className = "" }: PropertyCardProps) {
 
 	const nextImage = (e: React.MouseEvent) => {
 		e.stopPropagation();
-		setCurrentImageIndex((prev) => (prev + 1) % property.images.length);
+		setCurrentImageIndex((prev) => (prev + 1) % place.images.length);
 	};
 
 	const prevImage = (e: React.MouseEvent) => {
 		e.stopPropagation();
 		setCurrentImageIndex((prev) =>
-			prev === 0 ? property.images.length - 1 : prev - 1,
+			prev === 0 ? place.images.length - 1 : prev - 1,
 		);
 	};
 
@@ -51,17 +51,17 @@ export function PropertyCard({ property, className = "" }: PropertyCardProps) {
 			{/* Image Gallery */}
 			<div className="relative h-64 w-full overflow-hidden">
 				<Image
-					src={property.images[currentImageIndex]!}
-					alt={`${property.name} - ${property.location}`}
+					src={place.images[currentImageIndex]!}
+					alt={`${place.name} - ${place.location}`}
 					fill
 					className="object-cover transition-transform duration-300 group-hover:scale-105"
 					sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 				/>
 
-				{/* Property Type Badge */}
+				{/* Place Type Badge */}
 				<div className="absolute top-3 left-3">
 					<span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-white/90 text-gray-800">
-						{typeLabels[property.type]}
+						{typeLabels[place.type]}
 					</span>
 				</div>
 
@@ -79,7 +79,7 @@ export function PropertyCard({ property, className = "" }: PropertyCardProps) {
 				</button>
 
 				{/* Image Navigation */}
-				{property.images.length > 1 && (
+				{place.images.length > 1 && (
 					<>
 						<button
 							type="button"
@@ -101,9 +101,9 @@ export function PropertyCard({ property, className = "" }: PropertyCardProps) {
 				)}
 
 				{/* Image Dots Indicator */}
-				{property.images.length > 1 && (
+				{place.images.length > 1 && (
 					<div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex space-x-1 z-10">
-						{property.images.map((_, index) => (
+						{place.images.map((_, index) => (
 							<div
 								key={index}
 								className={clsx(
@@ -121,29 +121,29 @@ export function PropertyCard({ property, className = "" }: PropertyCardProps) {
 				{/* Location */}
 				<div className="flex items-center text-sm text-gray-500 mb-2">
 					<MapPinIcon className="h-4 w-4 mr-1" />
-					<span>{property.location}</span>
+					<span>{place.location}</span>
 				</div>
 
 				{/* Name */}
 				<h3 className="font-semibold text-lg text-gray-900 mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors">
-					{property.name}
+					{place.name}
 				</h3>
 
 				{/* Rating */}
 				<div className="flex items-center mb-2">
 					<StarIcon className="h-4 w-4 text-yellow-400 fill-current" />
 					<span className="text-sm font-medium text-gray-900 ml-1">
-						{property.rating.toFixed(1)}
+						{place.rating.toFixed(1)}
 					</span>
 					<span className="text-sm text-gray-500 ml-1">
-						({property.reviewCount} đánh giá)
+						({place.reviewCount} đánh giá)
 					</span>
 				</div>
 
 				{/* Amenities */}
-				{property.amenities.length > 0 && (
+				{place.amenities.length > 0 && (
 					<div className="flex flex-wrap gap-1 mb-3">
-						{property.amenities.slice(0, 3).map((amenity, index) => (
+						{place.amenities.slice(0, 3).map((amenity, index) => (
 							<span
 								key={index}
 								className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800"
@@ -151,9 +151,9 @@ export function PropertyCard({ property, className = "" }: PropertyCardProps) {
 								{amenity}
 							</span>
 						))}
-						{property.amenities.length > 3 && (
+						{place.amenities.length > 3 && (
 							<span className="text-xs text-gray-500">
-								+{property.amenities.length - 3} tiện ích khác
+								+{place.amenities.length - 3} tiện ích khác
 							</span>
 						)}
 					</div>
@@ -163,12 +163,12 @@ export function PropertyCard({ property, className = "" }: PropertyCardProps) {
 				<div className="flex items-center justify-between">
 					<div className="flex items-baseline">
 						<span className="text-xl font-bold text-gray-900">
-							{property.price.toLocaleString("vi-VN")}₫
+							{place.price.toLocaleString("vi-VN")}₫
 						</span>
 						<span className="text-sm text-gray-500 ml-1">/đêm</span>
 					</div>
 
-					{property.available && (
+					{place.available && (
 						<span className="text-xs text-green-600 font-medium">
 							Còn trống
 						</span>
@@ -178,6 +178,3 @@ export function PropertyCard({ property, className = "" }: PropertyCardProps) {
 		</Link>
 	);
 }
-
-// Export types for use in other components
-export type { Property, PropertyType } from "./types";

@@ -2,7 +2,7 @@ import { Carousel } from "components/carousel";
 import type { Metadata } from "next";
 import { TopDestinations } from "sections/destinations";
 import { FAQs } from "sections/faqs";
-import { FeaturedProperties } from "sections/featured-properties";
+import { FeaturedPlaces } from "sections/featured-places";
 import { HeroSection } from "sections/hero";
 import { NewsTips } from "sections/news-tips";
 
@@ -19,7 +19,7 @@ export default function HomePage() {
 		<>
 			<HeroSection />
 			<TopDestinations />
-			<FeaturedProperties />
+			<FeaturedPlaces />
 			<Carousel />
 			<NewsTips />
 			<FAQs />

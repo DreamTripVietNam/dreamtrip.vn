@@ -94,3 +94,7 @@ export const MOCK_PRODUCT_DATA = {
 		"Việt Phủ Thành Chương",
 	],
 };
+
+export async function getMockProduct() {
+	return MOCK_PRODUCT_DATA;
+}
