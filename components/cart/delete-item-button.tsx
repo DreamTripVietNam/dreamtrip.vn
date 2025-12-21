@@ -28,7 +28,7 @@ export function DeleteItemButton({
 				aria-label="Remove cart item"
 				className="flex size-6 items-center justify-center rounded-full bg-neutral-500"
 			>
-				<XMarkIcon className="mx-px h-4 w-4 text-white dark:text-black" />
+				<XMarkIcon className="mx-px h-4 w-4 text-white " />
 			</button>
 			<output aria-live="polite" className="sr-only">
 				{message}

@@ -99,12 +99,12 @@ async function ProductPageContent({
 				{/* Header Section */}
 				<div className="mb-6 flex flex-col md:flex-row md:items-start md:justify-between gap-4">
 					<div>
-						<h1 className="text-2xl md:text-3xl font-bold font-barlow text-neutral-900 dark:text-white mb-2">
+						<h1 className="text-2xl md:text-3xl font-bold font-barlow text-neutral-900  mb-2">
 							{mockProduct.title}
 						</h1>
-						<div className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400">
+						<div className="flex items-center gap-2 text-sm text-neutral-600 ">
 							<MapPinIcon className="w-4 h-4" />
-							<span className="underline cursor-pointer hover:text-neutral-900 dark:hover:text-white transition-colors">
+							<span className="underline cursor-pointer hover:text-neutral-900 transition-colors">
 								{mockProduct.location}
 							</span>
 						</div>
@@ -112,14 +112,14 @@ async function ProductPageContent({
 					<div className="flex items-center gap-3">
 						<button
 							type="button"
-							className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors text-sm font-medium"
+							className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-neutral-100 transition-colors text-sm font-medium"
 						>
 							<ShareIcon className="w-4 h-4" />
 							Chia sẻ
 						</button>
 						<button
 							type="button"
-							className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors text-sm font-medium"
+							className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-neutral-100 transition-colors text-sm font-medium"
 						>
 							<HeartIcon className="w-4 h-4" />
 							Lưu
@@ -164,7 +164,7 @@ async function RelatedProducts({ id }: { id: string }) {
 	if (!relatedProducts.length) return null;
 
 	return (
-		<div className="py-16 border-t border-neutral-200 dark:border-neutral-800 mt-16">
+		<div className="py-16 border-t border-neutral-200  mt-16">
 			<h2 className="mb-6 text-2xl font-bold font-barlow">
 				Có thể bạn sẽ thích
 			</h2>
