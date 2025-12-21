@@ -6,7 +6,8 @@
     "start": "next start -p 3001",
     "format": "biome format --write",
     "fix": "biome lint --write",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf .next node_modules package-lock.json pnpm-lock.yaml"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.9",
