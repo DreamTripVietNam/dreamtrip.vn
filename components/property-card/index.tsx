@@ -1,11 +1,10 @@
-"use client";
-
 import { HeartIcon, MapPinIcon, StarIcon } from "@heroicons/react/24/outline";
 import {
 	ChevronLeftIcon,
 	ChevronRightIcon,
 	HeartIcon as HeartSolidIcon,
 } from "@heroicons/react/24/solid";
+import { clsx } from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -21,12 +20,6 @@ const typeLabels = {
 export function PropertyCard({ property, className = "" }: PropertyCardProps) {
 	const [isFavorited, setIsFavorited] = useState(false);
 	const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-	// const handleCardClick = () => {
-	// 	if (onClick) {
-	// 		onClick(property);
-	// 	}
-	// };
 
 	const toggleFavorite = (e: React.MouseEvent) => {
 		e.stopPropagation();
@@ -48,7 +41,10 @@ export function PropertyCard({ property, className = "" }: PropertyCardProps) {
 	return (
 		<Link
 			href="/product/lakeview-02-demo"
-			className={`block group cursor-pointer rounded-xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 ${className}`}
+			className={clsx(
+				"block group cursor-pointer rounded-xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1",
+				className,
+			)}
 		>
 			{/* Image Gallery */}
 			<div className="relative h-64 w-full overflow-hidden">
@@ -108,9 +104,10 @@ export function PropertyCard({ property, className = "" }: PropertyCardProps) {
 						{property.images.map((_, index) => (
 							<div
 								key={index}
-								className={`h-1.5 w-1.5 rounded-full transition-colors ${
-									index === currentImageIndex ? "bg-white" : "bg-white/50"
-								}`}
+								className={clsx(
+									"h-1.5 w-1.5 rounded-full transition-colors",
+									index === currentImageIndex ? "bg-white" : "bg-white/50",
+								)}
 							/>
 						))}
 					</div>

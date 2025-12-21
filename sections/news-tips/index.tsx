@@ -1,4 +1,5 @@
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
+import { clsx } from "clsx";
 import Link from "components/link";
 import { ArticleCard } from "./article-card";
 import type { BlogArticle, NewsTipsProps } from "./types";
@@ -63,7 +64,7 @@ export function NewsTips({
 	className = "",
 }: NewsTipsProps) {
 	return (
-		<section className={`bg-white py-16 lg:py-24 ${className}`}>
+		<section className={clsx("bg-white py-16 lg:py-24", className)}>
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 				{/* Section Header */}
 				<div className="mb-12 flex items-end justify-between">

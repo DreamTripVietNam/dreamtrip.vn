@@ -1,4 +1,5 @@
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
+import { clsx } from "clsx";
 import Link from "components/link";
 import { DestinationCard } from "./destination-card";
 import type { Destination, TopDestinationsProps } from "./types";
@@ -77,7 +78,7 @@ export function TopDestinations({
 	className = "",
 }: TopDestinationsProps) {
 	return (
-		<section className={`py-16 bg-gray-50 ${className}`}>
+		<section className={clsx("py-16 bg-gray-50", className)}>
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				{/* Section Header */}
 				<div className="text-center">

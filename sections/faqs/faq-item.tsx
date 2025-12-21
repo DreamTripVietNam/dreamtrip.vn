@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import { clsx } from "clsx";
 import { useState } from "react";
 import type { FAQ } from "./types";
 
@@ -19,15 +20,17 @@ export function FAQItem({ faq }: { faq: FAQ }) {
 					{faq.question}
 				</span>
 				<ChevronDownIcon
-					className={`h-5 w-5 shrink-0 text-neutral-500 transition-transform duration-300 ${
-						isOpen ? "rotate-180" : ""
-					}`}
+					className={clsx(
+						"h-5 w-5 shrink-0 text-neutral-500 transition-transform duration-300",
+						isOpen && "rotate-180",
+					)}
 				/>
 			</button>
 			<div
-				className={`overflow-hidden transition-all duration-300 ${
-					isOpen ? "max-h-96 pb-5" : "max-h-0"
-				}`}
+				className={clsx(
+					"overflow-hidden transition-all duration-300",
+					isOpen ? "max-h-96 pb-5" : "max-h-0",
+				)}
 			>
 				<p className="text-neutral-600">{faq.answer}</p>
 			</div>

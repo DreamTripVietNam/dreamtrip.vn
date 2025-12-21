@@ -1,4 +1,5 @@
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
+import { clsx } from "clsx";
 import Link from "components/link";
 import { FAQItem } from "./faq-item";
 import type { FAQ, FAQsProps } from "./types";
@@ -39,7 +40,7 @@ const defaultFAQs: FAQ[] = [
 
 export function FAQs({ faqs = defaultFAQs, className = "" }: FAQsProps) {
 	return (
-		<section className={`bg-white py-16 lg:py-24 ${className}`}>
+		<section className={clsx("bg-white py-16 lg:py-24", className)}>
 			<div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
 				{/* Section Header */}
 				<div className="mb-12 text-center">

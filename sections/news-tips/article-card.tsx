@@ -6,6 +6,7 @@ import {
 	HeartIcon,
 } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
+import { clsx } from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -46,7 +47,10 @@ export function ArticleCard({ article }: { article: BlogArticle }) {
 				{/* Category Badge */}
 				<div className="absolute left-4 top-4">
 					<span
-						className={`rounded-full px-3 py-1 text-xs font-semibold text-white ${categoryColors[article.category]}`}
+						className={clsx(
+							"rounded-full px-3 py-1 text-xs font-semibold text-white",
+							categoryColors[article.category],
+						)}
 					>
 						{categoryLabels[article.category]}
 					</span>

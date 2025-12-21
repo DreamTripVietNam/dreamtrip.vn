@@ -1,3 +1,4 @@
+import { clsx } from "clsx";
 import { ServiceCard } from "./service-card";
 import type { AdditionalServicesProps, Service } from "./types";
 
@@ -52,7 +53,7 @@ export function AdditionalServices({
 	className = "",
 }: AdditionalServicesProps) {
 	return (
-		<section className={`bg-neutral-50 py-16 lg:py-24 ${className}`}>
+		<section className={clsx("bg-neutral-50 py-16 lg:py-24", className)}>
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 				{/* Section Header */}
 				<div className="mb-12 text-center">

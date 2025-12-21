@@ -2,6 +2,7 @@
 
 import { Listbox, Transition } from "@headlessui/react";
 import { ChevronUpDownIcon, MapPinIcon } from "@heroicons/react/24/outline";
+import { clsx } from "clsx";
 import { Fragment } from "react";
 import type { Location, LocationSelectorProps } from "./types";
 
@@ -63,9 +64,10 @@ export function LocationSelector({
 										key={location.id}
 										value={location}
 										className={({ active }) =>
-											`relative cursor-default select-none py-2 pl-3 pr-9 ${
-												active ? "bg-black text-white" : "text-gray-900"
-											}`
+											clsx(
+												"relative cursor-default select-none py-2 pl-3 pr-9",
+												active ? "bg-black text-white" : "text-gray-900",
+											)
 										}
 									>
 										{({ selected }) => (
@@ -75,7 +77,10 @@ export function LocationSelector({
 													aria-hidden="true"
 												/>
 												<span
-													className={`ml-2 block truncate ${selected ? "font-semibold" : "font-normal"}`}
+													className={clsx(
+														"ml-2 block truncate",
+														selected ? "font-semibold" : "font-normal",
+													)}
 												>
 													{location.name}, {location.country}
 												</span>
