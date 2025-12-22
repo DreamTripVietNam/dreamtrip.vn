@@ -1,7 +1,7 @@
-import { HeartIcon, MapPinIcon } from "@heroicons/react/24/outline";
+import { MapPinIcon } from "@heroicons/react/24/outline";
 import { GridTileImage } from "components/grid/tile";
 import { getMockProduct } from "lib/mock-product-data"; // Use getMockProduct
-import { getProduct, getProductRecommendations } from "lib/shopify";
+import { getProductRecommendations } from "lib/shopify";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
@@ -9,6 +9,7 @@ import { BookingWidget } from "./booking-widget";
 import { ProductProvider } from "./product-context";
 import { ProductGallery } from "./product-gallery";
 import { ProductInfo } from "./product-info";
+import { SaveButton } from "./save-button";
 import { ShareButton } from "./share-button";
 
 export async function generateMetadata(props: {
@@ -64,8 +65,8 @@ async function ProductPageContent({
 	const params = await paramsPromise;
 	// We still try to fetch product to respect the architecture,
 	// but we will render the Mock Data regardless for this demo request.
-	const product = await getProduct(params.handle);
-	const mockProduct = await getMockProduct();
+	// const product2 = await getProduct(params.handle);
+	const product = await getMockProduct();
 
 	// In a real scenario, we would use the product data here.
 	// const isMockMode = true;
@@ -76,15 +77,15 @@ async function ProductPageContent({
 	const productJsonLd = {
 		"@context": "https://schema.org",
 		"@type": "Product",
-		name: mockProduct.title,
-		description: mockProduct.description,
-		image: mockProduct.images[0]?.url || "",
+		name: product.title,
+		description: product.description,
+		image: product.images[0]?.url || "",
 		offers: {
 			"@type": "AggregateOffer",
 			availability: "https://schema.org/InStock",
-			priceCurrency: mockProduct.price.currencyCode,
-			highPrice: mockProduct.price.amount,
-			lowPrice: mockProduct.price.amount,
+			priceCurrency: product.price.currencyCode,
+			highPrice: product.price.amount,
+			lowPrice: product.price.amount,
 		},
 	};
 
@@ -101,30 +102,24 @@ async function ProductPageContent({
 				<div className="mb-6 flex flex-col md:flex-row md:items-start md:justify-between gap-4">
 					<div>
 						<h1 className="text-2xl md:text-3xl font-bold font-barlow text-neutral-900  mb-2">
-							{mockProduct.title}
+							{product.title}
 						</h1>
 						<div className="flex items-center gap-2 text-sm text-neutral-600 ">
 							<MapPinIcon className="w-4 h-4" />
 							<span className="underline cursor-pointer hover:text-neutral-900 transition-colors">
-								{mockProduct.location}
+								{product.location}
 							</span>
 						</div>
 					</div>
 					<div className="flex items-center gap-3">
+						<SaveButton productHandle={params.handle} />
 						<ShareButton />
-						<button
-							type="button"
-							className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-neutral-100 transition-colors text-sm font-medium"
-						>
-							<HeartIcon className="w-4 h-4" />
-							Lưu
-						</button>
 					</div>
 				</div>
 
 				{/* Gallery */}
 				<div className="mb-10">
-					<ProductGallery images={mockProduct.images} />
+					<ProductGallery images={product.images} />
 				</div>
 
 				{/* Main Content Grid */}
