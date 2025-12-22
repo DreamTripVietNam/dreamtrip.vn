@@ -86,7 +86,7 @@ export function BookingWidget({ className = "" }: { className?: string }) {
 					<button
 						type="button"
 						onClick={handleSearch}
-						className="flex w-full items-center justify-center rounded-lg bg-black px-6 py-3 text-white transition-colors hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
+						className="flex w-full items-center justify-center bg-linear-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-rose-200 transition-all"
 					>
 						<MagnifyingGlassIcon className="h-5 w-5 mr-2" aria-hidden="true" />
 						Tìm kiếm

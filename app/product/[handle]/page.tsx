@@ -1,14 +1,14 @@
 import { HeartIcon, MapPinIcon, ShareIcon } from "@heroicons/react/24/outline";
 import { GridTileImage } from "components/grid/tile";
-import { BookingWidget } from "components/product/booking-widget";
-import { ProductProvider } from "components/product/product-context";
-import { ProductGallery } from "components/product/product-gallery";
-import { ProductInfo } from "components/product/product-info";
 import { getMockProduct } from "lib/mock-product-data"; // Use getMockProduct
 import { getProduct, getProductRecommendations } from "lib/shopify";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
+import { BookingWidget } from "./booking-widget";
+import { ProductProvider } from "./product-context";
+import { ProductGallery } from "./product-gallery";
+import { ProductInfo } from "./product-info";
 
 export async function generateMetadata(props: {
 	params: Promise<{ handle: string }>;

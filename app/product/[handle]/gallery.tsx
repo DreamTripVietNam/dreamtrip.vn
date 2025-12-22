@@ -2,8 +2,8 @@
 
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 import { GridTileImage } from "components/grid/tile";
-import { useProduct, useUpdateURL } from "components/product/product-context";
 import Image from "next/image";
+import { useProduct, useUpdateURL } from "./product-context";
 
 export function Gallery({
 	images,
