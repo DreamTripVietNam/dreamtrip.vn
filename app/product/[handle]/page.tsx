@@ -1,4 +1,4 @@
-import { HeartIcon, MapPinIcon, ShareIcon } from "@heroicons/react/24/outline";
+import { HeartIcon, MapPinIcon } from "@heroicons/react/24/outline";
 import { GridTileImage } from "components/grid/tile";
 import { getMockProduct } from "lib/mock-product-data"; // Use getMockProduct
 import { getProduct, getProductRecommendations } from "lib/shopify";
@@ -9,6 +9,7 @@ import { BookingWidget } from "./booking-widget";
 import { ProductProvider } from "./product-context";
 import { ProductGallery } from "./product-gallery";
 import { ProductInfo } from "./product-info";
+import { ShareButton } from "./share-button";
 
 export async function generateMetadata(props: {
 	params: Promise<{ handle: string }>;
@@ -110,13 +111,7 @@ async function ProductPageContent({
 						</div>
 					</div>
 					<div className="flex items-center gap-3">
-						<button
-							type="button"
-							className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-neutral-100 transition-colors text-sm font-medium"
-						>
-							<ShareIcon className="w-4 h-4" />
-							Chia sẻ
-						</button>
+						<ShareButton />
 						<button
 							type="button"
 							className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-neutral-100 transition-colors text-sm font-medium"
