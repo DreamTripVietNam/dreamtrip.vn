@@ -1,8 +1,8 @@
 "use client";
 
-import { XMarkIcon } from "@heroicons/react/24/outline";
 import { removeItem } from "components/cart/actions";
 import type { CartItem } from "lib/shopify/types";
+import { X } from "lucide-react";
 import { useActionState } from "react";
 
 export function DeleteItemButton({
@@ -28,7 +28,7 @@ export function DeleteItemButton({
 				aria-label="Remove cart item"
 				className="flex size-6 items-center justify-center rounded-full bg-neutral-500"
 			>
-				<XMarkIcon className="mx-px h-4 w-4 text-white " />
+				<X className="mx-px h-4 w-4 text-white " />
 			</button>
 			<output aria-live="polite" className="sr-only">
 				{message}

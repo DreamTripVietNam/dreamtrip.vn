@@ -1,12 +1,7 @@
 "use client";
 
 import { Popover, Transition } from "@headlessui/react";
-import {
-	ChevronUpDownIcon,
-	MinusIcon,
-	PlusIcon,
-	UserGroupIcon,
-} from "@heroicons/react/24/outline";
+import { ChevronsUpDown, Minus, Plus, Users } from "lucide-react";
 import { Fragment } from "react";
 import type { GuestSelectorProps } from "./types";
 
@@ -52,16 +47,13 @@ export function GuestSelector({
 					<>
 						<Popover.Button className="relative w-full cursor-default rounded-lg border border-gray-300 bg-white py-3 pl-3 pr-10 text-left shadow-sm focus:border-black focus:outline-none focus:ring-1 focus:ring-black">
 							<div className="flex items-center">
-								<UserGroupIcon
-									className="h-5 w-5 text-gray-400"
-									aria-hidden="true"
-								/>
+								<Users className="h-5 w-5 text-gray-400" aria-hidden="true" />
 								<span className="ml-2 block truncate text-gray-900">
 									{displayText()}
 								</span>
 							</div>
 							<span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-								<ChevronUpDownIcon
+								<ChevronsUpDown
 									className="h-5 w-5 text-gray-400"
 									aria-hidden="true"
 								/>
@@ -97,7 +89,7 @@ export function GuestSelector({
 												disabled={adults <= 1}
 												className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 bg-white text-gray-600 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
 											>
-												<MinusIcon className="h-4 w-4" />
+												<Minus className="h-4 w-4" />
 											</button>
 											<span className="w-8 text-center text-sm font-medium">
 												{adults}
@@ -108,7 +100,7 @@ export function GuestSelector({
 												disabled={adults >= 10}
 												className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 bg-white text-gray-600 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
 											>
-												<PlusIcon className="h-4 w-4" />
+												<Plus className="h-4 w-4" />
 											</button>
 										</div>
 									</div>
@@ -128,7 +120,7 @@ export function GuestSelector({
 												disabled={childrenCount <= 0}
 												className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 bg-white text-gray-600 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
 											>
-												<MinusIcon className="h-4 w-4" />
+												<Minus className="h-4 w-4" />
 											</button>
 											<span className="w-8 text-center text-sm font-medium">
 												{childrenCount}
@@ -139,7 +131,7 @@ export function GuestSelector({
 												disabled={childrenCount >= 8}
 												className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 bg-white text-gray-600 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
 											>
-												<PlusIcon className="h-4 w-4" />
+												<Plus className="h-4 w-4" />
 											</button>
 										</div>
 									</div>

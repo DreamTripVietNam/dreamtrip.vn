@@ -1,6 +1,6 @@
-import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { clsx } from "clsx";
 import Link from "components/link";
+import { ChevronRight } from "lucide-react";
 import { ArticleCard } from "./article-card";
 import type { BlogArticle, NewsTipsProps } from "./types";
 
@@ -82,7 +82,7 @@ export function NewsTips({
 						className="hidden sm:inline-flex items-center gap-2"
 					>
 						View More
-						<ChevronRightIcon className="h-4 w-4" />
+						<ChevronRight className="h-4 w-4" />
 					</Link>
 				</div>
 
@@ -101,7 +101,7 @@ export function NewsTips({
 						className="inline-flex items-center gap-2"
 					>
 						View More
-						<ChevronRightIcon className="h-4 w-4" />
+						<ChevronRight className="h-4 w-4" />
 					</Link>
 				</div>
 			</div>

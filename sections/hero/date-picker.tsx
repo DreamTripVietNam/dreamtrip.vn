@@ -1,7 +1,7 @@
 "use client";
 
-import { CalendarDaysIcon } from "@heroicons/react/24/outline";
 import { format } from "date-fns";
+import { CalendarDays } from "lucide-react";
 import { useState } from "react";
 import type { DatePickerProps } from "./types";
 
@@ -45,7 +45,7 @@ export function DatePicker({
 					onClick={() => setIsOpen(!isOpen)}
 				>
 					<div className="flex items-center">
-						<CalendarDaysIcon
+						<CalendarDays
 							className="h-5 w-5 text-gray-400"
 							aria-hidden="true"
 						/>

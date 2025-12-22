@@ -1,10 +1,10 @@
 "use client";
 
-import { PlusIcon } from "@heroicons/react/24/outline";
+import { useProduct } from "app/product/[handle]/product-context";
 import clsx from "clsx";
 import { addItem } from "components/cart/actions";
-import { useProduct } from "components/product/product-context";
 import type { Product, ProductVariant } from "lib/shopify/types";
+import { Plus } from "lucide-react";
 import { useActionState } from "react";
 import { useCart } from "./cart-context";
 
@@ -40,7 +40,7 @@ function SubmitButton({
 				className={clsx(buttonClasses, disabledClasses)}
 			>
 				<div className="absolute left-0 ml-4">
-					<PlusIcon className="h-5" />
+					<Plus className="h-5" />
 				</div>
 				Add To Cart
 			</button>
@@ -56,7 +56,7 @@ function SubmitButton({
 			})}
 		>
 			<div className="absolute left-0 ml-4">
-				<PlusIcon className="h-5" />
+				<Plus className="h-5" />
 			</div>
 			Add To Cart
 		</button>

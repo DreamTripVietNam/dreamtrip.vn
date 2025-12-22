@@ -1,6 +1,6 @@
-import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { clsx } from "clsx";
 import Link from "components/link";
+import { ChevronRight } from "lucide-react";
 import { DestinationCard } from "./destination-card";
 import type { Destination, TopDestinationsProps } from "./types";
 
@@ -102,7 +102,7 @@ export function TopDestinations({
 				<div className="flex justify-center">
 					<Link href="/search" variant="secondary">
 						Xem tất cả điểm đến
-						<ChevronRightIcon className="ml-2 h-5 w-5" aria-hidden="true" />
+						<ChevronRight className="ml-2 h-5 w-5" aria-hidden="true" />
 					</Link>
 				</div>
 			</div>

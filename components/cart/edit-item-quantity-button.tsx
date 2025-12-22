@@ -1,9 +1,9 @@
 "use client";
 
-import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import { updateItemQuantity } from "components/cart/actions";
 import type { CartItem } from "lib/shopify/types";
+import { Minus, Plus } from "lucide-react";
 import { useActionState } from "react";
 
 function SubmitButton({ type }: { type: "plus" | "minus" }) {
@@ -21,9 +21,9 @@ function SubmitButton({ type }: { type: "plus" | "minus" }) {
 			)}
 		>
 			{type === "plus" ? (
-				<PlusIcon className="h-4 w-4 " />
+				<Plus className="h-4 w-4 " />
 			) : (
-				<MinusIcon className="h-4 w-4 " />
+				<Minus className="h-4 w-4 " />
 			)}
 		</button>
 	);

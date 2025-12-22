@@ -1,7 +1,7 @@
-import { MapPinIcon } from "@heroicons/react/24/outline";
 import { GridTileImage } from "components/grid/tile";
 import { getMockProduct } from "lib/mock-product-data"; // Use getMockProduct
 import { getProductRecommendations } from "lib/shopify";
+import { MapPin } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
@@ -105,7 +105,7 @@ async function ProductPageContent({
 							{product.title}
 						</h1>
 						<div className="flex items-center gap-2 text-sm text-neutral-600 ">
-							<MapPinIcon className="w-4 h-4" />
+							<MapPin className="w-4 h-4" />
 							<span className="underline cursor-pointer hover:text-neutral-900 transition-colors">
 								{product.location}
 							</span>
@@ -136,9 +136,9 @@ async function ProductPageContent({
 				</div>
 
 				{/* Related Products */}
-				<Suspense fallback={null}>
+				{/* <Suspense fallback={null}>
 					<RelatedProducts id={product?.id || "mock-id"} />
-				</Suspense>
+				</Suspense> */}
 			</div>
 		</ProductProvider>
 	);

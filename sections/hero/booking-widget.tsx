@@ -1,7 +1,7 @@
 "use client";
 
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
+import { Search } from "lucide-react";
 import { useState } from "react";
 import { DatePicker } from "./date-picker";
 import { GuestSelector } from "./guest-selector";
@@ -88,7 +88,7 @@ export function BookingWidget({ className = "" }: { className?: string }) {
 						onClick={handleSearch}
 						className="flex w-full items-center justify-center bg-linear-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-rose-200 transition-all"
 					>
-						<MagnifyingGlassIcon className="h-5 w-5 mr-2" aria-hidden="true" />
+						<Search className="h-5 w-5 mr-2" aria-hidden="true" />
 						Tìm kiếm
 					</button>
 				</div>

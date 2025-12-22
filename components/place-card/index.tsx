@@ -1,12 +1,7 @@
 "use client";
 
-import { HeartIcon, MapPinIcon, StarIcon } from "@heroicons/react/24/outline";
-import {
-	ChevronLeftIcon,
-	ChevronRightIcon,
-	HeartIcon as HeartSolidIcon,
-} from "@heroicons/react/24/solid";
 import { clsx } from "clsx";
+import { ChevronLeft, ChevronRight, Heart, MapPin, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -72,9 +67,9 @@ export function PlaceCard({ place, className = "" }: PlaceCardProps) {
 					className="absolute top-3 right-3 p-1.5 rounded-full bg-white/90 hover:bg-white transition-colors z-10"
 				>
 					{isFavorited ? (
-						<HeartSolidIcon className="h-5 w-5 text-red-500" />
+						<Heart className="h-5 w-5 fill-red-500 text-red-500" />
 					) : (
-						<HeartIcon className="h-5 w-5 text-gray-600" />
+						<Heart className="h-5 w-5 text-gray-600" />
 					)}
 				</button>
 
@@ -87,7 +82,7 @@ export function PlaceCard({ place, className = "" }: PlaceCardProps) {
 							className="absolute left-2 top-1/2 -translate-y-1/2 p-1 rounded-full bg-white/80 hover:bg-white opacity-0 group-hover:opacity-100 transition-opacity z-10"
 							aria-label="Ảnh trước"
 						>
-							<ChevronLeftIcon className="h-4 w-4 text-gray-600" />
+							<ChevronLeft className="h-4 w-4 text-gray-600" />
 						</button>
 						<button
 							type="button"
@@ -95,7 +90,7 @@ export function PlaceCard({ place, className = "" }: PlaceCardProps) {
 							className="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded-full bg-white/80 hover:bg-white opacity-0 group-hover:opacity-100 transition-opacity z-10"
 							aria-label="Ảnh tiếp theo"
 						>
-							<ChevronRightIcon className="h-4 w-4 text-gray-600" />
+							<ChevronRight className="h-4 w-4 text-gray-600" />
 						</button>
 					</>
 				)}
@@ -120,7 +115,7 @@ export function PlaceCard({ place, className = "" }: PlaceCardProps) {
 			<div className="p-4">
 				{/* Location */}
 				<div className="flex items-center text-sm text-gray-500 mb-2">
-					<MapPinIcon className="h-4 w-4 mr-1" />
+					<MapPin className="h-4 w-4 mr-1" />
 					<span>{place.location}</span>
 				</div>
 
@@ -131,7 +126,7 @@ export function PlaceCard({ place, className = "" }: PlaceCardProps) {
 
 				{/* Rating */}
 				<div className="flex items-center mb-2">
-					<StarIcon className="h-4 w-4 text-yellow-400 fill-current" />
+					<Star className="h-4 w-4 text-yellow-400 fill-current" />
 					<span className="text-sm font-medium text-gray-900 ml-1">
 						{place.rating.toFixed(1)}
 					</span>

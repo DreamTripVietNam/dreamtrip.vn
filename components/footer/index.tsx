@@ -1,10 +1,6 @@
-import {
-	EnvelopeIcon,
-	MapPinIcon,
-	PhoneIcon,
-} from "@heroicons/react/24/outline";
 import LogoSquare from "components/logo-square";
 import { SITE_METADATA } from "data/metadata";
+import { Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
 
 const { name: siteName } = SITE_METADATA;
@@ -63,7 +59,7 @@ export default function Footer() {
 
 						<div className="mb-6 flex flex-col gap-3">
 							<div className="flex items-start gap-3">
-								<PhoneIcon className="mt-0.5 h-5 w-5 shrink-0 text-neutral-500" />
+								<Phone className="mt-0.5 h-5 w-5 shrink-0 text-neutral-500" />
 								<span className="text-sm text-neutral-600">
 									<a href="tel:0975647798" className="hover:underline">
 										0975647798
@@ -75,13 +71,13 @@ export default function Footer() {
 								</span>
 							</div>
 							<div className="flex items-start gap-3">
-								<MapPinIcon className="mt-0.5 h-5 w-5 shrink-0 text-neutral-500" />
+								<MapPin className="mt-0.5 h-5 w-5 shrink-0 text-neutral-500" />
 								<span className="text-sm text-neutral-600">
 									Tòa GS2, Vinhomes Smart City, Phường Tây Mỗ, Hà Nội, Việt Nam
 								</span>
 							</div>
 							<div className="flex items-center gap-3">
-								<EnvelopeIcon className="h-5 w-5 shrink-0 text-neutral-500" />
+								<Mail className="h-5 w-5 shrink-0 text-neutral-500" />
 								<a
 									href="mailto:support@travila.com"
 									className="text-sm text-neutral-600 hover:text-neutral-900"

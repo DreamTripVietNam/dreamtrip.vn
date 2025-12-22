@@ -1,7 +1,7 @@
 "use client";
 
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { clsx } from "clsx";
+import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import type { FAQ } from "./types";
 
@@ -19,7 +19,7 @@ export function FAQItem({ faq }: { faq: FAQ }) {
 				<span className="pr-4 text-lg font-medium text-neutral-900">
 					{faq.question}
 				</span>
-				<ChevronDownIcon
+				<ChevronDown
 					className={clsx(
 						"h-5 w-5 shrink-0 text-neutral-500 transition-transform duration-300",
 						isOpen && "rotate-180",

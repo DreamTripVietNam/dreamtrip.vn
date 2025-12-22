@@ -1,9 +1,4 @@
-import {
-	CalendarIcon,
-	ChatBubbleLeftIcon,
-	ClockIcon,
-	UserIcon,
-} from "@heroicons/react/24/outline";
+import { Calendar, Clock, MessageCircle, User } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -148,19 +143,19 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 							{/* Meta Info */}
 							<div className="flex flex-wrap items-center justify-center gap-6 text-sm text-white/90">
 								<div className="flex items-center gap-2">
-									<UserIcon className="h-5 w-5" />
+									<User className="h-5 w-5" />
 									<span>{post.author.name}</span>
 								</div>
 								<div className="flex items-center gap-2">
-									<CalendarIcon className="h-5 w-5" />
+									<Calendar className="h-5 w-5" />
 									<time>{post.publishedAt}</time>
 								</div>
 								<div className="flex items-center gap-2">
-									<ClockIcon className="h-5 w-5" />
+									<Clock className="h-5 w-5" />
 									<span>{post.readingTime} phút đọc</span>
 								</div>
 								<div className="flex items-center gap-2">
-									<ChatBubbleLeftIcon className="h-5 w-5" />
+									<MessageCircle className="h-5 w-5" />
 									<span>{post.commentsCount} bình luận</span>
 								</div>
 							</div>

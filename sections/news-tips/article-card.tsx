@@ -1,12 +1,7 @@
 "use client";
 
-import {
-	ChatBubbleLeftIcon,
-	ClockIcon,
-	HeartIcon,
-} from "@heroicons/react/24/outline";
-import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
 import { clsx } from "clsx";
+import { Clock, Heart, MessageCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -67,9 +62,9 @@ export function ArticleCard({ article }: { article: BlogArticle }) {
 					aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
 				>
 					{isFavorite ? (
-						<HeartIconSolid className="h-5 w-5 text-red-500" />
+						<Heart className="h-5 w-5 fill-red-500 text-red-500" />
 					) : (
-						<HeartIcon className="h-5 w-5 text-neutral-700" />
+						<Heart className="h-5 w-5 text-neutral-700" />
 					)}
 				</button>
 			</Link>
@@ -82,15 +77,15 @@ export function ArticleCard({ article }: { article: BlogArticle }) {
 						dateTime={article.publishedAt}
 						className="flex items-center gap-1"
 					>
-						<ClockIcon className="h-4 w-4" />
+						<Clock className="h-4 w-4" />
 						{article.publishedAt}
 					</time>
 					<span className="flex items-center gap-1">
-						<ClockIcon className="h-4 w-4" />
+						<Clock className="h-4 w-4" />
 						{article.readingTime} mins
 					</span>
 					<span className="flex items-center gap-1">
-						<ChatBubbleLeftIcon className="h-4 w-4" />
+						<MessageCircle className="h-4 w-4" />
 						{article.commentsCount} comments
 					</span>
 				</div>

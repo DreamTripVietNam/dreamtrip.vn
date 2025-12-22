@@ -1,6 +1,6 @@
-import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { clsx } from "clsx";
 import Link from "components/link";
+import { ChevronRight } from "lucide-react";
 import { FAQItem } from "./faq-item";
 import type { FAQ, FAQsProps } from "./types";
 
@@ -64,7 +64,7 @@ export function FAQs({ faqs = defaultFAQs, className = "" }: FAQsProps) {
 				<div className="text-center flex justify-center">
 					<Link href="/faq" variant="secondary">
 						Xem thêm câu hỏi
-						<ChevronRightIcon className="h-5 w-5" />
+						<ChevronRight className="h-5 w-5" />
 					</Link>
 				</div>
 			</div>

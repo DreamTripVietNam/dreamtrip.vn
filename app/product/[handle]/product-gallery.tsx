@@ -1,6 +1,6 @@
 "use client";
 
-import { PhotoIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Image as ImageIcon, X } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -55,7 +55,7 @@ export function ProductGallery({
 						onClick={() => setIsOpen(true)}
 						className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg text-sm font-medium shadow-sm hover:bg-white transition-colors flex items-center gap-2"
 					>
-						<PhotoIcon className="w-4 h-4" />
+						<ImageIcon className="w-4 h-4" />
 						Xem tất cả ảnh
 					</button>
 
@@ -67,7 +67,7 @@ export function ProductGallery({
 								onClick={() => setIsOpen(false)}
 								className="absolute top-6 right-6 text-white/70 hover:text-white p-2"
 							>
-								<XMarkIcon className="w-8 h-8" />
+								<X className="w-8 h-8" />
 							</button>
 
 							<div className="w-full max-w-6xl h-full overflow-y-auto grid grid-cols-1 md:grid-cols-2 gap-4 p-4 md:p-10">

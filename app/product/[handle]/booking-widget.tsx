@@ -1,15 +1,10 @@
 "use client";
 
-import {
-	ChevronDownIcon,
-	MinusIcon,
-	PlusIcon,
-	StarIcon,
-} from "@heroicons/react/24/outline";
 import { clsx } from "clsx";
 import { addDays, differenceInDays, format } from "date-fns";
 import { vi } from "date-fns/locale";
 import { MOCK_PRODUCT_DATA } from "lib/mock-product-data";
+import { ChevronDown, Minus, Plus, Star } from "lucide-react";
 import { useState } from "react";
 import { type DateRange, DayPicker } from "react-day-picker";
 import "react-day-picker/style.css";
@@ -61,7 +56,7 @@ export function BookingWidget() {
 					<span className="text-neutral-500 text-sm"> / đêm</span>
 				</div>
 				<div className="flex items-center gap-1 text-sm font-medium">
-					<StarIcon className="w-4 h-4 text-black  fill-black " />
+					<Star className="w-4 h-4 text-black  fill-black " />
 					{MOCK_PRODUCT_DATA.rating}
 					<span className="text-neutral-400 underline">
 						({MOCK_PRODUCT_DATA.reviewCount})
@@ -135,7 +130,7 @@ export function BookingWidget() {
 							}}
 							className="p-1 rounded-full hover:bg-neutral-200"
 						>
-							<MinusIcon className="w-4 h-4" />
+							<Minus className="w-4 h-4" />
 						</button>
 						<button
 							type="button"
@@ -145,10 +140,10 @@ export function BookingWidget() {
 							}}
 							className="p-1 rounded-full hover:bg-neutral-200"
 						>
-							<PlusIcon className="w-4 h-4" />
+							<Plus className="w-4 h-4" />
 						</button>
 					</div>
-					<ChevronDownIcon className="w-4 h-4 text-neutral-400 group-hover:hidden" />
+					<ChevronDown className="w-4 h-4 text-neutral-400 group-hover:hidden" />
 				</div>
 			</div>
 

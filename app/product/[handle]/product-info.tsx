@@ -1,41 +1,37 @@
-import {
-	FireIcon,
-	HomeModernIcon,
-	MusicalNoteIcon,
-	SparklesIcon,
-	VideoCameraIcon,
-	WifiIcon,
-} from "@heroicons/react/24/outline";
-import {
-	MapPinIcon,
-	ShieldCheckIcon,
-	StarIcon,
-} from "@heroicons/react/24/solid";
 import { MOCK_PRODUCT_DATA } from "lib/mock-product-data";
+import {
+	Flame,
+	Home,
+	MapPin,
+	Music,
+	ShieldCheck,
+	Sparkles,
+	Star,
+	Video,
+	Wifi,
+} from "lucide-react";
 
 // Type-safe icon mapping
 const IconMap: Record<string, any> = {
-	Wifi: WifiIcon,
-	AC: HomeModernIcon,
-	Fridge: HomeModernIcon, // Use generic if specific not found
-	Pool: SparklesIcon,
-	Speaker: MusicalNoteIcon,
-	Projector: VideoCameraIcon,
-	Grill: FireIcon,
-	Cleaning: ShieldCheckIcon,
-	Coffee: SparklesIcon,
-	HairDryer: SparklesIcon,
-	HotWater: FireIcon,
+	Wifi: Wifi,
+	AC: Home,
+	Fridge: Home, // Use generic if specific not found
+	Pool: Sparkles,
+	Speaker: Music,
+	Projector: Video,
+	Grill: Flame,
+	Cleaning: ShieldCheck,
+	Coffee: Sparkles,
+	HairDryer: Sparkles,
+	HotWater: Flame,
 };
 
 function AmenityItem({ icon, label }: { icon: string; label: string }) {
-	const Icon = IconMap[icon] || SparklesIcon;
+	const Icon = IconMap[icon] || Sparkles;
 	return (
 		<div className="flex items-center gap-3 p-3 bg-neutral-50  rounded-lg">
 			<Icon className="w-6 h-6 text-neutral-600 " />
-			<span className="text-sm font-medium text-neutral-800 ">
-				{label}
-			</span>
+			<span className="text-sm font-medium text-neutral-800 ">{label}</span>
 		</div>
 	);
 }
@@ -91,15 +87,13 @@ export function ProductInfo() {
 			{/* Extra Services */}
 			<section className="bg-orange-50  p-6 rounded-2xl border border-orange-100 ">
 				<h2 className="text-xl font-semibold mb-4 text-orange-800  flex items-center gap-2">
-					<SparklesIcon className="w-5 h-5" />
+					<Sparkles className="w-5 h-5" />
 					Dịch vụ phát sinh
 				</h2>
 				<ul className="space-y-3">
 					{extraServices.map((service, idx) => (
 						<li key={idx} className="flex justify-between items-center text-sm">
-							<span className="text-neutral-700 ">
-								{service.name}
-							</span>
+							<span className="text-neutral-700 ">{service.name}</span>
 							<span className="font-semibold text-neutral-900 ">
 								{service.price}
 							</span>
@@ -132,7 +126,7 @@ export function ProductInfo() {
 			<section>
 				<h2 className="text-2xl font-semibold mb-4">Nơi bạn sẽ đến</h2>
 				<div className="bg-neutral-100  h-64 rounded-xl flex items-center justify-center mb-4 relative overflow-hidden group">
-					<MapPinIcon className="w-10 h-10 text-neutral-400" />
+					<MapPin className="w-10 h-10 text-neutral-400" />
 					<span className="absolute bottom-4 left-4 bg-white  px-3 py-1 rounded-full text-xs font-bold shadow-md">
 						{MOCK_PRODUCT_DATA.location}
 					</span>
@@ -143,7 +137,7 @@ export function ProductInfo() {
 							key={idx}
 							className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-neutral-200  text-xs font-medium hover:bg-neutral-50 transition-colors cursor-default"
 						>
-							<MapPinIcon className="w-3 h-3 text-blue-500" />
+							<MapPin className="w-3 h-3 text-blue-500" />
 							{place}
 						</span>
 					))}
@@ -153,7 +147,7 @@ export function ProductInfo() {
 			{/* Reviews */}
 			<section>
 				<div className="flex items-center gap-2 mb-6">
-					<StarIcon className="w-6 h-6 text-yellow-400" />
+					<Star className="w-6 h-6 text-yellow-400 fill-current" />
 					<h2 className="text-2xl font-semibold">
 						{MOCK_PRODUCT_DATA.rating}{" "}
 						<span className="text-neutral-400 font-normal text-lg">

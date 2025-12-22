@@ -1,8 +1,8 @@
 "use client";
 
 import { Listbox, Transition } from "@headlessui/react";
-import { ChevronUpDownIcon, MapPinIcon } from "@heroicons/react/24/outline";
 import { clsx } from "clsx";
+import { ChevronsUpDown, MapPin } from "lucide-react";
 import { Fragment } from "react";
 import type { Location, LocationSelectorProps } from "./types";
 
@@ -35,16 +35,13 @@ export function LocationSelector({
 						</Listbox.Label>
 						<Listbox.Button className="relative w-full cursor-default rounded-lg border border-gray-300 bg-white py-3 pl-3 pr-10 text-left shadow-sm focus:border-black focus:outline-none focus:ring-1 focus:ring-black">
 							<div className="flex items-center">
-								<MapPinIcon
-									className="h-5 w-5 text-gray-400"
-									aria-hidden="true"
-								/>
+								<MapPin className="h-5 w-5 text-gray-400" aria-hidden="true" />
 								<span className="ml-2 block truncate text-gray-900">
 									{value ? `${value.name}, ${value.country}` : placeholder}
 								</span>
 							</div>
 							<span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-								<ChevronUpDownIcon
+								<ChevronsUpDown
 									className="h-5 w-5 text-gray-400"
 									aria-hidden="true"
 								/>
@@ -72,7 +69,7 @@ export function LocationSelector({
 									>
 										{({ selected }) => (
 											<div className="flex items-center">
-												<MapPinIcon
+												<MapPin
 													className="h-5 w-5 text-current"
 													aria-hidden="true"
 												/>
