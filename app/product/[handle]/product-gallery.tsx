@@ -2,8 +2,8 @@
 
 import * as Dialog from "@radix-ui/react-dialog";
 import { clsx } from "clsx";
+import { Image } from "components/image";
 import { ChevronLeft, ChevronRight, Images, X } from "lucide-react";
-import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 
 export function ProductGallery({
@@ -100,9 +100,9 @@ export function ProductGallery({
 							src={mainImage.url}
 							alt={mainImage.altText}
 							fill
-							className="object-cover transition-transform duration-500"
+							className="transition-transform duration-500"
 							sizes="(min-width: 1024px) 50vw, 100vw"
-							priority
+							loading="eager"
 						/>
 					)}
 				</div>
@@ -120,7 +120,7 @@ export function ProductGallery({
 							src={image.url}
 							alt={image.altText}
 							fill
-							className="object-cover transition-transform duration-500"
+							className="transition-transform duration-500"
 							sizes="(min-width: 1024px) 25vw, 0vw"
 						/>
 					</div>
@@ -168,13 +168,13 @@ export function ProductGallery({
 										type="button"
 										onClick={() => jumpToCategory(cat)}
 										className={clsx(
-											"px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-colors",
+											"px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap transition-colors",
 											activeCategory === cat
 												? "bg-white text-black"
 												: "bg-black/40 text-white hover:bg-black/60",
 										)}
 									>
-										{cat}
+										{cat} ({groups[cat]?.length})
 									</button>
 								))}
 							</div>
@@ -200,8 +200,8 @@ export function ProductGallery({
 									src={images[currentIdx]?.url || ""}
 									alt={images[currentIdx]?.altText || ""}
 									fill
-									className="object-contain"
-									priority
+									objectFit="contain"
+									loading="eager"
 								/>
 
 								{/* Mobile Caption Overlay */}
