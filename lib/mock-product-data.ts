@@ -14,23 +14,59 @@ export const MOCK_PRODUCT_DATA = {
 	images: [
 		{
 			url: "https://images.unsplash.com/photo-1587061949409-02df41d5e562?q=80&w=2670&auto=format&fit=crop",
-			altText: "Lakeview Exterior",
+			altText: "Bể bơi - Toàn cảnh bể bơi vô cực",
 		},
 		{
 			url: "https://images.unsplash.com/photo-1510798831971-661eb04b3739?q=80&w=2672&auto=format&fit=crop",
-			altText: "Lake view from room",
+			altText: "View - Cảnh hồ lúc hoàng hôn",
 		},
 		{
 			url: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=2670&auto=format&fit=crop",
-			altText: "Bedroom",
+			altText: "Phòng ngủ - Giường King size view hồ",
 		},
 		{
 			url: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2670&auto=format&fit=crop",
-			altText: "Bathroom",
+			altText: "Phòng tắm - Bồn tắm nằm thư giãn",
 		},
 		{
 			url: "https://images.unsplash.com/photo-1563298723-dcfebaa392e3?q=80&w=2667&auto=format&fit=crop",
-			altText: "BBQ Area",
+			altText: "Tiện ích - Khu vực nướng BBQ ngoài trời",
+		},
+		{
+			url: "https://images.unsplash.com/photo-1616594039964-40891a91395b?q=80&w=2670&auto=format&fit=crop",
+			altText: "Phòng khách - Sofa êm ái và TV màn hình lớn",
+		},
+		{
+			url: "https://images.unsplash.com/photo-1556910103-1c02745a30bf?q=80&w=2670&auto=format&fit=crop",
+			altText: "Phòng bếp - Đầy đủ tiện nghi hiện đại",
+		},
+		{
+			url: "https://images.unsplash.com/photo-1600210492493-0946911123ea?q=80&w=2670&auto=format&fit=crop",
+			altText: "Phòng khách - Không gian mở thoáng đãng",
+		},
+		{
+			url: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=2670&auto=format&fit=crop",
+			altText: "Lối vào - Sân vườn xanh mát",
+		},
+		{
+			url: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?q=80&w=2670&auto=format&fit=crop",
+			altText: "Bể bơi - Góc chill bên bể bơi",
+		},
+		{
+			url: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2670&auto=format&fit=crop",
+			altText: "Phòng ngủ - Phòng ngủ phụ ấm cúng",
+		},
+		{
+			url: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2670&auto=format&fit=crop",
+			altText: "Tiện ích - Phòng đọc sách yên tĩnh",
+		},
+		{
+			url: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=2670&auto=format&fit=crop",
+			altText: "Sân vườn - Bàn trà chiều",
+		},
+		{
+			url: "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?q=80&w=2670&auto=format&fit=crop",
+			altText: "Phòng tắm - Vòi sen đứng hiện đại",
 		},
 	],
 	amenities: {
