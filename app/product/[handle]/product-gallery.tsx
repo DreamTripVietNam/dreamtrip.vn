@@ -1,6 +1,6 @@
 "use client";
 
-import { Image as ImageIcon, X } from "lucide-react";
+import { Images, X } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -19,14 +19,14 @@ export function ProductGallery({
 					<div className="grid grid-cols-1 gap-2 md:grid-cols-4 md:grid-rows-2 h-[300px] md:h-[400px] lg:h-[500px]">
 						{/* Main Image */}
 						<div
-							className="col-span-2 row-span-2 relative cursor-pointer group"
+							className="col-span-2 row-span-2 relative cursor-pointer"
 							onClick={() => setIsOpen(true)}
 						>
 							<Image
 								src={mainImage.url}
 								alt={mainImage.altText}
 								fill
-								className="object-cover transition-transform duration-500 group-hover:scale-105"
+								className="object-cover transition-transform duration-500"
 								sizes="(min-width: 1024px) 50vw, 100vw"
 								priority
 							/>
@@ -36,14 +36,14 @@ export function ProductGallery({
 						{images.slice(1, 5).map((image, index) => (
 							<div
 								key={index}
-								className="hidden md:block relative cursor-pointer group overflow-hidden"
+								className="hidden md:block relative cursor-pointer overflow-hidden"
 								onClick={() => setIsOpen(true)}
 							>
 								<Image
 									src={image.url}
 									alt={image.altText}
 									fill
-									className="object-cover transition-transform duration-500 group-hover:scale-105"
+									className="object-cover transition-transform duration-500"
 									sizes="(min-width: 1024px) 25vw, 0vw"
 								/>
 							</div>
@@ -53,9 +53,9 @@ export function ProductGallery({
 					<button
 						type="button"
 						onClick={() => setIsOpen(true)}
-						className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg text-sm font-medium shadow-sm hover:bg-white transition-colors flex items-center gap-2"
+						className="absolute bottom-4 border border-slate-400 right-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg text-sm font-medium shadow-lg hover:bg-white transition-colors flex items-center gap-2"
 					>
-						<ImageIcon className="w-4 h-4" />
+						<Images className="w-4 h-4" />
 						Xem tất cả ảnh
 					</button>
 

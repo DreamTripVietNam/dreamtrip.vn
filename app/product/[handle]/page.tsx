@@ -101,13 +101,21 @@ async function ProductPageContent({
 				{/* Header Section */}
 				<div className="mb-6 flex flex-col md:flex-row md:items-start md:justify-between gap-4">
 					<div>
-						<h1 className="text-2xl md:text-3xl font-bold font-barlow text-neutral-900  mb-2">
+						<h1 className="text-2xl md:text-4xl font-bold font-barlow text-neutral-900  mb-2">
 							{product.title}
 						</h1>
 						<div className="flex items-center gap-2 text-sm text-neutral-600 ">
 							<MapPin className="w-4 h-4" />
-							<span className="underline cursor-pointer hover:text-neutral-900 transition-colors">
+							<a
+								href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(product.location)}`}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="underline cursor-pointer hover:text-neutral-900 transition-colors"
+							>
 								{product.location}
+							</a>
+							<span className="text-neutral-500 text-xs">
+								(cách trung tâm Hà Nội ~40km)
 							</span>
 						</div>
 					</div>
