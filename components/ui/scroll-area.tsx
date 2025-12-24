@@ -1,47 +1,89 @@
 "use client";
 
 import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
+import { cva, type VariantProps } from "class-variance-authority";
 import { clsx } from "clsx";
 import type * as React from "react";
+
+const scrollBarVariants = cva("flex touch-none select-none transition-colors", {
+	variants: {
+		orientation: {
+			vertical: "h-full border-l border-l-transparent p-px",
+			horizontal: "flex-col border-t border-t-transparent p-px",
+		},
+		size: {
+			md: "w-2.5",
+			sm: "w-2",
+		},
+	},
+	compoundVariants: [
+		{
+			orientation: "horizontal",
+			size: "md",
+			class: "h-2.5",
+		},
+		{
+			orientation: "horizontal",
+			size: "sm",
+			class: "h-2",
+		},
+	],
+	defaultVariants: {
+		orientation: "vertical",
+		size: "md",
+	},
+});
+
+interface ScrollAreaProps
+	extends React.ComponentProps<typeof ScrollAreaPrimitive.Root>,
+		VariantProps<typeof scrollBarVariants> {}
 
 function ScrollArea({
 	className,
 	children,
 	ref,
+	size,
 	...props
-}: React.ComponentProps<typeof ScrollAreaPrimitive.Root>) {
+}: ScrollAreaProps) {
 	return (
 		<ScrollAreaPrimitive.Root
 			ref={ref}
 			className={clsx("relative overflow-hidden", className)}
 			{...props}
 		>
-			<ScrollAreaPrimitive.Viewport className="h-full w-full rounded-[inherit]">
+			<ScrollAreaPrimitive.Viewport className="size-full rounded-[inherit]">
 				{children}
 			</ScrollAreaPrimitive.Viewport>
-			<ScrollBar />
+			<ScrollBar size={size} />
 			<ScrollAreaPrimitive.Corner />
 		</ScrollAreaPrimitive.Root>
 	);
 }
 
+interface ScrollBarProps
+	extends Omit<
+			React.ComponentProps<typeof ScrollAreaPrimitive.Scrollbar>,
+			"orientation"
+		>,
+		VariantProps<typeof scrollBarVariants> {}
+
 function ScrollBar({
 	className,
 	orientation = "vertical",
+	size,
 	ref,
 	...props
-}: React.ComponentProps<typeof ScrollAreaPrimitive.Scrollbar>) {
+}: ScrollBarProps) {
 	return (
 		<ScrollAreaPrimitive.Scrollbar
 			ref={ref}
-			orientation={orientation}
+			orientation={orientation!}
 			className={clsx(
-				"flex touch-none select-none transition-colors",
-				orientation === "vertical" &&
-					"h-full w-2.5 border-l border-l-transparent p-px",
-				orientation === "horizontal" &&
-					"h-2.5 flex-col border-t border-t-transparent p-px",
-				className,
+				scrollBarVariants({
+					orientation,
+					size,
+					className,
+				}),
 			)}
 			{...props}
 		>

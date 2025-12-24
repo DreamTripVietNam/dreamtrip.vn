@@ -157,7 +157,7 @@ export function ProductGallery({
 						<div className="flex flex-col lg:grid lg:grid-cols-4 w-full h-full bg-black">
 							{/* Left Column: Sidebar (Span 1) */}
 							<div className="hidden lg:flex flex-col lg:col-span-1 h-full bg-neutral-900 border-l border-white/10">
-								<ScrollArea className="h-full w-full max-h-screen">
+								<ScrollArea className="h-full w-full max-h-screen" size="sm">
 									<div className="p-6 space-y-8">
 										{categories.map((category) => {
 											const categoryImages = groups[category];
