@@ -3,6 +3,7 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { clsx } from "clsx";
 import { Image } from "components/image";
+import { ScrollArea } from "components/ui/scroll-area";
 import { ChevronLeft, ChevronRight, Images, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
@@ -153,56 +154,58 @@ export function ProductGallery({
 					<Dialog.Content className="fixed inset-0 z-50 flex flex-col focus:outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 duration-200">
 						<Dialog.Title className="sr-only">Thư viện ảnh</Dialog.Title>
 
-						<div className="flex flex-col lg:grid lg:grid-cols-3 w-full h-full bg-black">
+						<div className="flex flex-col lg:grid lg:grid-cols-4 w-full h-full bg-black">
 							{/* Left Column: Sidebar (Span 1) */}
-							<div className="hidden lg:flex flex-col lg:col-span-1 h-full bg-neutral-900 border-l border-white/10 overflow-y-auto">
-								<div className="p-6 space-y-8">
-									{categories.map((category) => {
-										const categoryImages = groups[category];
-										if (!categoryImages) return null;
+							<div className="hidden lg:flex flex-col lg:col-span-1 h-full bg-neutral-900 border-l border-white/10">
+								<ScrollArea className="h-full w-full max-h-screen">
+									<div className="p-6 space-y-8">
+										{categories.map((category) => {
+											const categoryImages = groups[category];
+											if (!categoryImages) return null;
 
-										return (
-											<div key={category}>
-												<h3 className="text-white font-medium mb-3 sticky top-0 bg-neutral-900/95 backdrop-blur-sm py-2 z-10">
-													{category}{" "}
-													<span className="text-neutral-500 text-sm ml-1">
-														({categoryImages.length})
-													</span>
-												</h3>
-												<div className="grid grid-cols-3 gap-2">
-													{categoryImages.map((imgIdx) => (
-														<button
-															key={imgIdx}
-															type="button"
-															onClick={() => setCurrentIdx(imgIdx)}
-															className={clsx(
-																"relative aspect-square rounded-md overflow-hidden transition-all duration-200",
-																currentIdx === imgIdx
-																	? "ring-2 ring-white opacity-100"
-																	: "opacity-60 hover:opacity-100 border border-transparent",
-															)}
-														>
-															<Image
-																src={images[imgIdx]?.url || ""}
-																alt={images[imgIdx]?.altText || ""}
-																fill
-																objectFit="cover"
-																loading="lazy"
-															/>
-														</button>
-													))}
+											return (
+												<div key={category}>
+													<h3 className="text-white font-medium mb-3 sticky top-0 bg-neutral-900 py-2 z-10">
+														{category}{" "}
+														<span className="text-neutral-500 text-sm ml-1">
+															({categoryImages.length})
+														</span>
+													</h3>
+													<div className="grid grid-cols-3 gap-2">
+														{categoryImages.map((imgIdx) => (
+															<button
+																key={imgIdx}
+																type="button"
+																onClick={() => setCurrentIdx(imgIdx)}
+																className={clsx(
+																	"relative ring-2 aspect-square rounded-md overflow-hidden transition-all duration-200",
+																	currentIdx === imgIdx
+																		? "ring-white opacity-100"
+																		: "opacity-60 hover:opacity-100 ring-transparent",
+																)}
+															>
+																<Image
+																	src={images[imgIdx]?.url || ""}
+																	alt={images[imgIdx]?.altText || ""}
+																	fill
+																	objectFit="cover"
+																	loading="lazy"
+																/>
+															</button>
+														))}
+													</div>
 												</div>
-											</div>
-										);
-									})}
+											);
+										})}
 
-									{/* Padding bottom to ensure last items are visible/comfortable */}
-									<div className="h-10"></div>
-								</div>
+										{/* Padding bottom to ensure last items are visible/comfortable */}
+										<div className="h-10"></div>
+									</div>
+								</ScrollArea>
 							</div>
 
-							{/* Right Column: Main Image (Span 2) */}
-							<div className="relative h-full lg:col-span-2 flex items-center justify-center bg-black/90 p-4 lg:p-10">
+							{/* Right Column: Main Image (Span 3) */}
+							<div className="relative h-full lg:col-span-3 flex items-center justify-center bg-black/90 p-4 lg:p-10">
 								{/* Top Bar (Mobile Only / overlay) */}
 								<div className="absolute top-4 left-4 right-4 flex justify-between items-center z-20 pointer-events-none">
 									<div className="pointer-events-auto bg-black/50 backdrop-blur-md rounded-full px-3 py-1.5 text-white text-sm font-medium">
