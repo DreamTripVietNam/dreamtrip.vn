@@ -21,9 +21,12 @@ export function ProductGallery({
 		const categories: string[] = [];
 
 		images.forEach((img, idx) => {
-			// Assume altText is "Category - Description"
-			const parts = img.altText?.split(" - ");
-			const category = parts && parts.length > 1 ? parts[0] : "Khác";
+			// Extract category from altText.
+			// If altText contains " - ", split and take the first part.
+			// Otherwise, use the whole altText as the category.
+			const alt = img.altText || "";
+			const parts = alt.split(" - ");
+			const category = parts.length > 1 ? parts[0] : alt || "Khác";
 
 			if (category && typeof category === "string") {
 				if (!groups[category]) {
@@ -68,8 +71,9 @@ export function ProductGallery({
 		const currentImg = images[currentIdx];
 		if (!currentImg) return;
 
-		const parts = currentImg.altText?.split(" - ");
-		const category = (parts && parts.length > 1 ? parts[0] : "Khác") || "Khác";
+		const alt = currentImg.altText || "";
+		const parts = alt.split(" - ");
+		const category = (parts.length > 1 ? parts[0] : alt) || "Khác";
 		setActiveCategory(category);
 
 		// Auto-scroll logic for thumbnail strip
@@ -150,8 +154,55 @@ export function ProductGallery({
 						<Dialog.Title className="sr-only">Thư viện ảnh</Dialog.Title>
 
 						<div className="flex flex-col lg:grid lg:grid-cols-3 w-full h-full bg-black">
-							{/* Left Column: Main Image (Span 2) */}
-							<div className="relative h-full lg:col-span-2 flex items-center justify-center bg-black/90 p-4 lg:p-10 order-1 lg:order-none">
+							{/* Left Column: Sidebar (Span 1) */}
+							<div className="hidden lg:flex flex-col lg:col-span-1 h-full bg-neutral-900 border-l border-white/10 overflow-y-auto">
+								<div className="p-6 space-y-8">
+									{categories.map((category) => {
+										const categoryImages = groups[category];
+										if (!categoryImages) return null;
+
+										return (
+											<div key={category}>
+												<h3 className="text-white font-medium mb-3 sticky top-0 bg-neutral-900/95 backdrop-blur-sm py-2 z-10">
+													{category}{" "}
+													<span className="text-neutral-500 text-sm ml-1">
+														({categoryImages.length})
+													</span>
+												</h3>
+												<div className="grid grid-cols-3 gap-2">
+													{categoryImages.map((imgIdx) => (
+														<button
+															key={imgIdx}
+															type="button"
+															onClick={() => setCurrentIdx(imgIdx)}
+															className={clsx(
+																"relative aspect-square rounded-md overflow-hidden transition-all duration-200",
+																currentIdx === imgIdx
+																	? "ring-2 ring-white opacity-100"
+																	: "opacity-60 hover:opacity-100 border border-transparent",
+															)}
+														>
+															<Image
+																src={images[imgIdx]?.url || ""}
+																alt={images[imgIdx]?.altText || ""}
+																fill
+																objectFit="cover"
+																loading="lazy"
+															/>
+														</button>
+													))}
+												</div>
+											</div>
+										);
+									})}
+
+									{/* Padding bottom to ensure last items are visible/comfortable */}
+									<div className="h-10"></div>
+								</div>
+							</div>
+
+							{/* Right Column: Main Image (Span 2) */}
+							<div className="relative h-full lg:col-span-2 flex items-center justify-center bg-black/90 p-4 lg:p-10">
 								{/* Top Bar (Mobile Only / overlay) */}
 								<div className="absolute top-4 left-4 right-4 flex justify-between items-center z-20 pointer-events-none">
 									<div className="pointer-events-auto bg-black/50 backdrop-blur-md rounded-full px-3 py-1.5 text-white text-sm font-medium">
@@ -205,53 +256,6 @@ export function ProductGallery({
 											<ChevronRight className="w-6 h-6" />
 										</button>
 									</div>
-								</div>
-							</div>
-
-							{/* Right Column: Sidebar (Span 1) */}
-							<div className="hidden lg:flex flex-col lg:col-span-1 h-full bg-neutral-900 border-l border-white/10 overflow-y-auto order-2">
-								<div className="p-6 space-y-8">
-									{categories.map((category) => {
-										const categoryImages = groups[category];
-										if (!categoryImages) return null;
-
-										return (
-											<div key={category}>
-												<h3 className="text-white font-medium mb-3 sticky top-0 bg-neutral-900/95 backdrop-blur-sm py-2 z-10">
-													{category}{" "}
-													<span className="text-neutral-500 text-sm ml-1">
-														({categoryImages.length})
-													</span>
-												</h3>
-												<div className="grid grid-cols-3 gap-2">
-													{categoryImages.map((imgIdx) => (
-														<button
-															key={imgIdx}
-															type="button"
-															onClick={() => setCurrentIdx(imgIdx)}
-															className={clsx(
-																"relative aspect-square rounded-md overflow-hidden transition-all duration-200",
-																currentIdx === imgIdx
-																	? "ring-2 ring-white opacity-100"
-																	: "opacity-60 hover:opacity-100 border border-transparent",
-															)}
-														>
-															<Image
-																src={images[imgIdx]?.url || ""}
-																alt={images[imgIdx]?.altText || ""}
-																fill
-																objectFit="cover"
-																loading="lazy"
-															/>
-														</button>
-													))}
-												</div>
-											</div>
-										);
-									})}
-
-									{/* Padding bottom to ensure last items are visible/comfortable */}
-									<div className="h-10"></div>
 								</div>
 							</div>
 						</div>
