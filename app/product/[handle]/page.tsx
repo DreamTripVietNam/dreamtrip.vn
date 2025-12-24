@@ -1,9 +1,8 @@
 import { GridTileImage } from "components/grid/tile";
-import { getMockProduct } from "lib/mock-product-data"; // Use getMockProduct
-import { getProductRecommendations } from "lib/shopify";
-import { MapPin } from "lucide-react";
+import { getProduct, getProductRecommendations } from "lib/shopify";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { BookingWidget } from "./booking-widget";
 import { ProductProvider } from "./product-context";
@@ -15,11 +14,13 @@ import { ShareButton } from "./share-button";
 export async function generateMetadata(props: {
 	params: Promise<{ handle: string }>;
 }): Promise<Metadata> {
-	// const params = await props.params;
+	const params = await props.params;
 	// We still fetch the product to get some basic metadata if available,
 	// but we primarily rely on the mock data for this specific task as requested.
-	// const product = await getProduct(params.handle);
-	const product = await getMockProduct();
+	const product = await getProduct(params.handle);
+	// const product = await getMockProduct();
+
+	if (!product) return notFound();
 
 	// Fallback to mock data for SEO if product not found or just to match the visual
 	const title = product.title;
@@ -63,10 +64,9 @@ async function ProductPageContent({
 	paramsPromise: Promise<{ handle: string }>;
 }) {
 	const params = await paramsPromise;
-	// We still try to fetch product to respect the architecture,
-	// but we will render the Mock Data regardless for this demo request.
-	// const product2 = await getProduct(params.handle);
-	const product = await getMockProduct();
+	const product = await getProduct(params.handle);
+
+	if (!product) return notFound();
 
 	// In a real scenario, we would use the product data here.
 	// const isMockMode = true;
@@ -83,9 +83,9 @@ async function ProductPageContent({
 		offers: {
 			"@type": "AggregateOffer",
 			availability: "https://schema.org/InStock",
-			priceCurrency: product.price.currencyCode,
-			highPrice: product.price.amount,
-			lowPrice: product.price.amount,
+			priceCurrency: product.priceRange.minVariantPrice.currencyCode,
+			highPrice: product.priceRange.maxVariantPrice.amount,
+			lowPrice: product.priceRange.minVariantPrice.amount,
 		},
 	};
 
@@ -104,20 +104,13 @@ async function ProductPageContent({
 						<h1 className="text-2xl md:text-4xl font-bold font-barlow text-neutral-900  mb-2">
 							{product.title}
 						</h1>
-						<div className="flex items-center gap-2 text-sm text-neutral-600 ">
+						{/* Location removed as it is not available in Shopify Product type */}
+						{/* <div className="flex items-center gap-2 text-sm text-neutral-600 ">
 							<MapPin className="w-4 h-4" />
-							<a
-								href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(product.location)}`}
-								target="_blank"
-								rel="noopener noreferrer"
-								className="underline cursor-pointer hover:text-neutral-900 transition-colors"
-							>
-								{product.location}
-							</a>
 							<span className="text-neutral-500 text-xs">
 								(cách trung tâm Hà Nội ~40km)
 							</span>
-						</div>
+						</div> */}
 					</div>
 					<div className="flex items-center gap-3">
 						<SaveButton productHandle={params.handle} />

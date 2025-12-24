@@ -71,14 +71,17 @@ export function ProductGallery({
 		const parts = currentImg.altText?.split(" - ");
 		const category = (parts && parts.length > 1 ? parts[0] : "Khác") || "Khác";
 		setActiveCategory(category);
-	}, [currentIdx, images, isOpen]);
 
-	const jumpToCategory = (cat: string) => {
-		const firstIdx = groups[cat]?.[0];
-		if (firstIdx !== undefined) {
-			setCurrentIdx(firstIdx);
+		// Auto-scroll logic for thumbnail strip
+		const thumb = document.getElementById(`thumb-${currentIdx}`);
+		if (thumb) {
+			thumb.scrollIntoView({
+				behavior: "smooth",
+				block: "nearest",
+				inline: "center",
+			});
 		}
-	};
+	}, [currentIdx, images, isOpen]);
 
 	if (!images.length) return null;
 
@@ -136,7 +139,7 @@ export function ProductGallery({
 				className="absolute bottom-4 border border-slate-400 right-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg text-sm font-medium shadow-lg hover:bg-white transition-colors flex items-center gap-2"
 			>
 				<Images className="w-4 h-4" />
-				Xem tất cả ảnh
+				Xem tất cả ảnh ({images.length})
 			</button>
 
 			{/* Radix Dialog */}
@@ -146,85 +149,112 @@ export function ProductGallery({
 					<Dialog.Content className="fixed inset-0 z-50 flex flex-col focus:outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 duration-200">
 						<Dialog.Title className="sr-only">Thư viện ảnh</Dialog.Title>
 
-						{/* Top Bar */}
-						<div className="flex items-center justify-between p-4 text-white z-10 w-full bg-linear-to-b from-black/50 to-transparent absolute top-0 left-0 right-0">
-							<div className="flex items-center gap-4">
-								<button
-									type="button"
-									onClick={() => setIsOpen(false)}
-									className="p-2 hover:bg-white/20 rounded-full transition-colors"
-								>
-									<X className="w-6 h-6" />
-								</button>
-								<div className="text-sm font-medium">
-									{currentIdx + 1} / {images.length}
-								</div>
-							</div>
-							{/* Categories as Tabs/Status */}
-							<div className="hidden md:flex gap-2 overflow-x-auto max-w-[60%] no-scrollbar mask-gradient">
-								{categories.map((cat) => (
+						<div className="flex flex-col lg:grid lg:grid-cols-3 w-full h-full bg-black">
+							{/* Left Column: Main Image (Span 2) */}
+							<div className="relative h-full lg:col-span-2 flex items-center justify-center bg-black/90 p-4 lg:p-10 order-1 lg:order-none">
+								{/* Top Bar (Mobile Only / overlay) */}
+								<div className="absolute top-4 left-4 right-4 flex justify-between items-center z-20 pointer-events-none">
+									<div className="pointer-events-auto bg-black/50 backdrop-blur-md rounded-full px-3 py-1.5 text-white text-sm font-medium">
+										{currentIdx + 1} / {images.length}
+									</div>
 									<button
-										key={cat}
 										type="button"
-										onClick={() => jumpToCategory(cat)}
-										className={clsx(
-											"px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap transition-colors",
-											activeCategory === cat
-												? "bg-white text-black"
-												: "bg-black/40 text-white hover:bg-black/60",
-										)}
+										onClick={() => setIsOpen(false)}
+										className="pointer-events-auto p-2 bg-black/50 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition-colors"
 									>
-										{cat} ({groups[cat]?.length})
+										<X className="w-5 h-5" />
 									</button>
-								))}
-							</div>
-							<div className="w-10" /> {/* Spacer for balance */}
-						</div>
+								</div>
 
-						{/* Main Image View */}
-						<div className="flex-1 relative w-full h-full flex items-center justify-center p-4">
-							{/* Navigation Buttons */}
-							<button
-								type="button"
-								onClick={(e) => {
-									e.stopPropagation();
-									handlePrev();
-								}}
-								className="absolute left-4 p-3 rounded-full bg-black/20 text-white hover:bg-black/40 transition-colors backdrop-blur-md z-20 hidden md:flex"
-							>
-								<ChevronLeft className="w-8 h-8" />
-							</button>
+								<div className="relative w-full h-full">
+									<Image
+										src={images[currentIdx]?.url || ""}
+										alt={images[currentIdx]?.altText || ""}
+										fill
+										objectFit="contain"
+										loading="eager"
+									/>
 
-							<div className="relative w-full h-full max-w-7xl max-h-[85vh]">
-								<Image
-									src={images[currentIdx]?.url || ""}
-									alt={images[currentIdx]?.altText || ""}
-									fill
-									objectFit="contain"
-									loading="eager"
-								/>
+									{/* Mobile Category Label */}
+									<div className="absolute bottom-4 left-4 lg:hidden pointer-events-none">
+										<div className="bg-black/50 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm">
+											{activeCategory}
+										</div>
+									</div>
 
-								{/* Mobile Caption Overlay */}
-								<div className="absolute bottom-4 left-0 right-0 text-center md:hidden">
-									<div className="bg-black/50 backdrop-blur-md text-white px-4 py-2 rounded-full inline-block text-sm">
-										{activeCategory}
+									{/* Navigation Buttons (Bottom Right) */}
+									<div className="absolute bottom-4 right-4 flex gap-2 z-20">
+										<button
+											type="button"
+											onClick={(e) => {
+												e.stopPropagation();
+												handlePrev();
+											}}
+											className="p-3 rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-colors backdrop-blur-md"
+										>
+											<ChevronLeft className="w-6 h-6" />
+										</button>
+										<button
+											type="button"
+											onClick={(e) => {
+												e.stopPropagation();
+												handleNext();
+											}}
+											className="p-3 rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-colors backdrop-blur-md"
+										>
+											<ChevronRight className="w-6 h-6" />
+										</button>
 									</div>
 								</div>
 							</div>
 
-							<button
-								type="button"
-								onClick={(e) => {
-									e.stopPropagation();
-									handleNext();
-								}}
-								className="absolute right-4 p-3 rounded-full bg-black/20 text-white hover:bg-black/40 transition-colors backdrop-blur-md z-20 hidden md:flex"
-							>
-								<ChevronRight className="w-8 h-8" />
-							</button>
-						</div>
+							{/* Right Column: Sidebar (Span 1) */}
+							<div className="hidden lg:flex flex-col lg:col-span-1 h-full bg-neutral-900 border-l border-white/10 overflow-y-auto order-2">
+								<div className="p-6 space-y-8">
+									{categories.map((category) => {
+										const categoryImages = groups[category];
+										if (!categoryImages) return null;
 
-						{/* Bottom Thumbnails Strip (Optional - adding for better UX if desired, but sticking to user request primarily) */}
+										return (
+											<div key={category}>
+												<h3 className="text-white font-medium mb-3 sticky top-0 bg-neutral-900/95 backdrop-blur-sm py-2 z-10">
+													{category}{" "}
+													<span className="text-neutral-500 text-sm ml-1">
+														({categoryImages.length})
+													</span>
+												</h3>
+												<div className="grid grid-cols-3 gap-2">
+													{categoryImages.map((imgIdx) => (
+														<button
+															key={imgIdx}
+															type="button"
+															onClick={() => setCurrentIdx(imgIdx)}
+															className={clsx(
+																"relative aspect-square rounded-md overflow-hidden transition-all duration-200",
+																currentIdx === imgIdx
+																	? "ring-2 ring-white opacity-100"
+																	: "opacity-60 hover:opacity-100 border border-transparent",
+															)}
+														>
+															<Image
+																src={images[imgIdx]?.url || ""}
+																alt={images[imgIdx]?.altText || ""}
+																fill
+																objectFit="cover"
+																loading="lazy"
+															/>
+														</button>
+													))}
+												</div>
+											</div>
+										);
+									})}
+
+									{/* Padding bottom to ensure last items are visible/comfortable */}
+									<div className="h-10"></div>
+								</div>
+							</div>
+						</div>
 					</Dialog.Content>
 				</Dialog.Portal>
 			</Dialog.Root>
