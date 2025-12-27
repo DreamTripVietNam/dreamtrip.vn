@@ -244,7 +244,7 @@ export function ProductGallery({
 												e.stopPropagation();
 												handlePrev();
 											}}
-											className="p-3 rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-colors backdrop-blur-md"
+											className="p-3 rounded-lg bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-colors backdrop-blur-md"
 										>
 											<ChevronLeft className="w-6 h-6" />
 										</button>
@@ -254,7 +254,7 @@ export function ProductGallery({
 												e.stopPropagation();
 												handleNext();
 											}}
-											className="p-3 rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-colors backdrop-blur-md"
+											className="p-3 rounded-lg bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-colors backdrop-blur-md"
 										>
 											<ChevronRight className="w-6 h-6" />
 										</button>
