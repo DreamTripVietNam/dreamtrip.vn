@@ -158,20 +158,20 @@ export function ProductGallery({
 							{/* Left Column: Sidebar (Span 1) */}
 							<div className="hidden lg:flex flex-col lg:col-span-1 h-full bg-neutral-900 border-l border-white/10">
 								<ScrollArea className="h-full w-full max-h-screen" size="sm">
-									<div className="p-6 space-y-8">
+									<div className="space-y-8 py-6">
 										{categories.map((category) => {
 											const categoryImages = groups[category];
 											if (!categoryImages) return null;
 
 											return (
 												<div key={category}>
-													<h3 className="text-white font-medium mb-3 sticky top-0 bg-neutral-900 py-2 z-10">
+													<h3 className="text-white pl-6 mr-6 font-medium mb-3 sticky top-0 bg-neutral-900 py-2 z-10">
 														{category}{" "}
-														<span className="text-neutral-500 text-sm ml-1">
+														<span className="text-neutral-500 ml-1">
 															({categoryImages.length})
 														</span>
 													</h3>
-													<div className="grid grid-cols-3 gap-2">
+													<div className="grid grid-cols-3 gap-2 px-6">
 														{categoryImages.map((imgIdx) => (
 															<button
 																key={imgIdx}
