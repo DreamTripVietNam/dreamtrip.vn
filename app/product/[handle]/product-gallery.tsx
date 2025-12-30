@@ -5,7 +5,7 @@ import { clsx } from "clsx";
 import { Image } from "components/image";
 import { ScrollArea } from "components/ui/scroll-area";
 import { ChevronLeft, ChevronRight, Images, X } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 export function ProductGallery({
 	images,
@@ -17,53 +17,65 @@ export function ProductGallery({
 	const [activeCategory, setActiveCategory] = useState<string>("All");
 
 	// Group images by category derived from altText
-	const groupedImages = useMemo(() => {
-		const groups: Record<string, number[]> = {};
-		const categories: string[] = [];
+	const groups: Record<string, number[]> = {};
+	const categories: string[] = [];
+	const flatIndices: number[] = [];
 
-		images.forEach((img, idx) => {
-			// Extract category from altText.
-			// If altText contains " - ", split and take the first part.
-			// Otherwise, use the whole altText as the category.
-			const alt = img.altText || "";
-			const parts = alt.split(" - ");
-			const category = parts.length > 1 ? parts[0] : alt || "Khác";
+	images.forEach((img, idx) => {
+		// Extract category from altText.
+		// If altText contains " - ", split and take the first part.
+		// Otherwise, use the whole altText as the category.
+		const alt = img.altText || "";
+		const parts = alt.split(" - ");
+		const category = parts.length > 1 ? parts[0] : alt || "Khác";
 
-			if (category && typeof category === "string") {
-				if (!groups[category]) {
-					groups[category] = [];
-					categories.push(category);
-				}
-				groups[category]?.push(idx);
+		if (category && typeof category === "string") {
+			if (!groups[category]) {
+				groups[category] = [];
+				categories.push(category);
 			}
-		});
+			groups[category]?.push(idx);
+		}
+	});
 
-		return { groups, categories };
-	}, [images]);
-
-	const { groups, categories } = groupedImages;
+	// Create a flat list of indices based on the visual order in the sidebar (grouped by category)
+	categories.forEach((cat) => {
+		if (groups[cat]) {
+			flatIndices.push(...groups[cat]);
+		}
+	});
 
 	const handleNext = () => {
-		setCurrentIdx((prev) => (prev + 1) % images.length);
+		setCurrentIdx((prev) => {
+			const currentFlatIdx = flatIndices.indexOf(prev);
+			// Fallback if something weird happens, though shouldn't
+			if (currentFlatIdx === -1) return prev;
+			const nextFlatIdx = (currentFlatIdx + 1) % flatIndices.length;
+			return flatIndices[nextFlatIdx] ?? prev;
+		});
 	};
 
 	const handlePrev = () => {
-		setCurrentIdx((prev) => (prev - 1 + images.length) % images.length);
+		setCurrentIdx((prev) => {
+			const currentFlatIdx = flatIndices.indexOf(prev);
+			if (currentFlatIdx === -1) return prev;
+			const prevFlatIdx =
+				(currentFlatIdx - 1 + flatIndices.length) % flatIndices.length;
+			return flatIndices[prevFlatIdx] ?? prev;
+		});
 	};
 
 	// Keyboard navigation
 	useEffect(() => {
 		if (!isOpen) return;
 		const handleKeyDown = (e: KeyboardEvent) => {
-			if (e.key === "ArrowRight")
-				setCurrentIdx((prev) => (prev + 1) % images.length);
-			if (e.key === "ArrowLeft")
-				setCurrentIdx((prev) => (prev - 1 + images.length) % images.length);
+			if (e.key === "ArrowRight") handleNext();
+			if (e.key === "ArrowLeft") handlePrev();
 			if (e.key === "Escape") setIsOpen(false);
 		};
 		window.addEventListener("keydown", handleKeyDown);
 		return () => window.removeEventListener("keydown", handleKeyDown);
-	}, [isOpen, images.length]);
+	});
 
 	// Sync active category with current image
 	useEffect(() => {
