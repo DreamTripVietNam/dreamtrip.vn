@@ -68,6 +68,30 @@ export const MOCK_PRODUCT_DATA = {
 			url: "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?q=80&w=2670&auto=format&fit=crop",
 			altText: "Phòng tắm - Vòi sen đứng hiện đại",
 		},
+		{
+			url: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2600&auto=format&fit=crop",
+			altText: "Phòng ngủ - Ban công thoáng mát",
+		},
+		{
+			url: "https://images.unsplash.com/photo-1595246140625-573b715d11fa?q=80&w=2670&auto=format&fit=crop",
+			altText: "Phòng khách - Góc đọc sách yên tĩnh",
+		},
+		{
+			url: "https://images.unsplash.com/photo-1572331165267-854da2b00cc6?q=80&w=2670&auto=format&fit=crop",
+			altText: "Bể bơi - Tiệc nhẹ bên hồ bơi",
+		},
+		{
+			url: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=2670&auto=format&fit=crop",
+			altText: "Ngoại cảnh - Vườn hoa rực rỡ",
+		},
+		{
+			url: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=2670&auto=format&fit=crop",
+			altText: "Ngoại cảnh - Lối đi dạo quanh hồ",
+		},
+		{
+			url: "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?q=80&w=2670&auto=format&fit=crop",
+			altText: "Phòng bếp - Bàn ăn gia đình ấm cúng",
+		},
 	],
 	amenities: {
 		free: [

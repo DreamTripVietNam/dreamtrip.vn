@@ -177,7 +177,7 @@ export function ProductGallery({
 
 											return (
 												<div key={category}>
-													<h3 className="text-white pl-6 mr-6 font-medium mb-2 sticky top-0 bg-neutral-900 py-3 z-10">
+													<h3 className="text-white pl-6 mr-3 font-medium mb-2 sticky top-0 bg-neutral-900 py-3 z-10">
 														{category}{" "}
 														<span className="text-neutral-500 ml-1">
 															({categoryImages.length})
@@ -187,10 +187,11 @@ export function ProductGallery({
 														{categoryImages.map((imgIdx) => (
 															<button
 																key={imgIdx}
+																id={`thumb-${imgIdx}`}
 																type="button"
 																onClick={() => setCurrentIdx(imgIdx)}
 																className={clsx(
-																	"relative ring-2 aspect-square rounded-md overflow-hidden transition-all duration-200",
+																	"relative ring-2 aspect-square rounded-md overflow-hidden transition-all duration-200 scroll-my-16",
 																	currentIdx === imgIdx
 																		? "ring-white opacity-100"
 																		: "opacity-60 hover:opacity-100 ring-transparent",
@@ -221,7 +222,7 @@ export function ProductGallery({
 								{/* Top Bar (Mobile Only / overlay) */}
 								<div className="absolute top-4 left-4 right-4 flex justify-between items-center z-20 pointer-events-none">
 									<div className="pointer-events-auto bg-black/50 backdrop-blur-md rounded-full px-3 py-1.5 text-white text-sm font-medium">
-										{currentIdx + 1} / {images.length}
+										{flatIndices.indexOf(currentIdx) + 1} / {images.length}
 									</div>
 									<button
 										type="button"
