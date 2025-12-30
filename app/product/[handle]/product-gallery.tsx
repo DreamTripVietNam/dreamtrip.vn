@@ -165,7 +165,7 @@ export function ProductGallery({
 
 											return (
 												<div key={category}>
-													<h3 className="text-white pl-6 mr-6 font-medium mb-3 sticky top-0 bg-neutral-900 py-2 z-10">
+													<h3 className="text-white pl-6 mr-6 font-medium mb-2 sticky top-0 bg-neutral-900 py-3 z-10">
 														{category}{" "}
 														<span className="text-neutral-500 ml-1">
 															({categoryImages.length})
