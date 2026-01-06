@@ -1,5 +1,6 @@
 import { GridTileImage } from "components/grid/tile";
 import { getProduct, getProductRecommendations } from "lib/shopify";
+import { MapPin } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -101,16 +102,15 @@ async function ProductPageContent({
 				{/* Header Section */}
 				<div className="mb-6 flex flex-col md:flex-row md:items-start md:justify-between gap-4">
 					<div>
-						<h1 className="text-2xl md:text-4xl font-bold font-barlow text-neutral-900  mb-2">
+						<h1 className="text-3xl md:text-4xl lg:text-[40px] font-bold font-barlow text-neutral-900 mb-2">
 							{product.title}
 						</h1>
-						{/* Location removed as it is not available in Shopify Product type */}
-						{/* <div className="flex items-center gap-2 text-sm text-neutral-600 ">
-							<MapPin className="w-4 h-4" />
-							<span className="text-neutral-500 text-xs">
+						<div className="flex items-center gap-2 text-sm text-neutral-600 ">
+							<MapPin className="size-4" />
+							<span className="text-neutral-500 text-sm">
 								(cách trung tâm Hà Nội ~40km)
 							</span>
-						</div> */}
+						</div>
 					</div>
 					<div className="flex items-center gap-3">
 						<SaveButton productHandle={params.handle} />
@@ -127,7 +127,7 @@ async function ProductPageContent({
 				<div className="grid grid-cols-1 lg:grid-cols-3 gap-12 relative">
 					{/* Left Column: Details */}
 					<div className="lg:col-span-2">
-						<ProductInfo />
+						<ProductInfo product={product} />
 					</div>
 
 					{/* Right Column: Sticky Booking Widget */}

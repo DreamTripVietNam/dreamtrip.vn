@@ -1,4 +1,5 @@
 import { MOCK_PRODUCT_DATA } from "lib/mock-product-data";
+import type { Product } from "lib/shopify/types";
 import {
 	Flame,
 	Home,
@@ -36,9 +37,10 @@ function AmenityItem({ icon, label }: { icon: string; label: string }) {
 	);
 }
 
-export function ProductInfo() {
-	const { amenities, description, houseRules, extraServices, nearby, reviews } =
+export function ProductInfo({ product }: { product: Product }) {
+	const { amenities, houseRules, extraServices, nearby, reviews } =
 		MOCK_PRODUCT_DATA;
+	const { description } = product;
 
 	return (
 		<div className="flex flex-col gap-10">
@@ -47,7 +49,7 @@ export function ProductInfo() {
 				<h2 className="text-2xl font-semibold mb-4 text-neutral-900 ">
 					Chi tiết chỗ ở
 				</h2>
-				<p className="text-neutral-600  leading-relaxed text-base">
+				<p className="text-neutral-600 leading-relaxed text-base line-clamp-3">
 					{description}
 				</p>
 			</section>
