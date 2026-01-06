@@ -1,6 +1,7 @@
 "use client";
 
 import * as Dialog from "@radix-ui/react-dialog";
+import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import { clsx } from "clsx";
 import { Image } from "components/image";
 import { ScrollArea } from "components/ui/scroll-area";
@@ -165,6 +166,11 @@ export function ProductGallery({
 					<Dialog.Overlay className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
 					<Dialog.Content className="fixed inset-0 z-50 flex flex-col focus:outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 duration-200">
 						<Dialog.Title className="sr-only">Thư viện ảnh</Dialog.Title>
+						<VisuallyHidden.Root>
+							<Dialog.Description>
+								Thư viện ảnh chi tiết về sản phẩm
+							</Dialog.Description>
+						</VisuallyHidden.Root>
 
 						<div className="flex flex-col lg:grid lg:grid-cols-4 w-full h-full bg-black">
 							{/* Left Column: Sidebar (Span 1) */}
@@ -201,6 +207,7 @@ export function ProductGallery({
 																	src={images[imgIdx]?.url || ""}
 																	alt={images[imgIdx]?.altText || ""}
 																	fill
+																	sizes="auto"
 																	objectFit="cover"
 																	loading="lazy"
 																/>
@@ -221,7 +228,7 @@ export function ProductGallery({
 							<div className="relative h-full lg:col-span-3 flex items-center justify-center bg-black/90 p-4 lg:p-10">
 								{/* Top Bar (Mobile Only / overlay) */}
 								<div className="absolute top-4 left-4 right-4 flex justify-between items-center z-20 pointer-events-none">
-									<div className="pointer-events-auto bg-black/50 backdrop-blur-md rounded-full px-3 py-1.5 text-white text-sm font-medium">
+									<div className="pointer-events-auto bg-black/50 backdrop-blur-md rounded-full px-3 py-1.5 text-white font-medium">
 										{flatIndices.indexOf(currentIdx) + 1} / {images.length}
 									</div>
 									<button
