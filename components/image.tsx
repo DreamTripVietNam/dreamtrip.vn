@@ -51,7 +51,6 @@ export function Image(props: ImageProps) {
 				alt={alt}
 				loading={loading}
 				priority={loading === "eager"}
-				quality={100}
 				onLoad={() => setLoaded(true)}
 				{...rest}
 			/>

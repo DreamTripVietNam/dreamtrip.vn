@@ -120,9 +120,9 @@ export function ProductGallery({
 							src={mainImage.url}
 							alt={mainImage.altText}
 							fill
-							className="transition-transform duration-500"
 							sizes="(min-width: 1024px) 50vw, 100vw"
 							loading="eager"
+							className="transition-all hover:brightness-90 brightness-100"
 						/>
 					)}
 				</div>
@@ -130,7 +130,7 @@ export function ProductGallery({
 				{images.slice(1, 5).map((image, index) => (
 					<div
 						key={index}
-						className="hidden md:block relative cursor-pointer overflow-hidden"
+						className="hidden md:block relative cursor-pointer"
 						onClick={() => {
 							setCurrentIdx(index + 1);
 							setIsOpen(true);
@@ -140,8 +140,8 @@ export function ProductGallery({
 							src={image.url}
 							alt={image.altText}
 							fill
-							className="transition-transform duration-500"
 							sizes="(min-width: 1024px) 25vw, 0vw"
+							className="transition-all hover:brightness-90 brightness-100"
 						/>
 					</div>
 				))}
@@ -153,9 +153,9 @@ export function ProductGallery({
 					setCurrentIdx(0);
 					setIsOpen(true);
 				}}
-				className="absolute bottom-4 border border-slate-400 right-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg text-sm font-medium shadow-lg hover:bg-white transition-colors flex items-center gap-2"
+				className="absolute bottom-4 border border-slate-400 right-4 bg-white backdrop-blur-sm px-4 py-2 rounded-lg text-sm font-medium shadow-lg hover:bg-gray-50 transition-colors flex items-center gap-2"
 			>
-				<Images className="w-4 h-4" />
+				<Images className="size-4" />
 				Xem tất cả ảnh ({images.length})
 			</button>
 
