@@ -1,3 +1,4 @@
+import { Debugger } from "components/debugger";
 import { GridTileImage } from "components/grid/tile";
 import { getProduct, getProductRecommendations } from "lib/shopify";
 import { MapPin } from "lucide-react";
@@ -92,6 +93,7 @@ async function ProductPageContent({
 
 	return (
 		<ProductProvider>
+			<Debugger data={product} debugKey="product" log />
 			<script
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{
