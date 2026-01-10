@@ -1,8 +1,8 @@
 import imageFragment from "./image";
 import seoFragment from "./seo";
 
-const productFragment = /* GraphQL */ `
-  fragment product on Product {
+export const productDetailsFragment = /* GraphQL */ `
+  fragment productDetails on Product {
     id
     handle
     availableForSale
@@ -13,6 +13,13 @@ const productFragment = /* GraphQL */ `
       id
       name
       values
+    }
+    social_post: metafields(identifiers: [
+      { namespace: "custom", key: "social_post" }
+    ]) {
+      key
+      namespace
+      value
     }
     priceRange {
       maxVariantPrice {
@@ -61,4 +68,62 @@ const productFragment = /* GraphQL */ `
   ${seoFragment}
 `;
 
-export default productFragment;
+export const productCardFragment = /* GraphQL */ `
+  fragment product on Product {
+    id
+    handle
+    availableForSale
+    title
+    description
+    descriptionHtml
+    options {
+      id
+      name
+      values
+    }
+    priceRange {
+      maxVariantPrice {
+        amount
+        currencyCode
+      }
+      minVariantPrice {
+        amount
+        currencyCode
+      }
+    }
+    variants(first: 10) {
+      edges {
+        node {
+          id
+          title
+          availableForSale
+          selectedOptions {
+            name
+            value
+          }
+          price {
+            amount
+            currencyCode
+          }
+        }
+      }
+    }
+    featuredImage {
+      ...image
+    }
+    images(first: 10) {
+      edges {
+        node {
+          ...image
+        }
+      }
+    }
+    seo {
+      ...seo
+    }
+    tags
+    updatedAt
+  }
+  ${imageFragment}
+  ${seoFragment}
+`;

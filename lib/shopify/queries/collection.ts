@@ -1,4 +1,4 @@
-import productFragment from "../fragments/product";
+import { productCardFragment } from "../fragments/product";
 import seoFragment from "../fragments/seo";
 
 const collectionFragment = /* GraphQL */ `
@@ -52,5 +52,5 @@ export const getCollectionProductsQuery = /* GraphQL */ `
       }
     }
   }
-  ${productFragment}
+  ${productCardFragment}
 `;
