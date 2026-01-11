@@ -120,7 +120,8 @@ export function ProductGallery({
 						<Image
 							src={mainImage.url}
 							alt={mainImage.altText}
-							fill
+							width={1000}
+							height={1000}
 							sizes="(min-width: 1024px) 50vw, 100vw"
 							loading="eager"
 							className="transition-all hover:brightness-90 brightness-100"
@@ -140,7 +141,8 @@ export function ProductGallery({
 						<Image
 							src={image.url}
 							alt={image.altText}
-							fill
+							width={500}
+							height={500}
 							sizes="(min-width: 1024px) 25vw, 0vw"
 							className="transition-all hover:brightness-90 brightness-100"
 						/>
@@ -206,7 +208,8 @@ export function ProductGallery({
 																<Image
 																	src={images[imgIdx]?.url || ""}
 																	alt={images[imgIdx]?.altText || ""}
-																	fill
+																	width={150}
+																	height={150}
 																	sizes="auto"
 																	objectFit="cover"
 																	loading="lazy"
