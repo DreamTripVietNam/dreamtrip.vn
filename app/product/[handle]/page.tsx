@@ -18,14 +18,10 @@ export async function generateMetadata(props: {
 	params: Promise<{ handle: string }>;
 }): Promise<Metadata> {
 	const params = await props.params;
-	// We still fetch the product to get some basic metadata if available,
-	// but we primarily rely on the mock data for this specific task as requested.
 	const product = await getProduct(params.handle);
-	// const product = await getMockProduct();
 
 	if (!product) return notFound();
 
-	// Fallback to mock data for SEO if product not found or just to match the visual
 	const title = product.title;
 	const description = product.description;
 	const image = product.images[0]?.url || "";
@@ -70,12 +66,6 @@ async function ProductPageContent({
 	const product = await getProduct(params.handle);
 
 	if (!product) return notFound();
-
-	// In a real scenario, we would use the product data here.
-	// const isMockMode = true;
-
-	// If we weren't in mock mode, we'd check !product
-	// if (!product && !isMockMode) return notFound();
 
 	const productJsonLd = {
 		"@context": "https://schema.org",
@@ -140,19 +130,15 @@ async function ProductPageContent({
 				</div>
 
 				{/* Related Products */}
-				{/* <Suspense fallback={null}>
-					<RelatedProducts id={product?.id || "mock-id"} />
-				</Suspense> */}
+				<Suspense fallback={null}>
+					<RelatedProducts id={product?.id} />
+				</Suspense>
 			</div>
 		</ProductProvider>
 	);
 }
 
 async function RelatedProducts({ id }: { id: string }) {
-	// If it's the mock ID, we can't fetch real related products from Shopify using it.
-	// So we just return null to avoid the API error.
-	if (id === "mock-id") return null;
-
 	const relatedProducts = await getProductRecommendations(id);
 
 	if (!relatedProducts.length) return null;
