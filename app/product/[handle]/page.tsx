@@ -10,6 +10,7 @@ import { BookingWidget } from "./booking-widget";
 import { ProductProvider } from "./product-context";
 import { ProductGallery } from "./product-gallery";
 import { ProductInfo } from "./product-info";
+import { ProductPageSkeleton } from "./product-page-skeleton";
 import { SaveButton } from "./save-button";
 import { ShareButton } from "./share-button";
 
@@ -54,7 +55,7 @@ export default function ProductPage(props: {
 	params: Promise<{ handle: string }>;
 }) {
 	return (
-		<Suspense fallback={null}>
+		<Suspense fallback={<ProductPageSkeleton />}>
 			<ProductPageContent paramsPromise={props.params} />
 		</Suspense>
 	);
