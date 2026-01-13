@@ -1,6 +1,11 @@
+"use client";
+
+import * as Dialog from "@radix-ui/react-dialog";
+import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import { MOCK_PRODUCT_DATA } from "lib/mock-product-data";
 import type { Product } from "lib/shopify/types";
 import {
+	ChevronRight,
 	Flame,
 	Home,
 	MapPin,
@@ -10,7 +15,9 @@ import {
 	Star,
 	Video,
 	Wifi,
+	X,
 } from "lucide-react";
+import { useState } from "react";
 
 // Type-safe icon mapping
 const IconMap: Record<string, any> = {
@@ -41,6 +48,7 @@ export function ProductInfo({ product }: { product: Product }) {
 	const { amenities, houseRules, extraServices, nearby, reviews } =
 		MOCK_PRODUCT_DATA;
 	const { description } = product;
+	const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
 
 	return (
 		<div className="flex flex-col gap-10">
@@ -49,9 +57,62 @@ export function ProductInfo({ product }: { product: Product }) {
 				<h2 className="text-2xl font-semibold mb-4 text-neutral-900 ">
 					Chi tiết chỗ ở
 				</h2>
-				<p className="text-neutral-600 leading-relaxed text-base line-clamp-3">
+				<p className="text-neutral-600 leading-relaxed text-base line-clamp-3 mb-2">
 					{description}
 				</p>
+				<button
+					type="button"
+					onClick={() => setIsDescriptionOpen(true)}
+					className="flex items-center gap-1 font-medium underline underline-offset-4 text-neutral-900 hover:text-neutral-700 decoration-neutral-300 hover:decoration-neutral-900 transition-all"
+				>
+					Hiển thị thêm <ChevronRight className="w-4 h-4" />
+				</button>
+
+				<Dialog.Root
+					open={isDescriptionOpen}
+					onOpenChange={setIsDescriptionOpen}
+				>
+					<Dialog.Portal>
+						<Dialog.Overlay className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
+						<Dialog.Content className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+							<div
+								className="bg-white rounded-2xl w-full max-w-2xl max-h-[85vh] overflow-hidden shadow-2xl flex flex-col focus:outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 duration-200"
+								role="dialog"
+								aria-modal="true"
+							>
+								{/* Modal Header */}
+								<div className="flex items-center justify-between px-6 py-4 border-b border-neutral-100">
+									<Dialog.Title className="text-xl font-bold font-barlow">
+										Chi tiết chỗ ở
+									</Dialog.Title>
+									<Dialog.Close asChild>
+										<button
+											type="button"
+											className="p-2 -mr-2 text-neutral-400 hover:text-neutral-900 hover:bg-neutral-100 rounded-full transition-colors"
+										>
+											<X className="w-5 h-5" />
+										</button>
+									</Dialog.Close>
+								</div>
+
+								<VisuallyHidden.Root>
+									<Dialog.Description>
+										Mô tả chi tiết về chỗ ở
+									</Dialog.Description>
+								</VisuallyHidden.Root>
+
+								{/* Modal Content */}
+								<div className="p-6 overflow-y-auto custom-scrollbar">
+									<div className="prose prose-neutral max-w-none">
+										<p className="text-neutral-600 leading-relaxed whitespace-pre-line text-base">
+											{description}
+										</p>
+									</div>
+								</div>
+							</div>
+						</Dialog.Content>
+					</Dialog.Portal>
+				</Dialog.Root>
 			</section>
 
 			{/* Amenities */}
