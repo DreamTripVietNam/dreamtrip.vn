@@ -2,44 +2,48 @@
 
 import * as Dialog from "@radix-ui/react-dialog";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
+import {
+	IconAirConditioning,
+	IconCoffee,
+	IconDeviceProjector,
+	IconDeviceSpeaker,
+	IconDeviceTv,
+	IconDroplet,
+	IconFlame,
+	IconFridge,
+	IconPool,
+	IconSparkles,
+	IconSpray,
+	IconWifi,
+	IconWind,
+} from "@tabler/icons-react";
 import { MOCK_PRODUCT_DATA } from "lib/mock-product-data";
 import type { Product } from "lib/shopify/types";
-import {
-	ChevronRight,
-	Flame,
-	Home,
-	MapPin,
-	Music,
-	ShieldCheck,
-	Sparkles,
-	Star,
-	Video,
-	Wifi,
-	X,
-} from "lucide-react";
+import { ChevronRight, MapPin, Sparkles, Star, X } from "lucide-react";
 import { useState } from "react";
 
 // Type-safe icon mapping
 const IconMap: Record<string, any> = {
-	Wifi: Wifi,
-	AC: Home,
-	Fridge: Home, // Use generic if specific not found
-	Pool: Sparkles,
-	Speaker: Music,
-	Projector: Video,
-	Grill: Flame,
-	Cleaning: ShieldCheck,
-	Coffee: Sparkles,
-	HairDryer: Sparkles,
-	HotWater: Flame,
+	Wifi: IconWifi,
+	AC: IconAirConditioning,
+	Fridge: IconFridge,
+	Pool: IconPool,
+	Speaker: IconDeviceSpeaker,
+	Projector: IconDeviceProjector,
+	TV: IconDeviceTv,
+	Grill: IconFlame,
+	Cleaning: IconSpray,
+	Coffee: IconCoffee,
+	HairDryer: IconWind,
+	HotWater: IconDroplet,
 };
 
 function AmenityItem({ icon, label }: { icon: string; label: string }) {
-	const Icon = IconMap[icon] || Sparkles;
+	const Icon = IconMap[icon] || IconSparkles;
 	return (
-		<div className="flex items-center gap-3 p-3 bg-neutral-50  rounded-lg">
-			<Icon className="w-6 h-6 text-neutral-600 " />
-			<span className="text-sm font-medium text-neutral-800 ">{label}</span>
+		<div className="flex items-center gap-3 p-3 bg-neutral-50 rounded-lg hover:bg-neutral-100 transition-colors">
+			<Icon className="w-6 h-6 text-neutral-600 stroke-1.5" />
+			<span className="text-sm font-medium text-neutral-800">{label}</span>
 		</div>
 	);
 }
@@ -52,6 +56,8 @@ export function ProductInfo({ product }: { product: Product }) {
 		product.extraServices || MOCK_PRODUCT_DATA.extraServices;
 	const { description } = product;
 	const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
+
+	const allAmenities = [...amenities.free, ...amenities.facilities];
 
 	return (
 		<div className="flex flex-col gap-10">
@@ -66,7 +72,7 @@ export function ProductInfo({ product }: { product: Product }) {
 				<button
 					type="button"
 					onClick={() => setIsDescriptionOpen(true)}
-					className="flex items-center gap-1 font-medium underline underline-offset-4 text-neutral-900 hover:text-neutral-700 decoration-neutral-300 hover:decoration-neutral-900 transition-all"
+					className="flex items-center gap-1 font-medium underline underline-offset-4 text-neutral-500 hover:text-neutral-700 decoration-neutral-300 hover:decoration-neutral-900 transition-all"
 				>
 					Hiển thị thêm <ChevronRight className="w-4 h-4" />
 				</button>
@@ -122,31 +128,15 @@ export function ProductInfo({ product }: { product: Product }) {
 			<section>
 				<h2 className="text-2xl font-semibold mb-6 flex items-center gap-2">
 					<span>Tiện ích</span>
-					<span className="text-sm font-normal text-neutral-500 bg-neutral-100  px-2 py-1 rounded-full">
-						{amenities.free.length + amenities.facilities.length}
+					<span className="text-sm font-normal text-neutral-500 bg-neutral-100 px-2 py-1 rounded-full">
+						{allAmenities.length}
 					</span>
 				</h2>
 
-				<div className="mb-6">
-					<h3 className="text-sm font-bold uppercase tracking-wider text-neutral-500 mb-3">
-						Miễn phí
-					</h3>
-					<div className="grid grid-cols-2 gap-3">
-						{amenities.free.map((item, idx: number) => (
-							<AmenityItem key={idx} {...item} />
-						))}
-					</div>
-				</div>
-
-				<div>
-					<h3 className="text-sm font-bold uppercase tracking-wider text-neutral-500 mb-3">
-						Tiện nghi phòng
-					</h3>
-					<div className="grid grid-cols-2 gap-3">
-						{amenities.facilities.map((item, idx: number) => (
-							<AmenityItem key={idx} {...item} />
-						))}
-					</div>
+				<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+					{allAmenities.map((item, idx: number) => (
+						<AmenityItem key={idx} {...item} />
+					))}
 				</div>
 			</section>
 

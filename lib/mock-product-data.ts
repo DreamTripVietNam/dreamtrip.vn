@@ -95,8 +95,8 @@ export const MOCK_PRODUCT_DATA = {
 	],
 	amenities: {
 		free: [
-			{ icon: "Pool" as const, label: "Bể ngâm 6m2 sát hồ" },
-			{ icon: "Speaker" as const, label: "Loa Harman Kardon" },
+			{ icon: "Pool" as const, label: "Bể ngâm 6m2" },
+			{ icon: "Speaker" as const, label: "Loa Karaoke" },
 			{ icon: "Projector" as const, label: "Máy chiếu 100 inch" },
 			{ icon: "Grill" as const, label: "Bếp nướng BBQ" },
 			{ icon: "Coffee" as const, label: "Trà, cafe & nước lọc" },

@@ -98,10 +98,10 @@ async function ProductPageContent({
 						<h1 className="text-3xl md:text-4xl lg:text-[40px] font-bold font-barlow text-neutral-900 mb-2">
 							{product.title}
 						</h1>
-						<div className="flex items-center gap-2 text-sm text-neutral-600 ">
+						<div className="flex items-center gap-1.5 text-sm text-neutral-600 ">
 							<MapPin className="size-4" />
 							<span className="text-neutral-500 text-sm">
-								(cách trung tâm Hà Nội ~40km)
+								cách trung tâm Hà Nội ~40km
 							</span>
 						</div>
 					</div>
