@@ -88,6 +88,17 @@ export type HouseRule = {
 	value: string;
 };
 
+export type ProductCapacity = {
+	type: string;
+	bedrooms: number;
+	bathrooms: number;
+	kitchens: number;
+	beds: number;
+	maxGuests: number;
+	standardGuests: number;
+	area: number;
+};
+
 export type Product = Omit<
 	ShopifyProduct,
 	"variants" | "images" | "amenities" | "extraServices" | "houseRules"
@@ -97,6 +108,7 @@ export type Product = Omit<
 	amenities?: ProductAmenities;
 	extraServices?: ExtraService[];
 	houseRules?: HouseRule[];
+	capacity?: ProductCapacity;
 };
 
 export type ProductOption = {
@@ -162,6 +174,7 @@ export type ShopifyProduct = {
 	amenities?: { value: string };
 	extraServices?: { value: string };
 	houseRules?: { value: string };
+	capacity?: { value: string };
 };
 
 export type ShopifyCartOperation = {

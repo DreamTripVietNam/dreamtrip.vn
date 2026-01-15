@@ -11,6 +11,16 @@ export const MOCK_PRODUCT_DATA = {
 		currencyCode: "VND",
 		period: "đêm",
 	},
+	capacity: {
+		type: "Villa",
+		bedrooms: 3,
+		bathrooms: 4,
+		kitchens: 1,
+		beds: 5,
+		maxGuests: 15,
+		standardGuests: 10,
+		area: 300,
+	},
 	images: [
 		{
 			url: "https://images.unsplash.com/photo-1587061949409-02df41d5e562?q=80&w=2670&auto=format&fit=crop",

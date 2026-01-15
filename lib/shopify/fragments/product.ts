@@ -30,6 +30,9 @@ social_post: metafields(identifiers: [
     houseRules: metafield(namespace: "custom", key: "house_rules") {
       value
     }
+    capacity: metafield(namespace: "custom", key: "capacity") {
+      value
+    }
     priceRange {
       maxVariantPrice {
         amount

@@ -4,6 +4,9 @@ import * as Dialog from "@radix-ui/react-dialog";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import {
 	IconAirConditioning,
+	IconBath,
+	IconBed,
+	IconChefHat,
 	IconCoffee,
 	IconDeviceProjector,
 	IconDeviceSpeaker,
@@ -11,9 +14,12 @@ import {
 	IconDroplet,
 	IconFlame,
 	IconFridge,
+	IconHome,
 	IconPool,
+	IconRuler,
 	IconSparkles,
 	IconSpray,
+	IconUsers,
 	IconWifi,
 	IconWind,
 } from "@tabler/icons-react";
@@ -48,12 +54,35 @@ function AmenityItem({ icon, label }: { icon: string; label: string }) {
 	);
 }
 
+function CapacityItem({
+	icon: Icon,
+	label,
+	value,
+}: {
+	icon: any;
+	label: string;
+	value: string | number;
+}) {
+	return (
+		<div className="flex flex-col gap-1 p-3 border border-neutral-100 rounded-xl bg-white shadow-sm hover:shadow-md transition-shadow">
+			<div className="flex items-center gap-2 text-neutral-500 mb-1">
+				<Icon className="w-5 h-5 stroke-1.5" />
+				<span className="text-xs uppercase tracking-wide font-medium">
+					{label}
+				</span>
+			</div>
+			<span className="text-sm font-semibold text-neutral-900">{value}</span>
+		</div>
+	);
+}
+
 export function ProductInfo({ product }: { product: Product }) {
 	const { nearby, reviews } = MOCK_PRODUCT_DATA;
 	const amenities = product.amenities || MOCK_PRODUCT_DATA.amenities;
 	const houseRules = product.houseRules || MOCK_PRODUCT_DATA.houseRules;
 	const extraServices =
 		product.extraServices || MOCK_PRODUCT_DATA.extraServices;
+	const capacity = product.capacity || MOCK_PRODUCT_DATA.capacity;
 	const { description } = product;
 	const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
 
@@ -122,6 +151,45 @@ export function ProductInfo({ product }: { product: Product }) {
 						</Dialog.Content>
 					</Dialog.Portal>
 				</Dialog.Root>
+			</section>
+
+			{/* Capacity Info */}
+			<section>
+				<h2 className="text-2xl font-semibold mb-4 text-neutral-900">
+					Thông tin căn
+				</h2>
+				<div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+					<CapacityItem
+						icon={IconHome}
+						label="Loại căn"
+						value={capacity.type}
+					/>
+					<CapacityItem
+						icon={IconRuler}
+						label="Diện tích"
+						value={`${capacity.area} m²`}
+					/>
+					<CapacityItem
+						icon={IconUsers}
+						label="Sức chứa"
+						value={`${capacity.standardGuests} - ${capacity.maxGuests} người`}
+					/>
+					<CapacityItem
+						icon={IconBed}
+						label="Phòng ngủ"
+						value={`${capacity.bedrooms} PN (${capacity.beds} giường)`}
+					/>
+					<CapacityItem
+						icon={IconBath}
+						label="Phòng tắm"
+						value={`${capacity.bathrooms} phòng`}
+					/>
+					<CapacityItem
+						icon={IconChefHat}
+						label="Phòng bếp"
+						value={`${capacity.kitchens} phòng`}
+					/>
+				</div>
 			</section>
 
 			{/* Amenities */}
