@@ -45,8 +45,11 @@ function AmenityItem({ icon, label }: { icon: string; label: string }) {
 }
 
 export function ProductInfo({ product }: { product: Product }) {
-	const { amenities, houseRules, extraServices, nearby, reviews } =
-		MOCK_PRODUCT_DATA;
+	const { nearby, reviews } = MOCK_PRODUCT_DATA;
+	const amenities = product.amenities || MOCK_PRODUCT_DATA.amenities;
+	const houseRules = product.houseRules || MOCK_PRODUCT_DATA.houseRules;
+	const extraServices =
+		product.extraServices || MOCK_PRODUCT_DATA.extraServices;
 	const { description } = product;
 	const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
 
@@ -129,7 +132,7 @@ export function ProductInfo({ product }: { product: Product }) {
 						Miễn phí
 					</h3>
 					<div className="grid grid-cols-2 gap-3">
-						{amenities.free.map((item, idx) => (
+						{amenities.free.map((item, idx: number) => (
 							<AmenityItem key={idx} {...item} />
 						))}
 					</div>
@@ -140,7 +143,7 @@ export function ProductInfo({ product }: { product: Product }) {
 						Tiện nghi phòng
 					</h3>
 					<div className="grid grid-cols-2 gap-3">
-						{amenities.facilities.map((item, idx) => (
+						{amenities.facilities.map((item, idx: number) => (
 							<AmenityItem key={idx} {...item} />
 						))}
 					</div>
@@ -154,7 +157,7 @@ export function ProductInfo({ product }: { product: Product }) {
 					Dịch vụ phát sinh
 				</h2>
 				<ul className="space-y-3">
-					{extraServices.map((service, idx) => (
+					{extraServices.map((service, idx: number) => (
 						<li key={idx} className="flex justify-between items-center text-sm">
 							<span className="text-neutral-700 ">{service.name}</span>
 							<span className="font-semibold text-neutral-900 ">
@@ -169,7 +172,7 @@ export function ProductInfo({ product }: { product: Product }) {
 			<section>
 				<h2 className="text-2xl font-semibold mb-4">Nội quy chỗ ở</h2>
 				<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-					{houseRules.map((rule, idx) => (
+					{houseRules.map((rule, idx: number) => (
 						<div
 							key={idx}
 							className="border border-neutral-200  p-4 rounded-xl"

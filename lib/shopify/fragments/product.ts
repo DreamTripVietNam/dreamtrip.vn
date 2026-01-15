@@ -14,11 +14,20 @@ export const productDetailsFragment = /* GraphQL */ `
       name
       values
     }
-    social_post: metafields(identifiers: [
+social_post: metafields(identifiers: [
       { namespace: "custom", key: "social_post" }
     ]) {
       key
       namespace
+      value
+    }
+    amenities: metafield(namespace: "custom", key: "amenities") {
+      value
+    }
+    extraServices: metafield(namespace: "custom", key: "extra_services") {
+      value
+    }
+    houseRules: metafield(namespace: "custom", key: "house_rules") {
       value
     }
     priceRange {

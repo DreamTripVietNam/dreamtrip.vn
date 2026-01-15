@@ -68,9 +68,35 @@ export type Page = {
 	updatedAt: string;
 };
 
-export type Product = Omit<ShopifyProduct, "variants" | "images"> & {
+export type AmenityItem = {
+	icon: string;
+	label: string;
+};
+
+export type ProductAmenities = {
+	free: AmenityItem[];
+	facilities: AmenityItem[];
+};
+
+export type ExtraService = {
+	name: string;
+	price: string;
+};
+
+export type HouseRule = {
+	label: string;
+	value: string;
+};
+
+export type Product = Omit<
+	ShopifyProduct,
+	"variants" | "images" | "amenities" | "extraServices" | "houseRules"
+> & {
 	variants: ProductVariant[];
 	images: Image[];
+	amenities?: ProductAmenities;
+	extraServices?: ExtraService[];
+	houseRules?: HouseRule[];
 };
 
 export type ProductOption = {
@@ -133,6 +159,9 @@ export type ShopifyProduct = {
 	seo: SEO;
 	tags: string[];
 	updatedAt: string;
+	amenities?: { value: string };
+	extraServices?: { value: string };
+	houseRules?: { value: string };
 };
 
 export type ShopifyCartOperation = {

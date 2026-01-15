@@ -184,12 +184,16 @@ const reshapeProduct = (
 		return undefined;
 	}
 
-	const { images, variants, ...rest } = product;
+	const { images, variants, amenities, extraServices, houseRules, ...rest } =
+		product;
 
 	return {
 		...rest,
 		images: reshapeImages(images, product.title),
 		variants: removeEdgesAndNodes(variants),
+		amenities: amenities ? JSON.parse(amenities.value) : undefined,
+		extraServices: extraServices ? JSON.parse(extraServices.value) : undefined,
+		houseRules: houseRules ? JSON.parse(houseRules.value) : undefined,
 	};
 };
 
