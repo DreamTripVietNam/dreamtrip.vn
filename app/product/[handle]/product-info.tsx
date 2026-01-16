@@ -93,7 +93,7 @@ export function ProductInfo({ product }: { product: Product }) {
 			{/* Description */}
 			<section>
 				<h2 className="text-2xl font-semibold mb-4 text-neutral-900 ">
-					Chi tiết chỗ ở
+					Giới thiệu
 				</h2>
 				<p className="text-neutral-600 leading-relaxed text-base line-clamp-3 mb-2">
 					{description}
@@ -195,9 +195,9 @@ export function ProductInfo({ product }: { product: Product }) {
 			{/* Amenities */}
 			<section>
 				<h2 className="text-2xl font-semibold mb-6 flex items-center gap-2">
-					<span>Tiện ích</span>
+					<span>Nơi này có gì</span>
 					<span className="text-sm font-normal text-neutral-500 bg-neutral-100 px-2 py-1 rounded-full">
-						{allAmenities.length}
+						{allAmenities.length} tiện ích
 					</span>
 				</h2>
 
@@ -206,24 +206,6 @@ export function ProductInfo({ product }: { product: Product }) {
 						<AmenityItem key={idx} {...item} />
 					))}
 				</div>
-			</section>
-
-			{/* Extra Services */}
-			<section className="bg-orange-50  p-6 rounded-2xl border border-orange-100 ">
-				<h2 className="text-xl font-semibold mb-4 text-orange-800  flex items-center gap-2">
-					<Sparkles className="w-5 h-5" />
-					Dịch vụ phát sinh
-				</h2>
-				<ul className="space-y-3">
-					{extraServices.map((service, idx: number) => (
-						<li key={idx} className="flex justify-between items-center text-sm">
-							<span className="text-neutral-700 ">{service.name}</span>
-							<span className="font-semibold text-neutral-900 ">
-								{service.price}
-							</span>
-						</li>
-					))}
-				</ul>
 			</section>
 
 			{/* House Rules */}
@@ -244,6 +226,24 @@ export function ProductInfo({ product }: { product: Product }) {
 						</div>
 					))}
 				</div>
+			</section>
+
+			{/* Extra Services */}
+			<section className="bg-orange-50  p-6 rounded-2xl border border-orange-100 ">
+				<h2 className="text-xl font-semibold mb-4 text-orange-800  flex items-center gap-2">
+					<Sparkles className="w-5 h-5" />
+					Dịch vụ phát sinh
+				</h2>
+				<ul className="space-y-3">
+					{extraServices.map((service, idx: number) => (
+						<li key={idx} className="flex justify-between items-center text-sm">
+							<span className="text-neutral-700 ">{service.name}</span>
+							<span className="font-semibold text-neutral-900 ">
+								{service.price}
+							</span>
+						</li>
+					))}
+				</ul>
 			</section>
 
 			{/* Location */}

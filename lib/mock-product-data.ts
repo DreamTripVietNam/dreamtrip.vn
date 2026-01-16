@@ -128,8 +128,8 @@ export const MOCK_PRODUCT_DATA = {
 		{ name: "Trang trí sinh nhật", price: "Từ 1.200.000₫" },
 	],
 	houseRules: [
-		{ label: "Check-in", value: "14:00" },
-		{ label: "Check-out", value: "12:00" },
+		{ label: "Nhận phòng (check-in)", value: "14:00" },
+		{ label: "Trả phòng (check-out)", value: "12:00" },
 		{ label: "Số khách tiêu chuẩn", value: "2 người lớn & 1 trẻ em (<6t)" },
 		{ label: "Phụ thu khách thêm", value: "200.000₫/người" },
 	],
