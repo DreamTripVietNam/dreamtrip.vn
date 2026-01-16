@@ -191,6 +191,7 @@ const reshapeProduct = (
 		extraServices,
 		houseRules,
 		capacity,
+		location,
 		...rest
 	} = product;
 
@@ -202,6 +203,7 @@ const reshapeProduct = (
 		extraServices: extraServices ? JSON.parse(extraServices.value) : undefined,
 		houseRules: houseRules ? JSON.parse(houseRules.value) : undefined,
 		capacity: capacity ? JSON.parse(capacity.value) : undefined,
+		location: location?.value,
 	};
 };
 

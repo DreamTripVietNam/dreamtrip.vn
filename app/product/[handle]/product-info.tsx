@@ -88,6 +88,9 @@ export function ProductInfo({ product }: { product: Product }) {
 
 	const allAmenities = [...amenities.free, ...amenities.facilities];
 
+	// Use location from product if available, otherwise fallback to mock
+	const location = product.location || MOCK_PRODUCT_DATA.location;
+
 	return (
 		<div className="flex flex-col gap-10">
 			{/* Description */}
@@ -249,11 +252,12 @@ export function ProductInfo({ product }: { product: Product }) {
 			{/* Location */}
 			<section>
 				<h2 className="text-2xl font-semibold mb-4">Nơi bạn sẽ đến</h2>
-				<div className="bg-neutral-100  h-64 rounded-xl flex items-center justify-center mb-4 relative overflow-hidden group">
-					<MapPin className="w-10 h-10 text-neutral-400" />
-					<span className="absolute bottom-4 left-4 bg-white  px-3 py-1 rounded-full text-xs font-bold shadow-md">
-						{MOCK_PRODUCT_DATA.location}
-					</span>
+				<div className="bg-neutral-100 rounded-2xl overflow-hidden mb-4 relative shadow-sm border border-neutral-200 aspect-video">
+					<iframe
+						title="Location"
+						src={`https://maps.google.com/maps?q=${encodeURIComponent(location)}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
+						className="size-full"
+					/>
 				</div>
 				<div className="flex flex-wrap gap-2">
 					{nearby.map((place, idx) => (

@@ -101,7 +101,12 @@ export type ProductCapacity = {
 
 export type Product = Omit<
 	ShopifyProduct,
-	"variants" | "images" | "amenities" | "extraServices" | "houseRules"
+	| "variants"
+	| "images"
+	| "amenities"
+	| "extraServices"
+	| "houseRules"
+	| "location"
 > & {
 	variants: ProductVariant[];
 	images: Image[];
@@ -109,6 +114,7 @@ export type Product = Omit<
 	extraServices?: ExtraService[];
 	houseRules?: HouseRule[];
 	capacity?: ProductCapacity;
+	location?: string;
 };
 
 export type ProductOption = {
@@ -175,6 +181,7 @@ export type ShopifyProduct = {
 	extraServices?: { value: string };
 	houseRules?: { value: string };
 	capacity?: { value: string };
+	location?: { value: string };
 };
 
 export type ShopifyCartOperation = {
