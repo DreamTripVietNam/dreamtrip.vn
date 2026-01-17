@@ -255,19 +255,36 @@ export function ProductInfo({ product }: { product: Product }) {
 				<div className="bg-neutral-100 rounded-2xl overflow-hidden mb-4 relative shadow-sm border border-neutral-200 aspect-video">
 					<iframe
 						title="Location"
-						src={`https://maps.google.com/maps?q=${encodeURIComponent(location)}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
+						src={`https://maps.google.com/maps?q=${encodeURIComponent(location)}&output=embed`}
 						className="size-full"
 					/>
 				</div>
+				<a
+					href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
+						location,
+					)}`}
+					target="_blank"
+					rel="noopener noreferrer"
+					className="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 hover:text-blue-700 hover:underline mb-6"
+				>
+					<MapPin className="w-4 h-4" />
+					Chỉ đường trên Google Maps
+				</a>
+				<h3 className="text-sm font-semibold text-neutral-900 mb-2">
+					Lân cận:
+				</h3>
 				<div className="flex flex-wrap gap-2">
 					{nearby.map((place, idx) => (
-						<span
+						<div
 							key={idx}
-							className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-neutral-200  text-xs font-medium hover:bg-neutral-50 transition-colors cursor-default"
+							className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-neutral-200 bg-white text-xs font-medium hover:bg-neutral-50 transition-colors cursor-default"
 						>
-							<MapPin className="w-3 h-3 text-blue-500" />
-							{place}
-						</span>
+							<MapPin className="w-3.5 h-3.5 text-red-500" />
+							<span className="text-neutral-900">{place.name}</span>
+							<span className="text-neutral-400 pl-2 border-l border-neutral-200">
+								{place.distance}
+							</span>
+						</div>
 					))}
 				</div>
 			</section>

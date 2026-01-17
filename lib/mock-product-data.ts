@@ -157,11 +157,11 @@ export const MOCK_PRODUCT_DATA = {
 		},
 	],
 	nearby: [
-		"Minh Trí Golf",
-		"Hồ Đồng Đò",
-		"Thiên Phú Lâm",
-		"Quán cafe bên rừng",
-		"Việt Phủ Thành Chương",
+		{ name: "Minh Trí Golf", distance: "2km" },
+		{ name: "Hồ Đồng Đò", distance: "500m" },
+		{ name: "Thiên Phú Lâm", distance: "3km" },
+		{ name: "Quán cafe bên rừng", distance: "1km" },
+		{ name: "Việt Phủ Thành Chương", distance: "5km" },
 	],
 };
 
