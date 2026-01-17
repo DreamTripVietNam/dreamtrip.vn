@@ -8,11 +8,13 @@ import {
 	Key,
 	MapPin,
 	MessageCircle,
+	Quote,
 	Sparkles,
 	Star,
 	Tag,
 	X,
 } from "lucide-react";
+import { clsx } from "clsx";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
@@ -36,28 +38,51 @@ function ReviewSkeleton() {
 
 function ReviewCard({ review }: { review: Review }) {
 	return (
-		<div className="border border-neutral-100 rounded-xl p-4 md:p-6 bg-white shadow-sm hover:shadow-md transition-shadow">
-			<div className="flex items-center gap-3 mb-4">
-				<Image
-					src={review.author.avatar}
-					alt={review.author.name}
-					width={40}
-					height={40}
-					className="rounded-full bg-neutral-100 object-cover"
-					unoptimized
-				/>
-				<div>
-					<h4 className="font-semibold text-sm text-neutral-900">
-						{review.author.name}
-					</h4>
-					<span className="text-xs text-neutral-500">{review.date}</span>
+		<div className="group relative border border-neutral-100 rounded-2xl p-6 bg-white shadow-sm hover:shadow-md transition-all duration-300 hover:border-neutral-200">
+			<div className="absolute top-6 right-6 text-neutral-100 group-hover:text-neutral-200 transition-colors">
+				<Quote className="w-8 h-8 md:w-10 md:h-10 fill-current" />
+			</div>
+
+			<div className="relative z-10 flex items-start justify-between gap-4 mb-4">
+				<div className="flex items-center gap-3">
+					<Image
+						src={review.author.avatar}
+						alt={review.author.name}
+						width={44}
+						height={44}
+						className="rounded-full bg-neutral-100 object-cover border border-neutral-100"
+						unoptimized
+					/>
+					<div>
+						<h4 className="font-semibold text-sm text-neutral-900">
+							{review.author.name}
+						</h4>
+						<div className="flex items-center gap-2 mt-1">
+							<div className="flex text-yellow-400 gap-0.5">
+								{[...Array(5)].map((_, i) => (
+									<Star
+										key={i}
+										className={clsx(
+											"w-3.5 h-3.5",
+											i < review.rating
+												? "fill-current"
+												: "text-neutral-200 fill-neutral-200",
+										)}
+									/>
+								))}
+							</div>
+							<span className="text-xs text-neutral-300">•</span>
+							<span className="text-xs text-neutral-500">{review.date}</span>
+						</div>
+					</div>
 				</div>
 			</div>
-			<p className="text-neutral-600 text-sm leading-relaxed mb-4">
+
+			<p className="relative z-10 text-neutral-600 text-sm leading-relaxed mb-4">
 				{review.content}
 			</p>
 			{review.images && review.images.length > 0 && (
-				<div className="flex gap-2 overflow-x-auto pb-2">
+				<div className="relative z-10 flex gap-2 overflow-x-auto pb-2 scrollbar-none">
 					{review.images.map((img, idx) => (
 						<Image
 							key={idx}
@@ -65,7 +90,7 @@ function ReviewCard({ review }: { review: Review }) {
 							alt="Review"
 							width={80}
 							height={80}
-							className="rounded-lg object-cover flex-none"
+							className="rounded-lg object-cover flex-none border border-neutral-100"
 						/>
 					))}
 				</div>
@@ -168,7 +193,7 @@ export function ReviewsSection({ productHandle }: { productHandle: string }) {
 						<div className="flex items-center gap-3 mb-6">
 							<Star className="w-8 h-8 text-yellow-400 fill-current" />
 							<h2 className="text-3xl font-bold font-barlow text-neutral-900">
-								{loading ? "..." : data?.stats.averageRating}{" "}
+								{loading ? "..." : data?.stats.averageRating.toFixed(1)}{" "}
 								<span className="text-xl font-normal text-neutral-500">
 									({loading ? "..." : data?.stats.totalReviews} đánh giá)
 								</span>

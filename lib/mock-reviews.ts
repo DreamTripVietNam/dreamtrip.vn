@@ -52,31 +52,61 @@ const AUTHORS = [
 	"Lý Hải Đăng",
 ];
 
-function getRandomInt(min: number, max: number) {
-	return Math.floor(Math.random() * (max - min + 1)) + min;
+class SeededRandom {
+	private seed: number;
+
+	constructor(seed: number) {
+		this.seed = seed;
+	}
+
+	// Linear Congruential Generator
+	next(): number {
+		this.seed = (this.seed * 9301 + 49297) % 233280;
+		return this.seed / 233280;
+	}
+
+	nextInt(min: number, max: number): number {
+		return Math.floor(this.next() * (max - min + 1)) + min;
+	}
+
+	pick<T>(arr: T[]): T {
+		return arr[Math.floor(this.next() * arr.length)] as T;
+	}
 }
 
-function getRandomItem<T>(arr: T[]): T {
-	return arr[Math.floor(Math.random() * arr.length)] as T;
-}
-
-export function generateMockReviews(count = 20): {
+export function generateMockReviews(count = 50): {
 	stats: ReviewStats;
 	reviews: Review[];
 } {
+	// Initialize seeded random generator
+	const rng = new SeededRandom(12345); // Fixed seed for consistency
+
+	const possibleRatings = [3.5, 4, 4.5, 5];
+	// Weight towards higher ratings to ensure avg >= 4.5
+	// 3.5 (5%), 4 (10%), 4.5 (40%), 5 (45%)
+	const ratingWeights = [0.05, 0.15, 0.55, 1.0];
+
 	const reviews: Review[] = Array.from({ length: count }).map((_, i) => {
-		const name = getRandomItem(AUTHORS);
+		const name = rng.pick(AUTHORS);
+		
+		// Weighted rating generation
+		const r = rng.next();
+		let rating = 5;
+		if (r < ratingWeights[0]!) rating = 3.5;
+		else if (r < ratingWeights[1]!) rating = 4;
+		else if (r < ratingWeights[2]!) rating = 4.5;
+		
 		return {
 			id: `review-${i}`,
 			author: {
 				name,
 				avatar: `https://api.dicebear.com/9.x/notionists/svg?seed=${name}&backgroundColor=e5e7eb,fdba74`,
 			},
-			rating: getRandomInt(3, 5),
-			date: `${getRandomInt(1, 28)}/${getRandomInt(1, 12)}/2025`,
-			content: getRandomItem(COMMENTS),
+			rating,
+			date: `${rng.nextInt(1, 28)}/${rng.nextInt(1, 12)}/2025`,
+			content: rng.pick(COMMENTS),
 			images:
-				Math.random() > 0.8
+				rng.next() > 0.8
 					? [
 							"https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=300&q=80",
 						]
@@ -90,14 +120,14 @@ export function generateMockReviews(count = 20): {
 	return {
 		stats: {
 			averageRating,
-			totalReviews: count + getRandomInt(50, 100), // Simulate older reviews not returned
+			totalReviews: count + rng.nextInt(50, 100), // Simulate older reviews not returned
 			breakdown: {
-				cleanliness: parseFloat((4 + Math.random()).toFixed(1)),
-				accuracy: parseFloat((4 + Math.random()).toFixed(1)),
-				communication: parseFloat((4 + Math.random()).toFixed(1)),
-				location: parseFloat((4 + Math.random()).toFixed(1)),
-				checkIn: parseFloat((4 + Math.random()).toFixed(1)),
-				value: parseFloat((4 + Math.random()).toFixed(1)),
+				cleanliness: parseFloat((4 + rng.next()).toFixed(1)),
+				accuracy: parseFloat((4 + rng.next()).toFixed(1)),
+				communication: parseFloat((4 + rng.next()).toFixed(1)),
+				location: parseFloat((4 + rng.next()).toFixed(1)),
+				checkIn: parseFloat((4 + rng.next()).toFixed(1)),
+				value: parseFloat((4 + rng.next()).toFixed(1)),
 			},
 		},
 		reviews,
