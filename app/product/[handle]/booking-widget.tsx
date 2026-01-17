@@ -47,14 +47,17 @@ export function BookingWidget() {
 
 			{/* Header Price & Rating */}
 			<div className="flex justify-between items-start mb-6">
-				<div>
+				<div className="flex items-center">
 					<span className="text-2xl font-bold font-barlow">
 						{new Intl.NumberFormat("vi-VN", {
 							style: "currency",
 							currency: "VND",
 						}).format(pricePerNight)}
 					</span>
-					<span className="text-neutral-500 text-sm"> / đêm</span>
+					<span className="text-neutral-500 text-sm inline-block pt-1">
+						{" "}
+						/ đêm
+					</span>
 				</div>
 				{/* <div className="flex items-center gap-1 text-sm font-medium">
 					<Star className="w-4 h-4 text-black  fill-black " />
