@@ -77,12 +77,13 @@ function CapacityItem({
 }
 
 export function ProductInfo({ product }: { product: Product }) {
-	const { nearby, reviews } = MOCK_PRODUCT_DATA;
+	const { reviews } = MOCK_PRODUCT_DATA;
 	const amenities = product.amenities || MOCK_PRODUCT_DATA.amenities;
 	const houseRules = product.houseRules || MOCK_PRODUCT_DATA.houseRules;
 	const extraServices =
 		product.extraServices || MOCK_PRODUCT_DATA.extraServices;
 	const capacity = product.capacity || MOCK_PRODUCT_DATA.capacity;
+	const nearby = product.nearby || MOCK_PRODUCT_DATA.nearby;
 	const { description } = product;
 	const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
 

@@ -36,6 +36,9 @@ social_post: metafields(identifiers: [
     location: metafield(namespace: "custom", key: "location") {
       value
     }
+    nearby: metafield(namespace: "custom", key: "nearby") {
+      value
+    }
     priceRange {
       maxVariantPrice {
         amount

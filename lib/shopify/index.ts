@@ -192,6 +192,7 @@ const reshapeProduct = (
 		houseRules,
 		capacity,
 		location,
+		nearby,
 		...rest
 	} = product;
 
@@ -204,6 +205,7 @@ const reshapeProduct = (
 		houseRules: houseRules ? JSON.parse(houseRules.value) : undefined,
 		capacity: capacity ? JSON.parse(capacity.value) : undefined,
 		location: location?.value,
+		nearby: nearby ? JSON.parse(nearby.value) : undefined,
 	};
 };
 

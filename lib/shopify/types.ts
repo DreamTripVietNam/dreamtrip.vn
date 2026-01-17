@@ -99,6 +99,11 @@ export type ProductCapacity = {
 	area: number;
 };
 
+export type NearbyItem = {
+	name: string;
+	distance: string;
+};
+
 export type Product = Omit<
 	ShopifyProduct,
 	| "variants"
@@ -107,6 +112,7 @@ export type Product = Omit<
 	| "extraServices"
 	| "houseRules"
 	| "location"
+	| "nearby"
 > & {
 	variants: ProductVariant[];
 	images: Image[];
@@ -115,6 +121,7 @@ export type Product = Omit<
 	houseRules?: HouseRule[];
 	capacity?: ProductCapacity;
 	location?: string;
+	nearby?: NearbyItem[];
 };
 
 export type ProductOption = {
@@ -182,6 +189,7 @@ export type ShopifyProduct = {
 	houseRules?: { value: string };
 	capacity?: { value: string };
 	location?: { value: string };
+	nearby?: { value: string };
 };
 
 export type ShopifyCartOperation = {
