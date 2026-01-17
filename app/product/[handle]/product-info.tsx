@@ -24,7 +24,7 @@ import {
 	IconWind,
 } from "@tabler/icons-react";
 import type { Product } from "lib/shopify/types";
-import { ChevronRight, MapPin, Sparkles, Star, X } from "lucide-react";
+import { ChevronRight, MapPin, Sparkles, X } from "lucide-react";
 import { useState } from "react";
 
 // Type-safe icon mapping
@@ -76,7 +76,6 @@ function CapacityItem({
 }
 
 export function ProductInfo({ product }: { product: Product }) {
-	const reviews = product.reviews || [];
 	const amenities = product.amenities || { free: [], facilities: [] };
 	const houseRules = product.houseRules || [];
 	const extraServices = product.extraServices || [];
@@ -292,43 +291,6 @@ export function ProductInfo({ product }: { product: Product }) {
 							<span className="text-neutral-400 pl-2 border-l border-neutral-200">
 								{place.distance}
 							</span>
-						</div>
-					))}
-				</div>
-			</section>
-
-			{/* Reviews */}
-			<section>
-				<div className="flex items-center gap-2 mb-6">
-					<Star className="w-6 h-6 text-yellow-400 fill-current" />
-					<h2 className="text-2xl font-semibold">
-						{product.rating}{" "}
-						<span className="text-neutral-400 font-normal text-lg">
-							({product.reviewCount} đánh giá)
-						</span>
-					</h2>
-				</div>
-
-				<div className="space-y-6">
-					{reviews.map((review, idx) => (
-						<div
-							key={idx}
-							className="border-b border-neutral-100  pb-6 last:border-0 last:pb-0"
-						>
-							<div className="flex items-center gap-3 mb-3">
-								<div className="w-10 h-10 rounded-full bg-linear-to-br from-blue-100 to-purple-100   flex items-center justify-center font-bold text-neutral-600 ">
-									{review.author.charAt(0)}
-								</div>
-								<div>
-									<h4 className="font-medium text-sm">{review.author}</h4>
-									<span className="text-xs text-neutral-500">
-										{review.date}
-									</span>
-								</div>
-							</div>
-							<p className="text-neutral-600  text-sm leading-relaxed">
-								{review.content}
-							</p>
 						</div>
 					))}
 				</div>

@@ -11,6 +11,7 @@ import { ProductProvider } from "./product-context";
 import { ProductGallery } from "./product-gallery";
 import { ProductInfo } from "./product-info";
 import { ProductPageSkeleton } from "./product-page-skeleton";
+import { ReviewsSection } from "./reviews-section";
 import { SaveButton } from "./save-button";
 import { ShareButton } from "./share-button";
 
@@ -137,6 +138,9 @@ async function ProductPageContent({
 						<BookingWidget />
 					</div>
 				</div>
+
+				{/* Reviews */}
+				<ReviewsSection productHandle={product.handle} />
 
 				{/* Related Products */}
 				<Suspense fallback={null}>

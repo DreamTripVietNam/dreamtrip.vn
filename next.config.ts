@@ -25,6 +25,11 @@ const config: NextConfig = {
 				hostname: "i.pravatar.cc",
 				pathname: "/**",
 			},
+			{
+				protocol: "https",
+				hostname: "api.dicebear.com",
+				pathname: "/**",
+			},
 		],
 		qualities: [75, 85, 95],
 	},
