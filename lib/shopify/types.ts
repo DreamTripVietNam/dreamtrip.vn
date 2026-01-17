@@ -123,6 +123,16 @@ export type Product = Omit<
 	capacity?: ProductCapacity;
 	location?: string;
 	nearby?: NearbyItem[];
+	reviews?: Review[];
+	rating?: number;
+	reviewCount?: number;
+};
+
+export type Review = {
+	author: string;
+	date: string;
+	rating: number;
+	content: string;
 };
 
 export type ProductOption = {

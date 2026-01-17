@@ -432,6 +432,9 @@ const populateProductWithMockData = (
 		capacity: product.capacity || MOCK_PRODUCT_DATA.capacity,
 		location: product.location || MOCK_PRODUCT_DATA.location,
 		nearby: product.nearby || MOCK_PRODUCT_DATA.nearby,
+		reviews: product.reviews || MOCK_PRODUCT_DATA.reviews,
+		rating: product.rating || MOCK_PRODUCT_DATA.rating,
+		reviewCount: product.reviewCount || MOCK_PRODUCT_DATA.reviewCount,
 	};
 };
 

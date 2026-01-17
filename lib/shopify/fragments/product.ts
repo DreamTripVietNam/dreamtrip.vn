@@ -14,7 +14,7 @@ export const productDetailsFragment = /* GraphQL */ `
       name
       values
     }
-social_post: metafields(identifiers: [
+    social_post: metafields(identifiers: [
       { namespace: "custom", key: "social_post" }
     ]) {
       key

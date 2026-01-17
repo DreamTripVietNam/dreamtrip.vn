@@ -23,7 +23,6 @@ import {
 	IconWifi,
 	IconWind,
 } from "@tabler/icons-react";
-import { MOCK_PRODUCT_DATA } from "lib/mock-product-data";
 import type { Product } from "lib/shopify/types";
 import { ChevronRight, MapPin, Sparkles, Star, X } from "lucide-react";
 import { useState } from "react";
@@ -77,20 +76,28 @@ function CapacityItem({
 }
 
 export function ProductInfo({ product }: { product: Product }) {
-	const { reviews } = MOCK_PRODUCT_DATA;
-	const amenities = product.amenities || MOCK_PRODUCT_DATA.amenities;
-	const houseRules = product.houseRules || MOCK_PRODUCT_DATA.houseRules;
-	const extraServices =
-		product.extraServices || MOCK_PRODUCT_DATA.extraServices;
-	const capacity = product.capacity || MOCK_PRODUCT_DATA.capacity;
-	const nearby = product.nearby || MOCK_PRODUCT_DATA.nearby;
+	const reviews = product.reviews || [];
+	const amenities = product.amenities || { free: [], facilities: [] };
+	const houseRules = product.houseRules || [];
+	const extraServices = product.extraServices || [];
+	const capacity = product.capacity || {
+		type: "",
+		bedrooms: 0,
+		bathrooms: 0,
+		kitchens: 0,
+		beds: 0,
+		maxGuests: 0,
+		standardGuests: 0,
+		area: 0,
+	};
+	const nearby = product.nearby || [];
 	const { description } = product;
 	const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
 
 	const allAmenities = [...amenities.free, ...amenities.facilities];
 
-	// Use location from product if available, otherwise fallback to mock
-	const location = product.location || MOCK_PRODUCT_DATA.location;
+	// Use location from product if available
+	const location = product.location || "";
 
 	return (
 		<div className="flex flex-col gap-10">
@@ -295,9 +302,9 @@ export function ProductInfo({ product }: { product: Product }) {
 				<div className="flex items-center gap-2 mb-6">
 					<Star className="w-6 h-6 text-yellow-400 fill-current" />
 					<h2 className="text-2xl font-semibold">
-						{MOCK_PRODUCT_DATA.rating}{" "}
+						{product.rating}{" "}
 						<span className="text-neutral-400 font-normal text-lg">
-							({MOCK_PRODUCT_DATA.reviewCount} đánh giá)
+							({product.reviewCount} đánh giá)
 						</span>
 					</h2>
 				</div>

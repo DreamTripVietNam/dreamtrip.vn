@@ -58,13 +58,6 @@ export function BookingWidget() {
 						(cho 1 đêm)
 					</span>
 				</div>
-				{/* <div className="flex items-center gap-1 text-sm font-medium">
-					<Star className="w-4 h-4 text-black  fill-black " />
-					{MOCK_PRODUCT_DATA.rating}
-					<span className="text-neutral-400 underline">
-						({MOCK_PRODUCT_DATA.reviewCount})
-					</span>
-				</div> */}
 			</div>
 
 			{/* Inputs */}
