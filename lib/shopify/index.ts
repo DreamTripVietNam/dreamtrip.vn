@@ -3,6 +3,7 @@ import {
 	SHOPIFY_GRAPHQL_API_ENDPOINT,
 	TAGS,
 } from "lib/constants";
+import { MOCK_PRODUCT_DATA } from "lib/mock-product-data";
 import { isShopifyError } from "lib/type-guards";
 import { ensureStartsWith } from "lib/utils";
 import { cacheLife, cacheTag, revalidateTag } from "next/cache";
@@ -418,6 +419,22 @@ export async function getPages(): Promise<Page[]> {
 	return removeEdgesAndNodes(res.body.data.pages);
 }
 
+const populateProductWithMockData = (
+	product: Product | undefined,
+): Product | undefined => {
+	if (!product) return undefined;
+
+	return {
+		...product,
+		amenities: product.amenities || MOCK_PRODUCT_DATA.amenities,
+		extraServices: product.extraServices || MOCK_PRODUCT_DATA.extraServices,
+		houseRules: product.houseRules || MOCK_PRODUCT_DATA.houseRules,
+		capacity: product.capacity || MOCK_PRODUCT_DATA.capacity,
+		location: product.location || MOCK_PRODUCT_DATA.location,
+		nearby: product.nearby || MOCK_PRODUCT_DATA.nearby,
+	};
+};
+
 export async function getProduct(handle: string): Promise<Product | undefined> {
 	"use cache";
 	cacheTag(TAGS.products);
@@ -430,7 +447,8 @@ export async function getProduct(handle: string): Promise<Product | undefined> {
 		},
 	});
 
-	return reshapeProduct(res.body.data.product, false);
+	const product = reshapeProduct(res.body.data.product, false);
+	return populateProductWithMockData(product);
 }
 
 export async function getProductRecommendations(

@@ -83,7 +83,7 @@ async function ProductPageContent({
 	};
 
 	return (
-		<ProductProvider>
+		<ProductProvider product={product}>
 			<Debugger data={product} debugKey="product" log />
 			<script
 				type="application/ld+json"
@@ -98,12 +98,21 @@ async function ProductPageContent({
 						<h1 className="text-3xl md:text-4xl lg:text-[40px] font-bold font-barlow text-neutral-900 mb-2">
 							{product.title}
 						</h1>
-						<div className="flex items-center gap-1.5 text-sm text-neutral-600 ">
-							<MapPin className="size-4" />
-							<span className="text-neutral-500 text-sm">
-								cách trung tâm Hà Nội ~40km
-							</span>
-						</div>
+						{product.location && (
+							<a
+								href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
+									product.location,
+								)}`}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="flex items-center gap-1.5 text-sm text-neutral-600 hover:text-blue-600 transition-colors w-fit"
+							>
+								<MapPin className="size-4" />
+								<span className="font-medium underline decoration-neutral-300 underline-offset-4 hover:decoration-blue-600">
+									{product.location} • Xem chỉ đường
+								</span>
+							</a>
+						)}
 					</div>
 					<div className="flex items-center gap-3">
 						<SaveButton productHandle={params.handle} />

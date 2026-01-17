@@ -111,6 +111,7 @@ export type Product = Omit<
 	| "amenities"
 	| "extraServices"
 	| "houseRules"
+	| "capacity"
 	| "location"
 	| "nearby"
 > & {

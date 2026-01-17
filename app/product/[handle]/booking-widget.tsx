@@ -3,23 +3,24 @@
 import { clsx } from "clsx";
 import { addDays, differenceInDays, format } from "date-fns";
 import { vi } from "date-fns/locale";
-import { MOCK_PRODUCT_DATA } from "lib/mock-product-data";
-import { ChevronDown, Minus, Plus, Star } from "lucide-react";
+import { ChevronDown, Minus, Plus } from "lucide-react";
 import { useState } from "react";
 import { type DateRange, DayPicker } from "react-day-picker";
 import "react-day-picker/style.css";
+import { useProduct } from "./product-context";
 
 // Custom styles for the calendar to match the theme
 const css = `
   .rdp { --rdp-cell-size: 34px; --rdp-accent-color: #000; --rdp-background-color: #e5e7eb; margin: 0; }
-  .rdp-day_selected:not([disabled]), .rdp-day_selected:focus:not([disabled]), .rdp-day_selected:active:not([disabled]), .rdp-day_selected:hover:not([disabled]) { 
-    background-color: black; 
+  .rdp-day_selected:not([disabled]), .rdp-day_selected:focus:not([disabled]), .rdp-day_selected:active:not([disabled]), .rdp-day_selected:hover:not([disabled]) {
+    background-color: black;
     color: white;
   }
 
 `;
 
 export function BookingWidget() {
+	const { product } = useProduct();
 	const [dateRange, setDateRange] = useState<DateRange | undefined>({
 		from: new Date(),
 		to: addDays(new Date(), 2),
@@ -28,7 +29,7 @@ export function BookingWidget() {
 	const [guests, setGuests] = useState(2);
 	const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 
-	const pricePerNight = parseInt(MOCK_PRODUCT_DATA.price.amount, 10);
+	const pricePerNight = parseInt(product.priceRange.minVariantPrice.amount, 10);
 	const nights =
 		dateRange?.from && dateRange?.to
 			? differenceInDays(dateRange.to, dateRange.from)
@@ -55,13 +56,13 @@ export function BookingWidget() {
 					</span>
 					<span className="text-neutral-500 text-sm"> / đêm</span>
 				</div>
-				<div className="flex items-center gap-1 text-sm font-medium">
+				{/* <div className="flex items-center gap-1 text-sm font-medium">
 					<Star className="w-4 h-4 text-black  fill-black " />
 					{MOCK_PRODUCT_DATA.rating}
 					<span className="text-neutral-400 underline">
 						({MOCK_PRODUCT_DATA.reviewCount})
 					</span>
-				</div>
+				</div> */}
 			</div>
 
 			{/* Inputs */}

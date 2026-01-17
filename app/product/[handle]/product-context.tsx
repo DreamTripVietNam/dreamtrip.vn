@@ -1,5 +1,6 @@
 "use client";
 
+import type { Product } from "lib/shopify/types";
 import { useRouter, useSearchParams } from "next/navigation";
 import type React from "react";
 import { createContext, useContext, useMemo, useOptimistic } from "react";
@@ -14,11 +15,18 @@ type ProductContextType = {
 	state: ProductState;
 	updateOption: (name: string, value: string) => ProductState;
 	updateImage: (index: string) => ProductState;
+	product: Product;
 };
 
 const ProductContext = createContext<ProductContextType | undefined>(undefined);
 
-export function ProductProvider({ children }: { children: React.ReactNode }) {
+export function ProductProvider({
+	children,
+	product,
+}: {
+	children: React.ReactNode;
+	product: Product;
+}) {
 	const searchParams = useSearchParams();
 
 	const getInitialState = () => {
@@ -55,8 +63,9 @@ export function ProductProvider({ children }: { children: React.ReactNode }) {
 			state,
 			updateOption,
 			updateImage,
+			product,
 		}),
-		[state],
+		[state, product],
 	);
 
 	return (
