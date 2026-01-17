@@ -50,7 +50,7 @@ export default async function RootLayout({
 
 	return (
 		<html lang="en" className={clsx(barlow.variable, inter.variable)}>
-			<body className="font-sans bg-neutral-50 text-black selection:bg-teal-300  ">
+			<body className="font-sans text-neutral-900 selection:bg-teal-300  ">
 				<CartProvider cartPromise={cart}>
 					<Navbar />
 					<main>
