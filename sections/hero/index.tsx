@@ -24,9 +24,9 @@ export function HeroSection() {
 				<div className="relative z-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="text-center mb-8">
 						{/* Explore Vietnam Tag */}
-						<div className="inline-flex items-center rounded-full bg-yellow-400 px-6 py-2 text-sm font-semibold text-black mb-6 gap-3">
+						<div className="inline-flex items-center rounded-full bg-cyan-100 px-6 pt-2 pb-2.5 text-sm font-semibold text-black mb-6 gap-3">
 							<Image
-								src="https://cdn.shopify.com/s/files/1/0959/3775/7475/files/suitcase-100.png?v=1766102913"
+								src="https://cdn.shopify.com/s/files/1/0959/3775/7475/files/icons8-jeep-100.png?v=1768698718"
 								width={100}
 								height={100}
 								alt="Vietnam Flag"
@@ -47,7 +47,7 @@ export function HeroSection() {
 							Đặt homestay, villa và resort tại những điểm đến tuyệt vời nhất
 							Việt Nam.
 							<br />
-							Nơi mỗi chuyến đi là một trải nghiệm đáng nhớ
+							Nơi mỗi chuyến đi là một trải nghiệm đáng nhớ!
 						</p>
 					</div>
 
