@@ -7,16 +7,16 @@ import { SITE_METADATA } from "data/metadata";
 import { getCart } from "lib/shopify";
 import { baseUrl } from "lib/utils";
 import type { Metadata } from "next";
-import { Barlow, Livvic } from "next/font/google";
+import { Be_Vietnam_Pro, Livvic } from "next/font/google";
 import type { ReactNode } from "react";
 import { Toaster } from "sonner";
 import "./globals.css";
 
-const barlow = Barlow({
+const beVietnamPro = Be_Vietnam_Pro({
 	subsets: ["latin", "vietnamese"],
 	weight: ["300", "400", "500", "600", "700"],
 	display: "swap",
-	variable: "--font-barlow",
+	variable: "--font-be-vietnam-pro",
 });
 
 const livvic = Livvic({
@@ -55,7 +55,7 @@ export default async function RootLayout({
 	const cart = getCart();
 
 	return (
-		<html lang="en" className={clsx(barlow.variable, livvic.variable)}>
+		<html lang="en" className={clsx(beVietnamPro.variable, livvic.variable)}>
 			<body className="text-neutral-900 selection:bg-teal-300  ">
 				<CartProvider cartPromise={cart}>
 					<Navbar />

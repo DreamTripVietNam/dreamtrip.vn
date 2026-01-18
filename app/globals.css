@@ -2,8 +2,8 @@
 @import "tw-animate-css";
 
 @theme inline {
-	--font-barlow:
-		var(--font-barlow), ui-sans-serif, system-ui, sans-serif,
+	--font-be-vietnam-pro:
+		var(--font-be-vietnam-pro), ui-sans-serif, system-ui, sans-serif,
 		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 	--font-livvic:
 		var(--font-livvic), ui-sans-serif, system-ui, sans-serif,
@@ -20,7 +20,7 @@
 	h4,
 	h5,
 	h6 {
-		font-family: var(--font-barlow), sans-serif;
+		font-family: var(--font-be-vietnam-pro), sans-serif;
 	}
 }
 
