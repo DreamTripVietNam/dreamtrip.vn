@@ -96,7 +96,7 @@ async function ProductPageContent({
 				{/* Header Section */}
 				<div className="mb-6 flex flex-col md:flex-row md:items-start md:justify-between gap-4">
 					<div>
-						<h1 className="text-3xl md:text-4xl lg:text-[40px] font-bold font-barlow text-neutral-900 mb-2">
+						<h1 className="text-3xl md:text-4xl lg:text-[40px] font-bold text-neutral-900 mb-2">
 							{product.title}
 						</h1>
 						{product.location && (
@@ -158,9 +158,7 @@ async function RelatedProducts({ id }: { id: string }) {
 
 	return (
 		<div className="py-16 border-t border-neutral-200  mt-16">
-			<h2 className="mb-6 text-2xl font-bold font-barlow">
-				Có thể bạn sẽ thích
-			</h2>
+			<h2 className="mb-6 text-2xl font-bold">Có thể bạn sẽ thích</h2>
 			<ul className="flex w-full gap-4 overflow-x-auto pb-4">
 				{relatedProducts.map((product) => (
 					<li

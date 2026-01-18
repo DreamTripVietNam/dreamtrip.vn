@@ -48,7 +48,7 @@ export function BookingWidget() {
 			{/* Header Price & Rating */}
 			<div className="flex justify-between items-start mb-6">
 				<div className="flex items-center gap-2">
-					<span className="text-2xl font-bold font-barlow">
+					<span className="text-2xl font-bold">
 						{new Intl.NumberFormat("vi-VN", {
 							style: "currency",
 							currency: "VND",

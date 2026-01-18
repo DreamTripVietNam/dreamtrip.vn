@@ -2,6 +2,7 @@
 
 import * as Dialog from "@radix-ui/react-dialog";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
+import { clsx } from "clsx";
 import type { Review, ReviewStats } from "lib/mock-reviews";
 import {
 	CheckCircle2,
@@ -14,7 +15,6 @@ import {
 	Tag,
 	X,
 } from "lucide-react";
-import { clsx } from "clsx";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
@@ -192,7 +192,7 @@ export function ReviewsSection({ productHandle }: { productHandle: string }) {
 					<div className="mb-8">
 						<div className="flex items-center gap-3 mb-6">
 							<Star className="w-8 h-8 text-yellow-400 fill-current" />
-							<h2 className="text-3xl font-bold font-barlow text-neutral-900">
+							<h2 className="text-3xl font-bold text-neutral-900">
 								{loading ? "..." : data?.stats.averageRating.toFixed(1)}{" "}
 								<span className="text-xl font-normal text-neutral-500">
 									({loading ? "..." : data?.stats.totalReviews} đánh giá)
@@ -264,7 +264,7 @@ export function ReviewsSection({ productHandle }: { productHandle: string }) {
 								<Dialog.Content className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
 									<div className="bg-white rounded-2xl w-full max-w-4xl max-h-[85vh] flex flex-col shadow-2xl focus:outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 duration-200">
 										<div className="flex items-center justify-between px-6 py-4 border-b border-neutral-100">
-											<Dialog.Title className="text-xl font-bold font-barlow">
+											<Dialog.Title className="text-xl font-bold">
 												Đánh giá của khách
 											</Dialog.Title>
 											<Dialog.Close asChild>

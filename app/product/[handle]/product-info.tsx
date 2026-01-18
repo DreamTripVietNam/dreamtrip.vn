@@ -130,7 +130,7 @@ export function ProductInfo({ product }: { product: Product }) {
 							>
 								{/* Modal Header */}
 								<div className="flex items-center justify-between px-6 py-4 border-b border-neutral-100">
-									<Dialog.Title className="text-xl font-bold font-barlow">
+									<Dialog.Title className="text-xl font-bold">
 										Chi tiết chỗ ở
 									</Dialog.Title>
 									<Dialog.Close asChild>
