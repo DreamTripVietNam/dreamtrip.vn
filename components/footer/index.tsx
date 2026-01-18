@@ -1,11 +1,31 @@
 import Logo from "components/logo";
-import { SITE_METADATA } from "data/metadata";
 import { Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
 
-const { name: siteName } = SITE_METADATA;
-
-const footerLinks = {
+const FOOTER_MENU = {
+	popularDestinations: {
+		title: "Địa điểm nổi bật",
+		links: [
+			{ title: "Vườn Vua Resort", href: "/search/vuon-vua" },
+			{ title: "Sóc Sơn", href: "/search/soc-son" },
+			{ title: "Ba Vì", href: "/search/ba-vi" },
+			{ title: "Mộc Châu", href: "/search/moc-chau" },
+			{ title: "Phú Quốc", href: "/search/phu-quoc" },
+			{ title: "Sapa", href: "/search/sapa" },
+		],
+	},
+	services: {
+		title: "Dịch vụ",
+		links: [
+			{ title: "Đặt phòng", href: "/search?q=dat-phong" },
+			{ title: "Vé máy bay", href: "/search?q=ve-may-bay" },
+			{ title: "Đặt Tour", href: "/search?q=tour" },
+			{ title: "Thuê xe", href: "/search?q=thue-xe" },
+			{ title: "Ăn uống", href: "/search?q=an-uong" },
+			{ title: "Vui chơi", href: "/search?q=vui-choi" },
+			{ title: "Trang trí", href: "/search?q=trang-tri" },
+		],
+	},
 	aboutUs: {
 		title: "Về chúng tôi",
 		links: [
@@ -15,15 +35,6 @@ const footerLinks = {
 			{ title: "Liên hệ", href: "/contact" },
 		],
 	},
-	collections: {
-		title: "Địa điểm nổi bật",
-		links: [
-			{ title: "Tour du lịch", href: "/search" },
-			{ title: "Vé máy bay", href: "/flights" },
-			{ title: "Khách sạn & Resort", href: "/hotels" },
-			{ title: "Thuê xe", href: "/car-rental" },
-		],
-	},
 };
 
 export default function Footer() {
@@ -31,14 +42,14 @@ export default function Footer() {
 		<footer className="border-t border-neutral-200 bg-neutral-50">
 			{/* Main Footer Content */}
 			<div className="mx-auto max-w-7xl px-6 py-12 md:px-4 min-[1320px]:px-0">
-				<div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-16">
-					{/* Logo and Contact Section - 5 cols */}
-					<div className="lg:col-span-8 flex flex-col gap-8">
+				<div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-8">
+					{/* Logo and Contact Section - 6 cols */}
+					<div className="lg:col-span-6 flex flex-col gap-8">
 						<div className="space-y-6">
 							<div className="flex items-center gap-12">
 								<Logo size={1000} className="w-80" />
 							</div>
-							<p className="text-neutral-500 text-sm leading-relaxed text-justify font-medium">
+							<p className="text-neutral-500 text-sm leading-relaxed text-justify font-medium max-w-md">
 								Khám phá vẻ đẹp bất tận của Việt Nam cùng chúng tôi. Tự hào là
 								đơn vị lữ hành hàng đầu mang đến những trải nghiệm du lịch độc
 								đáo, an toàn và đáng nhớ nhất cho bạn và người thân.
@@ -105,13 +116,13 @@ export default function Footer() {
 						</div>
 					</div>
 
-					{/* Collections Links - 3 cols */}
+					{/* Popular Destinations - 2 cols */}
 					<div className="lg:col-span-2">
 						<h3 className="mb-6 text-sm font-bold text-neutral-900 uppercase tracking-widest">
-							{footerLinks.collections.title}
+							{FOOTER_MENU.popularDestinations.title}
 						</h3>
 						<ul className="space-y-3">
-							{footerLinks.collections.links.map((link) => (
+							{FOOTER_MENU.popularDestinations.links.map((link) => (
 								<li key={link.title}>
 									<Link
 										href={link.href}
@@ -124,13 +135,32 @@ export default function Footer() {
 						</ul>
 					</div>
 
-					{/* About Us Links - 3 cols */}
+					{/* Services - 2 cols */}
 					<div className="lg:col-span-2">
 						<h3 className="mb-6 text-sm font-bold text-neutral-900 uppercase tracking-widest">
-							{footerLinks.aboutUs.title}
+							{FOOTER_MENU.services.title}
 						</h3>
 						<ul className="space-y-3">
-							{footerLinks.aboutUs.links.map((link) => (
+							{FOOTER_MENU.services.links.map((link) => (
+								<li key={link.title}>
+									<Link
+										href={link.href}
+										className="text-sm text-neutral-600 transition-colors hover:text-teal-600 font-medium"
+									>
+										{link.title}
+									</Link>
+								</li>
+							))}
+						</ul>
+					</div>
+
+					{/* About Us - 2 cols */}
+					<div className="lg:col-span-2">
+						<h3 className="mb-6 text-sm font-bold text-neutral-900 uppercase tracking-widest">
+							{FOOTER_MENU.aboutUs.title}
+						</h3>
+						<ul className="space-y-3">
+							{FOOTER_MENU.aboutUs.links.map((link) => (
 								<li key={link.title}>
 									<Link
 										href={link.href}
