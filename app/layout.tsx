@@ -7,7 +7,7 @@ import { SITE_METADATA } from "data/metadata";
 import { getCart } from "lib/shopify";
 import { baseUrl } from "lib/utils";
 import type { Metadata } from "next";
-import { Barlow, Inter } from "next/font/google";
+import { Barlow, Livvic } from "next/font/google";
 import type { ReactNode } from "react";
 import { Toaster } from "sonner";
 import "./globals.css";
@@ -19,11 +19,11 @@ const barlow = Barlow({
 	variable: "--font-barlow",
 });
 
-const inter = Inter({
+const livvic = Livvic({
 	subsets: ["latin", "vietnamese"],
 	weight: ["300", "400", "500", "600", "700"],
 	display: "swap",
-	variable: "--font-inter",
+	variable: "--font-livvic",
 });
 
 const { name: siteName } = SITE_METADATA;
@@ -38,6 +38,12 @@ export const metadata: Metadata = {
 		follow: true,
 		index: true,
 	},
+	icons: {
+		icon: {
+			url: "/jeep-32.png",
+			type: "image/png",
+		},
+	},
 };
 
 export default async function RootLayout({
@@ -49,8 +55,8 @@ export default async function RootLayout({
 	const cart = getCart();
 
 	return (
-		<html lang="en" className={clsx(barlow.variable, inter.variable)}>
-			<body className="font-sans text-neutral-900 selection:bg-teal-300  ">
+		<html lang="en" className={clsx(barlow.variable, livvic.variable)}>
+			<body className="text-neutral-900 selection:bg-teal-300  ">
 				<CartProvider cartPromise={cart}>
 					<Navbar />
 					<main>
