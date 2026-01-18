@@ -13,7 +13,7 @@ export default function Logo({
 			className={clsx("shrink-0 flex items-center justify-center", className)}
 		>
 			<Image
-				src="/static/images/dreamtripvn-logo.png"
+				src="/static/images/dreamtripvn-logo-transparent.png"
 				alt="Dreamtrip Viet Nam Logo"
 				width={size}
 				height={size}

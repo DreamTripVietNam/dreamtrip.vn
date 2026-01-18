@@ -150,7 +150,7 @@ export default function Footer() {
 				<div className="mx-auto max-w-7xl px-6 py-4 md:px-4 min-[1320px]:px-0">
 					<div className="flex flex-col items-center justify-between gap-3 text-xs text-neutral-600 md:flex-row">
 						<p>
-							© 2021-2026. Bản quyền thuộc về{" "}
+							© 2020-2026. Bản quyền thuộc về{" "}
 							<span className="font-medium">dreamtrip.vn</span>.
 						</p>
 						<div className="flex flex-wrap items-center justify-center gap-4">
